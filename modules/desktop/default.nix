@@ -1,3 +1,9 @@
+{ config, ... }:
+
+let
+  isKde = if (config.networking.hostName == "vmware") then [ ./kde.nix ] else [ ];
+in
+
 {
 
   imports = [
@@ -5,11 +11,10 @@
     ./media.nix
     ./common.nix
     ./dm
-    ./kde.nix
     ./fcitx5.nix
     # ./xdg.nix
     # ./security.nix
     # ./virtualization.nix
-  ];
+  ] ++ isKde;
 
 }

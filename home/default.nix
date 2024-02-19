@@ -1,5 +1,9 @@
 { config, ... }:
 
+let
+  isHyprland = if (config.home.username == "vmware-hyprland") then [ ./hyprland ] else [];
+in
+
 {
 
   imports = [
@@ -7,8 +11,7 @@
     ./packages.nix
     ./zsh
     ./alacritty
-    ./hyprland
-  ];
+  ] ++ isHyprland;
 
   home = {
     username = "nirlvy";

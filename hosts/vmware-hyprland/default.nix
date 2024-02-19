@@ -17,7 +17,7 @@
 
 
   networking = {
-    hostName = "vmware";
+    hostName = "vmware-hyprland";
 
     networkmanager.enable = true;
     # networking.wireless.enable = true;
