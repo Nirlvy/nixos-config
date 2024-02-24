@@ -17,7 +17,7 @@
       dotDir = ".config/zsh";
 
       history = {
-        path = ".config/zsh/zsh_history";
+        path = "$ZDOTDIR/zsh_history";
         expireDuplicatesFirst = true;
         ignoreAllDups = true;
       };
