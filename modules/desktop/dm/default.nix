@@ -3,18 +3,19 @@
 {
 
   environment.systemPackages = with pkgs; [
-    (callPackage ./sddm-sugar-candy.nix {})
+    (callPackage ./sddm-sugar-candy.nix { })
   ];
 
 
   services.xserver = {
 
     enable = true;
+
     displayManager.sddm = {
       enable = true;
-      wayland.enable = true;
+      wayland.enable = false;
       autoNumlock = true;
-      theme = "Sugar-candy";
+      theme = "sugar-candy";
     };
 
   };

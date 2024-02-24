@@ -5,6 +5,7 @@
   nixpkgs.config.allowUnfree = lib.mkForce true;
 
   nix = {
+
     gc = {
       automatic = lib.mkDefault true;
       dates = lib.mkDefault "weekly";
@@ -14,11 +15,10 @@
     settings.auto-optimise-store = true;
   };
 
-  zramSwap = {
-    enable = true;
-  };
+  zramSwap.enable = true;
 
   environment.systemPackages = with pkgs; [
+
     neofetch
     neovim
     helix
@@ -50,11 +50,21 @@
     wget
     curl
 
-    home-manager
-    zsh
-
   ];
 
   environment.variables.EDITOR = "helix";
   environment.pathsToLink = [ "/share/zsh" ];
+
+  services = {
+    v2raya.enable = true;
+    xserver.desktopManager.xterm.enable = false;
+    resolved.enable = true;
+  };
+
+  documentation.nixos.enable = false;
+
+  programs.nautilus-open-any-terminal = {
+    enable = true;
+    terminal = "alacritty";
+  };
 }

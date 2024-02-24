@@ -1,9 +1,7 @@
-#!/bin/bash
-
+#! /usr/bin/env bash
 
 CFG="$HOME/.config/wofi/power/config"
 STYLE="$HOME/.config/wofi/style.css"
-
 
 power() {
   # Store the wofi command in a variable for convenience

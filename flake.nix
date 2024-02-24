@@ -1,5 +1,5 @@
 {
-  description = "flake";
+  description = "Nirlvy's flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -7,49 +7,59 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland.url = "github:hyprwm/Hyprland";
+    nur.url = "github:nix-community/NUR";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
-    nixosConfigurations = {
+  outputs = inputs @ { self, nixpkgs, home-manager, nur, ... }:
 
-      vmware-kde = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+    {
+      nixosConfigurations = {
 
-        modules = [
-          ./hosts/vmware-kde
+        vmware-kde = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
 
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
+          specialArgs = { inherit inputs; };
 
-            home-manager.extraSpecialArgs = inputs;
-            home-manager.users.nirlvy = import ./home;
-          }
-        ];
-      };
+          modules = [
+            ./hosts/vmware-kde
 
-      vmware-hyprland = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
 
-        modules = [
-          ./hosts/vmware-hyprland
+              home-manager.extraSpecialArgs = inputs;
+              home-manager.users.nirlvy = import ./home/desktop/kde.nix;
+            }
 
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
+            nur.nixosModules.nur
+          ];
+        };
 
-            home-manager.extraSpecialArgs = inputs;
-            home-manager.users.nirlvy = import ./home;
-          }
-        ];
+        vmware-hyprland = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+
+          specialArgs = { inherit inputs; };
+          
+          modules = [
+            ./hosts/vmware-hyprland
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+
+              home-manager.extraSpecialArgs = inputs;
+              home-manager.users.nirlvy = import ./home/desktop/hyprland.nix;
+            }
+
+            nur.nixosModules.nur
+          ];
+        };
+
       };
 
     };
-
-    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
-
-  };
 
 }

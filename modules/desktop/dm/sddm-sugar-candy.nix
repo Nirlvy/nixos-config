@@ -2,21 +2,21 @@
 
 stdenv.mkDerivation rec {
 
-    pname = "sddm-sugar-candy";
-    version = "master";
+  pname = "sddm-sugar-candy";
+  version = "master";
 
-    src = fetchFromGitHub {
-      owner = "Kangie";
-      repo = "sddm-sugar-candy";
-      rev = "master";
-      sha256 = "18wsl2p9zdq2jdmvxl4r56lir530n73z9skgd7dssgq18lipnrx7";
-    };
+  src = fetchFromGitHub {
+    owner = "Kangie";
+    repo = "sddm-sugar-candy";
+    rev = "master";
+    sha256 = "18wsl2p9zdq2jdmvxl4r56lir530n73z9skgd7dssgq18lipnrx7";
+  };
 
-    dontBuild = true;
+  dontBuild = true;
 
-    installPhase = ''
-      mkdir -p $out/share/sddm/themes
-      cp -aR $src $out/share/sddm/themes/sugar-candy
-    '';
-  
+  installPhase = ''
+    mkdir -p $out/share/sddm/themes
+    cp -aR $src $out/share/sddm/themes/sugar-candy
+  '';
+
 }

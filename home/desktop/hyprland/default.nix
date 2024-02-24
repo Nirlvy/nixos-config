@@ -8,9 +8,16 @@
     executable = true;
   };
 
+  home.file.".wayland-session" = {
+    source = "${pkgs.hyprland}/bin/Hyprland";
+    executable = true;
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     enableNvidiaPatches = false;
+
+    extraConfig = builtins.readFile ./hyprland.conf;
   };
 
   home = {
@@ -27,6 +34,7 @@
       mako
       wofi
       waybar
+      qt5ct
 
       mpd
       mpc-cli
@@ -42,40 +50,34 @@
       swappy
       wl-clipboard
 
-      mtpfs
-      linuxKernel.packages.linux_xanmod_stable.v4l2loopback
-
       hyprpaper
       hyprpicker
 
       lxqt.lximage-qt
-      mpv
       gnome.nautilus
-      tlp
-      typora
       xarchiver
 
+      lxappearance
+
     ];
-    
+
   };
 
-  # programs.nautilus-open-any-terminal = {
-  #   enable = true;
-  #   terminal = "alacritty";
-  # };  
+  gtk = {
+    enable = true;
+    theme = {
+      package = pkgs.arc-theme;
+      name = "Arc-Dark";
+    };
+    iconTheme = {
+      package = pkgs.tela-icon-theme;
+      name = "Tela";
+    };
+  };
 
-  # gtk = {
-
-  #   enable = true;
-  #   theme = {
-  #     package = pkgs.arc-theme;
-  #     name = "arc-theme-dark";
-  #   };
-  #   iconTheme = {
-  #     package = pkgs.tela-icon-theme;
-  #     name = "tela-icon-theme";
-  #   };
-
-  # };
+  qt = {
+    enable = true;
+    platformTheme = "qtct";
+  };
 
 }
