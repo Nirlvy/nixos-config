@@ -1,6 +1,6 @@
 {
 
-  xdg.configFile.".condarc".text = ''
+  home.file.".condarc".text = ''
     channels:
       - defaults
       - conda-forge
@@ -19,7 +19,7 @@
       simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
   '';
 
-  xdg.configFile.".npmrc".text = ''
+  home.file.".npmrc".text = ''
     registry=https://registry.npm.taobao.org/
     disturl=https://npm.taobao.org/dist
     electron_mirror=https://npm.taobao.org/mirrors/electron/

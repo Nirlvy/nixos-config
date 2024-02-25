@@ -25,7 +25,11 @@
       autocd = true;
       enableCompletion = true;
 
-      historySubstringSearch.enable = true;
+      historySubstringSearch = {
+        enable = true;
+        searchUpKey = "^[0A";
+        searchDownKey = "[0B";
+      };
       enableAutosuggestions = true;
       syntaxHighlighting.enable = true;
 

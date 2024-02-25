@@ -20,4 +20,26 @@
     terminal = "alacritty";
   };
 
+  services.gvfs.enable = true;
+
+  xdg.portal = {
+    enable = true;
+
+    config = {
+      common = {
+        default = [
+          "gtk"
+        ];
+        "org.freedesktop.impl.portal.Secret" = [
+          "gnome-keyring"
+        ];
+      };
+    };
+
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+    ];
+
+  };
+
 }

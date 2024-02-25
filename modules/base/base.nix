@@ -5,7 +5,12 @@
   users.users.nirlvy = {
     isNormalUser = true;
     description = "Nirlvy";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "video"
+      "adbusers"
+    ];
     shell = pkgs.zsh;
   };
 

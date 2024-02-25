@@ -46,23 +46,22 @@
     btop
     htop
 
-    polkit-kde-agent
-
   ];
 
   environment.variables = {
-    EDITOR = "helix";
+    EDITOR = "nvim";
   };
-  environment.pathsToLink = [ "/share/zsh" ];
+  # environment.pathsToLink = [ "/share/zsh" ];
 
   services = {
     v2raya.enable = true;
-    xserver.desktopManager.xterm.enable = false;
-    resolved.enable = true;
+    # resolved.enable = true;
   };
 
   documentation.nixos.enable = false;
 
   programs.zsh.enable = true;
+
+  programs.adb.enable = true;
 
 }

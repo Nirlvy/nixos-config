@@ -16,6 +16,7 @@
     microsoft-edge
     typora
     vscode
+    qjournalctl
 
     wineWowPackages.waylandFull
     wineWowPackages.fonts
@@ -31,9 +32,6 @@
 
   programs.obs-studio = {
     enable = true;
-    plugins = with pkgs; [
-      linuxKernel.packages.linux_xanmod_stable.v4l2loopback
-    ];
   };
 
 }

@@ -20,19 +20,15 @@
 
   home = {
 
-    pointerCursor = {
-      gtk.enable = true;
-      package = pkgs.capitaine-cursors;
-      name = "capitaine-cursors-light";
-      size = 24;
-    };
-
     packages = with pkgs;[
 
       mako
       wofi
       waybar
       qt5ct
+      light
+      alsa-utils
+      pavucontrol
 
       mpd
       mpc-cli
@@ -58,6 +54,13 @@
       lxappearance
 
     ];
+
+    pointerCursor = {
+      gtk.enable = true;
+      package = pkgs.capitaine-cursors;
+      name = "capitaine-cursors-white";
+      size = 24;
+    };
 
   };
 

@@ -18,7 +18,13 @@
     };
 
     printing.enable = true;
+
     xserver.libinput.enable = true;
+
+    udisks2 = {
+      enable = true;
+      mountOnMedia = true;
+    };
 
   };
 
