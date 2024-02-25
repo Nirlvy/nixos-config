@@ -5,8 +5,9 @@
   home.packages = with pkgs;[
 
     libsForQt5.qtstyleplugin-kvantum
-    # tlp
+    tlp
     mtpfs
+    nwg-look
 
     mpv
     vlc

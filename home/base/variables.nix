@@ -11,7 +11,8 @@ rec {
   home.sessionVariables = {
 
     WINEPREFIX = d + "/wine";
-    BROWSER = "firefox";
+    BROWSER = "microsoft-edge";
+    LANG = "zh_CN.UTF-8";
 
   };
 }

@@ -6,6 +6,7 @@
     isNormalUser = true;
     description = "Nirlvy";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
   };
 
   nix.settings = {

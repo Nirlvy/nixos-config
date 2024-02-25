@@ -33,26 +33,26 @@
     gnugrep
     gnused
     gawk
-
-    lsof
-
-    iotop
-    btop
-    htop
-
+    killall
     file
     findutils
     which
     tree
     gnutar
     rsync
+    lsof
 
-    wget
-    curl
+    iotop
+    btop
+    htop
+
+    polkit-kde-agent
 
   ];
 
-  environment.variables.EDITOR = "helix";
+  environment.variables = {
+    EDITOR = "helix";
+  };
   environment.pathsToLink = [ "/share/zsh" ];
 
   services = {
@@ -63,8 +63,6 @@
 
   documentation.nixos.enable = false;
 
-  programs.nautilus-open-any-terminal = {
-    enable = true;
-    terminal = "alacritty";
-  };
+  programs.zsh.enable = true;
+
 }

@@ -18,12 +18,12 @@
     };
 
     printing.enable = true;
+    xserver.libinput.enable = true;
+
   };
 
   security.rtkit.enable = true;
 
   hardware.pulseaudio.enable = false;
-
-  # libinput.enable = true;
 
 }

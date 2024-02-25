@@ -4,6 +4,7 @@
 
   environment.systemPackages = with pkgs; [
     (callPackage ./sddm-sugar-candy.nix { })
+    libsForQt5.qt5.qtgraphicaleffects
   ];
 
 
