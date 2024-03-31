@@ -18,6 +18,12 @@
     extraConfig = builtins.readFile ./hyprland.conf;
   };
 
+  # services.mpd = {
+  #   enable = true;
+  #   musicDirectory = "~/Music/Music";
+  #   extraConfig = builtins.readFile ./conf/mpd/mpd.conf;
+  # };
+
   home = {
 
     packages = with pkgs;[
@@ -25,18 +31,18 @@
       mako
       wofi
       waybar
+
       qt5ct
-      light
       alsa-utils
       pavucontrol
 
-      mpd
-      mpc-cli
-      cantata
+      # mpd
+      # mpc-cli
+      # cantata
 
-      swayidle
-      sway-audio-idle-inhibit
-      swaylock-effects
+      # swayidle
+      # sway-audio-idle-inhibit
+      # swaylock-effects
 
       cliphist
       grim
@@ -46,12 +52,12 @@
 
       hyprpaper
       hyprpicker
+      hypridle
+      hyprlock
 
       lxqt.lximage-qt
-      gnome.nautilus
-      xarchiver
 
-      lxappearance
+      conda
 
     ];
 
@@ -78,7 +84,8 @@
 
   qt = {
     enable = true;
-    platformTheme = "qtct";
+    style.name = "gtk2";
+    platformTheme = "gtk3";
   };
 
 }

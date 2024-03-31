@@ -12,7 +12,7 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ pkgs.linuxKernel.packages.linux_6_7.v4l2loopback ];
+  boot.extraModulePackages = [ pkgs.linuxKernel.packages.linux_xanmod_latest.v4l2loopback ];
 
   fileSystems."/" =
     {

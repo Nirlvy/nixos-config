@@ -1,13 +1,9 @@
-{ pkgs, ... }:
-
-{
-
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     pulseaudio
   ];
 
   services = {
-
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -25,11 +21,9 @@
       enable = true;
       mountOnMedia = true;
     };
-
   };
 
   security.rtkit.enable = true;
 
   hardware.pulseaudio.enable = false;
-
 }

@@ -27,10 +27,10 @@
 
       historySubstringSearch = {
         enable = true;
-        searchUpKey = "^[0A";
-        searchDownKey = "[0B";
+        # searchUpKey = "^[0A";
+        # searchDownKey = "[0B";
       };
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
 
       initExtra = ''

@@ -3,84 +3,57 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "github:hyprwm/Hyprland";
+
     nur.url = "github:nix-community/NUR";
-  };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, nur, ... }:
+    hyprland.url = "github:hyprwm/Hyprland";
 
-    {
-      nixosConfigurations = {
-      
-		    NullPointerException = nixpkgs.lib.nixosSystem {
-	        system = "x86_64-linux";
-
-	        specialArgs = { inherit inputs; };
-	        
-	        modules = [
-	          ./hosts/NullPointerException
-
-	          home-manager.nixosModules.home-manager
-	          {
-	            home-manager.useGlobalPkgs = true;
-	            home-manager.useUserPackages = true;
-
-	            home-manager.extraSpecialArgs = inputs;
-	            home-manager.users.nirlvy = import ./home/desktop/hyprland.nix;
-	          }
-
-	          nur.nixosModules.nur
-	        ];
-	      };
-
-        vmware-kde = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-
-          specialArgs = { inherit inputs; };
-
-          modules = [
-            ./hosts/vmware-kde
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-
-              home-manager.extraSpecialArgs = inputs;
-              home-manager.users.nirlvy = import ./home/desktop/kde.nix;
-            }
-
-            nur.nixosModules.nur
-          ];
-        };
-
-        vmware-hyprland = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-
-          specialArgs = { inherit inputs; };
-          
-          modules = [
-            ./hosts/vmware-hyprland
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-
-              home-manager.extraSpecialArgs = inputs;
-              home-manager.users.nirlvy = import ./home/desktop/hyprland.nix;
-            }
-
-            nur.nixosModules.nur
-          ];
-        };
-
-      };
-
+    anyrun = {
+      url = "github:Kirottu/anyrun";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-gaming.url = "github:fufexan/nix-gaming";
+
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
+  outputs = inputs @ {
+    self,
+    nixpkgs,
+    home-manager,
+    nur,
+    ...
+  }: {
+    nixosConfigurations = {
+      NullPointerException = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+
+        specialArgs = {inherit inputs;};
+
+        modules = [
+          ./hosts/NullPointerException
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+
+            home-manager.extraSpecialArgs = inputs;
+            home-manager.users.nirlvy = import ./home/desktop/hyprland.nix;
+          }
+
+          nur.nixosModules.nur
+        ];
+      };
+    };
+  };
 }

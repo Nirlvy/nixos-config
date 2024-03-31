@@ -1,33 +1,25 @@
-{ pkgs, ... }:
-
-{
-
-  home.packages = with pkgs;[
-
-    libsForQt5.qtstyleplugin-kvantum
+{pkgs, ...}: {
+  home.packages = with pkgs; [
     tlp
     mtpfs
-    nwg-look
 
     mpv
     vlc
 
     qq
     microsoft-edge
+    firefox
     typora
     vscode
     qjournalctl
+    filelight
+    telegram-desktop
+    jetbrains-toolbox
+    obsidian
+    xarchiver
 
-    wineWowPackages.waylandFull
-    wineWowPackages.fonts
     winetricks
-    dxvk
-    mono
-    geckodriver
-
-    # nur.repos.xddxdd.wechat-uos-bin
-    # nur.repos.xddxdd.wine-wechat
-
+    xwaylandvideobridge
   ];
 
   programs.obs-studio = {

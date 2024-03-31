@@ -21,7 +21,7 @@
     "custom/power"
   ],
   "custom/launcher": {
-    "format": " ",
+    "format": "",
     "tooltip": false,
     "on-click": "$HOME/.config/wofi/launcher/launcher.sh"
   },
@@ -149,8 +149,8 @@
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
-        "activated": "",
-        "deactivated": ""
+      "activated": "",
+      "deactivated": ""
     }
   }
 }

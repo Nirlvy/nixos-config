@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
 
@@ -14,8 +14,8 @@
       enable = true;
       defaultApplications =
         let
-          browser = [ "microsoft-edge-stable.desktop" ];
-          editor = [ "nvim.desktop" "Helix.desktop" "code.desktop" ];
+          browser = [ "firefox.desktop" ];
+          editor = [ "nvim.desktop" "code.desktop" ];
         in
         {
           "application/json" = browser;

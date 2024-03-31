@@ -6,22 +6,14 @@
 
   nix = {
 
-    gc = {
-      automatic = lib.mkDefault true;
-      dates = lib.mkDefault "weekly";
-      options = lib.mkDefault "--delete-older-than 7d";
-    };
-
-    settings.auto-optimise-store = true;
+    
   };
 
   zramSwap.enable = true;
 
   environment.systemPackages = with pkgs; [
 
-    neofetch
     neovim
-    helix
     git
 
     zip
@@ -29,6 +21,7 @@
     zstd
     unzip
     p7zip
+    unar
 
     gnugrep
     gnused
@@ -48,10 +41,12 @@
 
   ];
 
-  environment.variables = {
-    EDITOR = "nvim";
+  environment = {
+    variables = {
+      EDITOR = "nvim";
+    };
+    pathsToLink = [ "/share/zsh" ];
   };
-  # environment.pathsToLink = [ "/share/zsh" ];
 
   services = {
     v2raya.enable = true;
