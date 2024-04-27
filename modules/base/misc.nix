@@ -1,18 +1,13 @@
-{ lib, pkgs, ... }:
-
 {
-
+  lib,
+  pkgs,
+  ...
+}: {
   nixpkgs.config.allowUnfree = lib.mkForce true;
-
-  nix = {
-
-    
-  };
 
   zramSwap.enable = true;
 
   environment.systemPackages = with pkgs; [
-
     neovim
     git
 
@@ -35,22 +30,23 @@
     rsync
     lsof
 
+    bat
+    fd
+    lsd
+    ripgrep
+    zoxide
+
     iotop
     btop
     htop
-
+    nvtopPackages.full
   ];
 
   environment = {
     variables = {
       EDITOR = "nvim";
     };
-    pathsToLink = [ "/share/zsh" ];
-  };
-
-  services = {
-    v2raya.enable = true;
-    # resolved.enable = true;
+    pathsToLink = ["/share/zsh"];
   };
 
   documentation.nixos.enable = false;
@@ -58,5 +54,4 @@
   programs.zsh.enable = true;
 
   programs.adb.enable = true;
-
 }

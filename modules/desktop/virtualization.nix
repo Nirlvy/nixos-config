@@ -1,9 +1,5 @@
-{ pkgs, ... }:
-
-{
-
+{pkgs, ...}: {
   virtualisation = {
-
     libvirtd = {
       enable = true;
       qemu = {
@@ -11,21 +7,19 @@
       };
     };
 
-    podman = {
-      enable = true;
+    # podman = {
+    #   enable = true;
 
-      dockerCompat = true;
-      defaultNetwork.settings.dns_enabled = true;
-    };
+    #   dockerCompat = true;
+    #   defaultNetwork.settings.dns_enabled = true;
+    # };
 
     # waydroid.enable = true;
-
   };
 
   programs.virt-manager.enable = true;
 
-  environment.systemPackages = [
-    pkgs.podman-desktop
-  ];
-
+  # environment.systemPackages = [
+  #   pkgs.podman-desktop
+  # ];
 }

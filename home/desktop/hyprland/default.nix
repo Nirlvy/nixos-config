@@ -1,7 +1,8 @@
-{ pkgs, ... }:
-
 {
-
+  config,
+  pkgs,
+  ...
+}: {
   home.file.".config" = {
     source = ./conf;
     recursive = true;
@@ -24,57 +25,20 @@
   #   extraConfig = builtins.readFile ./conf/mpd/mpd.conf;
   # };
 
-  home = {
-
-    packages = with pkgs;[
-
-      mako
-      wofi
-      waybar
-
-      qt5ct
-      alsa-utils
-      pavucontrol
-
-      # mpd
-      # mpc-cli
-      # cantata
-
-      # swayidle
-      # sway-audio-idle-inhibit
-      # swaylock-effects
-
-      cliphist
-      grim
-      slurp
-      swappy
-      wl-clipboard
-
-      hyprpaper
-      hyprpicker
-      hypridle
-      hyprlock
-
-      lxqt.lximage-qt
-
-      conda
-
-    ];
-
-    pointerCursor = {
-      gtk.enable = true;
-      package = pkgs.capitaine-cursors;
-      name = "capitaine-cursors-white";
-      size = 24;
-    };
-
+  home.pointerCursor = {
+    gtk.enable = true;
+    package = pkgs.capitaine-cursors;
+    name = "capitaine-cursors-white";
+    size = 24;
   };
 
   gtk = {
     enable = true;
     theme = {
-      package = pkgs.arc-theme;
-      name = "Arc-Dark";
+      name = "Catppuccin-Frappe-Standard-Sky-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = ["sky"];
+      };
     };
     iconTheme = {
       package = pkgs.tela-icon-theme;
@@ -84,8 +48,13 @@
 
   qt = {
     enable = true;
-    style.name = "gtk2";
-    platformTheme = "gtk3";
+    platformTheme.name = "qtct";
   };
 
+  # for Catppuccin GTK theme
+  xdg.configFile = {
+    "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
+    "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
+    "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
+  };
 }

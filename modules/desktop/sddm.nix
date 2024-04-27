@@ -1,16 +1,20 @@
-{ pkgs, ... }:
-
 {
-
+  pkgs,
+  inputs,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
-    (callPackage ./sddm-sugar-candy.nix { })
+    inputs.nur-nirlvy.packages.${system}.sddm-sugar-candy
     libsForQt5.qt5.qtgraphicaleffects
   ];
 
-
-  services.xserver = {
-
-    enable = true;
+  services = {
+    xserver = {
+      enable = true;
+      excludePackages = with pkgs; [
+        xterm
+      ];
+    };
 
     displayManager.sddm = {
       enable = true;
@@ -18,7 +22,5 @@
       autoNumlock = true;
       theme = "sugar-candy";
     };
-
   };
-
 }

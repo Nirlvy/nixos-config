@@ -4,14 +4,14 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    agenix.url = "github:ryantm/agenix";
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nur.url = "github:nix-community/NUR";
-
-    hyprland.url = "github:hyprwm/Hyprland";
+    nur-nirlvy.url = "github:nirlvy/nur-packages";
 
     anyrun = {
       url = "github:Kirottu/anyrun";
@@ -26,34 +26,23 @@
     };
   };
 
-  outputs = inputs @ {
+  outputs = {
     self,
     nixpkgs,
     home-manager,
-    nur,
     ...
-  }: {
-    nixosConfigurations = {
-      NullPointerException = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-
-        specialArgs = {inherit inputs;};
-
-        modules = [
-          ./hosts/NullPointerException
-
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-
-            home-manager.extraSpecialArgs = inputs;
-            home-manager.users.nirlvy = import ./home/desktop/hyprland.nix;
-          }
-
-          nur.nixosModules.nur
-        ];
-      };
-    };
+  } @ inputs: let
+    system = "x86_64-linux";
+  in {
+    nixosConfigurations = (
+      import ./hosts {
+        inherit self inputs system;
+      }
+    );
+    checks = (
+      import ./pre-commit-hooks.nix {
+        inherit inputs;
+      }
+    );
   };
 }

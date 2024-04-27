@@ -1,13 +1,8 @@
-{ pkgs, ... }:
-
-{
-
+{pkgs, ...}: {
   fonts = {
-
     fontDir.enable = true;
 
     packages = with pkgs; [
-
       font-awesome
 
       noto-fonts-cjk
@@ -21,17 +16,15 @@
       jetbrains-mono
 
       (nerdfonts.override {
-        fonts = [ "JetBrainsMono" ];
+        fonts = ["JetBrainsMono"];
       })
-
     ];
 
     fontconfig.defaultFonts = {
-      serif = [ "Noto Serif CJK SC" ];
-      sansSerif = [ "Noto Sans CJK SC" ];
-      monospace = [ "JetBrainsMono Nerd Font" ];
-      emoji = [ "Noto Color Emoji" ];
+      serif = ["Noto Serif CJK SC"];
+      sansSerif = ["Noto Sans CJK SC"];
+      monospace = ["JetBrainsMono Nerd Font"];
+      emoji = ["Noto Color Emoji"];
     };
   };
-
 }
