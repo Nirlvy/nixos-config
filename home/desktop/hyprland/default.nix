@@ -19,12 +19,6 @@
     extraConfig = builtins.readFile ./hyprland.conf;
   };
 
-  # services.mpd = {
-  #   enable = true;
-  #   musicDirectory = "~/Music/Music";
-  #   extraConfig = builtins.readFile ./conf/mpd/mpd.conf;
-  # };
-
   home.pointerCursor = {
     gtk.enable = true;
     package = pkgs.capitaine-cursors;
@@ -36,9 +30,7 @@
     enable = true;
     theme = {
       name = "Catppuccin-Frappe-Standard-Sky-Dark";
-      package = pkgs.catppuccin-gtk.override {
-        accents = ["sky"];
-      };
+      package = pkgs.catppuccin-gtk;
     };
     iconTheme = {
       package = pkgs.tela-icon-theme;

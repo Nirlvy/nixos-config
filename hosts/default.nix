@@ -1,37 +1,44 @@
 {
   self,
   inputs,
-  system,
   ...
-}: let
-  nixosSystem = inputs.nixpkgs.lib.nixosSystem;
-  mod = "${self}/modules";
-  specialArgs = {inherit self inputs system;};
+}: {
+  flake.nixosConfigurations = let
+    nixosSystem = inputs.nixpkgs.lib.nixosSystem;
+    mod = "${self}/modules";
 
-  sharedModules = with inputs;[
-    home-manager.nixosModules.home-manager
-    {
-      home-manager.useGlobalPkgs = true;
-      home-manager.useUserPackages = false;
+    specialArgs = {inherit self inputs;};
 
-      home-manager.extraSpecialArgs = inputs;
-      home-manager.users.nirlvy = import ../home;
-    }
-  ];
-in {
-  NullPointer = nixosSystem {
-    inherit specialArgs;
-    modules =
-      [
-        ./NullPointer
+    sharedModules = with inputs; [
+      home-manager.nixosModules.home-manager
+    ];
+  in {
+    NullPointer = nixosSystem {
+      system = "x86_64-linux";
+      inherit specialArgs;
+      modules =
+        [
+          ./NullPointer
 
-        "${mod}/base/base.nix"
-        "${mod}/base/i18n.nix"
-        "${mod}/base/misc.nix"
-        "${mod}/base/network.nix"
+          "${mod}/base/base.nix"
+          "${mod}/base/i18n.nix"
+          "${mod}/base/misc.nix"
+          "${mod}/base/network.nix"
+          "${mod}/base/nix.nix"
+          "${mod}/base/opengl.nix"
 
-        "${mod}/desktop/hyprland.nix"
-      ]
-      ++ sharedModules;
+          "${mod}/desktop/hyprland.nix"
+
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = false;
+              users.nirlvy = "${self}/home/hosts/NullPointer.nix";
+              extraSpecialArgs = specialArgs;
+            };
+          }
+        ]
+        ++ sharedModules;
+    };
   };
 }

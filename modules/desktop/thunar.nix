@@ -16,5 +16,6 @@
   # for thunar
   environment.systemPackages = with pkgs; [
     xfce.exo
+    xarchiver
   ];
 }

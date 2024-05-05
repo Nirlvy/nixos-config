@@ -88,7 +88,7 @@
     "sort-by-number": true
   },
   "custom/clipboard": {
-    "format": "{} 󱛣",
+    "format": "󱛣 {}",
     "tooltip": false,
     "exec": "cliphist list | wc -l",
     "exec-if": "[[ $(cliphist list | wc -l) != 0 ]]",
@@ -99,6 +99,7 @@
   },
   "backlight": {
     "format": " {}%",
+    "tooltip": false,
     "interval": 2,
     "on-scroll-up": "light -A 5",
     "on-scroll-down": "light -U 5"

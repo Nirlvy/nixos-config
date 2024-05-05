@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   imports = [
+    ./fcitx5.nix
     ./fonts.nix
     ./media.nix
     ./sddm.nix
@@ -10,7 +11,10 @@
   ];
 
   programs = {
-    hyprland.enable = true;
+    hyprland = {
+      enable = true;
+      envVars.enable = false;
+    };
     light.enable = true;
   };
 

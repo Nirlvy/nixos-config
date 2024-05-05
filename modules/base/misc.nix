@@ -1,10 +1,4 @@
-{
-  lib,
-  pkgs,
-  ...
-}: {
-  nixpkgs.config.allowUnfree = lib.mkForce true;
-
+{pkgs, ...}: {
   zramSwap.enable = true;
 
   environment.systemPackages = with pkgs; [
@@ -39,7 +33,8 @@
     iotop
     btop
     htop
-    nvtopPackages.full
+    bottom
+    # nvtopPackages.full
   ];
 
   environment = {
@@ -54,4 +49,5 @@
   programs.zsh.enable = true;
 
   programs.adb.enable = true;
+  users.users.nirlvy.extraGroups = ["adbusers"];
 }

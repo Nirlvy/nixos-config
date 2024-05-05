@@ -1,5 +1,5 @@
 {
-  nix-gaming,
+  inputs,
   pkgs,
   ...
 }: {
@@ -7,7 +7,6 @@
     packages = with pkgs; [
       mako
       wofi
-      waybar
 
       alsa-utils
       pavucontrol
@@ -32,17 +31,10 @@
       catppuccin-qt5ct
 
       qq
-      # wechat-uos
+      wechat-uos
 
       firefox
-      (vscode.override
-        {
-          commandLineArgs = ''
-            --enable-features=WaylandWindowDecorations
-            --ozone-platform=wayland
-            --enable-wayland-ime
-          '';
-        })
+      vscode
       # vscode crashbin need it
       glib
 
@@ -53,7 +45,7 @@
       obsidian
       obs-studio
 
-      nix-gaming.packages.${pkgs.system}.wine-ge
+      inputs.nix-gaming.packages.${system}.wine-ge
       winetricks
       winePackages.fonts
     ];

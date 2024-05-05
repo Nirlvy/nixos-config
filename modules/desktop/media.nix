@@ -15,7 +15,7 @@
 
     printing.enable = true;
 
-    xserver.libinput.enable = true;
+    libinput.enable = true;
 
     udisks2 = {
       enable = true;
