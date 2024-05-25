@@ -9,13 +9,7 @@
   ];
 
   services = {
-    xserver = {
-      enable = true;
-      excludePackages = with pkgs; [
-        xterm
-      ];
-    };
-
+    xserver.enable = true;
     displayManager.sddm = {
       enable = true;
       wayland.enable = false;

@@ -40,7 +40,7 @@
 
       shellAliases = {
         nfu = "nix flake update";
-        sns = "sudo nixos-rebuild switch --show-trace -L --verbose";
+        sns = "sudo nixos-rebuild switch --show-trace -L -v";
         ll = "ls -alF";
         c = "clear";
       };

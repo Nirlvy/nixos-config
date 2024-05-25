@@ -25,4 +25,10 @@
     sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
     phantomjs_cdnurl=https://npm.taobao.org/mirrors/phantomjs/
   '';
+
+  xdg.configFile."pip/pip.conf".text = ''
+    [global]
+    index-url = https://mirrors.ustc.edu.cn/pypi/web/simple
+    format = columns
+  '';
 }

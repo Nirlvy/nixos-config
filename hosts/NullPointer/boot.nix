@@ -8,7 +8,7 @@
       grub = rec {
         enable = true;
         device = "nodev";
-        theme = inputs.honkai-railway-grub-theme.packages.${pkgs.system}.acheron-grub-theme;
+        theme = inputs.honkai-railway-grub-theme.packages.${pkgs.system}.robin-grub-theme;
         splashImage = "${theme}/background.png";
         efiSupport = true;
         useOSProber = true;

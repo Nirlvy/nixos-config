@@ -28,6 +28,7 @@
 
   gtk = {
     enable = true;
+    gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
     theme = {
       name = "Catppuccin-Frappe-Standard-Sky-Dark";
       package = pkgs.catppuccin-gtk;

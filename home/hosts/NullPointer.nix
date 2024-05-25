@@ -11,6 +11,7 @@
 
     ../desktop/alacritty.nix
     ../desktop/xdg.nix
+    ../desktop/dev.nix
     ../desktop/packages.nix
 
     ../desktop/hyprland

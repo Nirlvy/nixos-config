@@ -23,6 +23,7 @@
     };
   };
 
+  # pulseaudio need it
   security.rtkit.enable = true;
 
   hardware.pulseaudio.enable = false;

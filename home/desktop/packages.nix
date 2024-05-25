@@ -7,6 +7,7 @@
     packages = with pkgs; [
       mako
       wofi
+      nix-output-monitor
 
       alsa-utils
       pavucontrol
@@ -53,6 +54,7 @@
 
   programs.mpv = {
     enable = true;
+    defaultProfiles = ["gpu-hq"];
     scripts = with pkgs.mpvScripts; [
       thumbfast
       modernx-zydezu

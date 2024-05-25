@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     ./fcitx5.nix
     ./fonts.nix
@@ -13,7 +17,7 @@
   programs = {
     hyprland = {
       enable = true;
-      envVars.enable = false;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     };
     light.enable = true;
   };
@@ -32,6 +36,7 @@
           "gnome-keyring"
         ];
       };
+      hyprland.default = ["gtk" "hyprland"];
     };
 
     extraPortals = with pkgs; [

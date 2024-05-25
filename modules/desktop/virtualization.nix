@@ -7,9 +7,15 @@
       };
     };
 
+    # docker = {
+    #   rootless = {
+    #     enable = true;
+    #     setSocketVariable = true;
+    #   };
+    # };
+
     # podman = {
     #   enable = true;
-
     #   dockerCompat = true;
     #   defaultNetwork.settings.dns_enabled = true;
     # };
@@ -19,7 +25,8 @@
 
   programs.virt-manager.enable = true;
 
-  # environment.systemPackages = [
-  #   pkgs.podman-desktop
-  # ];
+  users.users.nirlvy.extraGroups = [
+    "libvirtd"
+    # "docker"
+  ];
 }

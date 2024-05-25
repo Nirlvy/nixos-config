@@ -1,7 +1,7 @@
 {
   imports = [
     ./boot.nix
-    ./nvidia.nix
+    # ./nvidia.nix
 
     ./hardware-configuration.nix
   ];

@@ -16,7 +16,7 @@
       jetbrains-mono
 
       (nerdfonts.override {
-        fonts = ["JetBrainsMono"];
+        fonts = ["JetBrainsMono" "FiraCode"];
       })
     ];
 
