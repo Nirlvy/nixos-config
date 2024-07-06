@@ -1,7 +1,11 @@
-{inputs, ...}: {
+{ inputs, ... }:
+{
   nix = {
     settings = {
-      trusted-users = ["root" "@wheel"];
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
       substituters = [
         "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
         "https://mirror.sjtu.edu.cn/nix-channels/store"
@@ -20,7 +24,10 @@
         "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
       ];
 
-      experimental-features = ["nix-command" "flakes"];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       auto-optimise-store = true;
       builders-use-substitutes = true;
       keep-derivations = true;
@@ -41,13 +48,9 @@
   nixpkgs = {
     config = {
       allowUnfree = true;
-      permittedInsecurePackages = [
-        "openssl-1.1.1w"
-      ];
+      permittedInsecurePackages = [ "openssl-1.1.1w" ];
     };
 
-    overlays = [
-      (import ../../overlays)
-    ];
+    overlays = [ (import ../../overlays) ];
   };
 }

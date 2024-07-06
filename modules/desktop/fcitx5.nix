@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   i18n.inputMethod = {
     enabled = "fcitx5";
     fcitx5 = {

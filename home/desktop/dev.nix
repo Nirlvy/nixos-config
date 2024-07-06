@@ -1,9 +1,11 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     devenv
     devbox
 
     conda
+    micromamba
   ];
 
   programs = {

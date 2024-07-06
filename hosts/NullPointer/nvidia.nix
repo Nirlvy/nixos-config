@@ -1,11 +1,10 @@
+{ config, lib, ... }:
 {
-  config,
-  lib,
-  ...
-}: {
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware = {
+    graphics.enable = true;
+
     nvidia = {
       modesetting.enable = true;
 
@@ -29,7 +28,7 @@
 
   specialisation = {
     on-the-go.configuration = {
-      system.nixos.tags = ["on-the-go"];
+      system.nixos.tags = [ "on-the-go" ];
       hardware.nvidia = {
         prime.offload.enable = lib.mkForce true;
         prime.offload.enableOffloadCmd = lib.mkForce true;

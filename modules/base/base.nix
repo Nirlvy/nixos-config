@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   users.users.nirlvy = {
     isNormalUser = true;
     extraGroups = [
@@ -21,12 +22,13 @@
     neovim
     git
 
-    zip
-    xz
-    zstd
-    unzip
+    rar
     p7zip
+    unzip
     unar
+    xz
+    zip
+    zstd
 
     gnugrep
     gnused
@@ -57,6 +59,6 @@
     variables = {
       EDITOR = "nvim";
     };
-    pathsToLink = ["/share/zsh"];
+    pathsToLink = [ "/share/zsh" ];
   };
 }

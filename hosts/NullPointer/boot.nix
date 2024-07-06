@@ -1,8 +1,5 @@
+{ inputs, pkgs, ... }:
 {
-  inputs,
-  pkgs,
-  ...
-}: {
   boot = {
     loader = {
       grub = rec {
@@ -17,7 +14,10 @@
       efi.canTouchEfiVariables = true;
       efi.efiSysMountPoint = "/boot/efi";
     };
-    supportedFilesystems = ["btrfs" "ntfs"];
+    supportedFilesystems = [
+      "btrfs"
+      "ntfs"
+    ];
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
   };
 }

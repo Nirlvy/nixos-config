@@ -1,7 +1,6 @@
-{pkgs, ...}: {
-  services.xserver.excludePackages = with pkgs; [
-    xterm
-  ];
+{ pkgs, ... }:
+{
+  services.xserver.excludePackages = with pkgs; [ xterm ];
 
   zramSwap.enable = true;
 
@@ -10,5 +9,5 @@
   programs.zsh.enable = true;
 
   programs.adb.enable = true;
-  users.users.nirlvy.extraGroups = ["adbusers"];
+  users.users.nirlvy.extraGroups = [ "adbusers" ];
 }

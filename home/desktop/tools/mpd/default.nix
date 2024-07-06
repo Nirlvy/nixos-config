@@ -4,7 +4,7 @@
     network.startWhenNeeded = true;
 
     musicDirectory = "/home/nirlvy/Music";
-    extraConfig = ''       
+    extraConfig = ''
       audio_output {
         type  "pulse"
         name  "pulse audio"

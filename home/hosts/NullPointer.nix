@@ -1,18 +1,20 @@
-{inputs, ...}: {
+{ inputs, ... }:
+{
   imports = [
     ../.
 
     ../base/editor.nix
+    ../base/dev.nix
     ../base/git.nix
     ../base/misc.nix
-    ../base/packages.nix
     ../base/shell.nix
     ../base/variables.nix
 
     ../desktop/alacritty.nix
-    ../desktop/xdg.nix
     ../desktop/dev.nix
     ../desktop/packages.nix
+    ../desktop/wm.nix
+    ../desktop/xdg.nix
 
     ../desktop/hyprland
     ../desktop/tools

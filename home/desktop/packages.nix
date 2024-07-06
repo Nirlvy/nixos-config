@@ -1,8 +1,5 @@
+{ inputs, pkgs, ... }:
 {
-  inputs,
-  pkgs,
-  ...
-}: {
   home = {
     packages = with pkgs; [
       mako
@@ -54,14 +51,14 @@
 
   programs.mpv = {
     enable = true;
-    defaultProfiles = ["gpu-hq"];
+    defaultProfiles = [ "gpu-hq" ];
     scripts = with pkgs.mpvScripts; [
       thumbfast
       modernx-zydezu
     ];
     config = {
       osc = "no";
-      border = "no"; #optional - if you don't want to see the OS border
+      border = "no"; # optional - if you don't want to see the OS border
     };
   };
 }
