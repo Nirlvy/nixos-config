@@ -1,9 +1,8 @@
 { pkgs, ... }:
 {
-  home.file.".config" = {
-    source = ./conf;
+  xdg.configFile."hypr" = {
+    source = ./hypr;
     recursive = true;
-    executable = true;
   };
 
   home.file.".wayland-session" = {

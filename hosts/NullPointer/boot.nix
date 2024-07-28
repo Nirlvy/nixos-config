@@ -5,7 +5,7 @@
       grub = rec {
         enable = true;
         device = "nodev";
-        theme = inputs.honkai-railway-grub-theme.packages.${pkgs.system}.robin-grub-theme;
+        theme = inputs.honkai-railway-grub-theme.packages.${pkgs.system}.firefly-grub-theme;
         splashImage = "${theme}/background.png";
         efiSupport = true;
         useOSProber = true;
@@ -14,10 +14,32 @@
       efi.canTouchEfiVariables = true;
       efi.efiSysMountPoint = "/boot/efi";
     };
+
     supportedFilesystems = [
       "btrfs"
+      "exfat"
+      "ext4"
+      "fat32"
       "ntfs"
+      "vfat"
     ];
+
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
+
+    plymouth = {
+      enable = true;
+      themePackages = [ inputs.nur-nirlvy.packages.${pkgs.system}.aris-plymouth ];
+      theme = "aris";
+    };
+
+    consoleLogLevel = 3;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "systemd.show_status=auto"
+      "rd.udev.log_level=3"
+    ];
+    loader.timeout = 1;
   };
 }

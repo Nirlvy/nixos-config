@@ -16,6 +16,9 @@
 
       jetbrains-mono
 
+      wqy_microhei
+      wqy_zenhei
+
       (nerdfonts.override {
         fonts = [
           "JetBrainsMono"

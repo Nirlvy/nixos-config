@@ -1,13 +1,8 @@
-{ pkgs, ... }:
 {
-  services.xserver.excludePackages = with pkgs; [ xterm ];
-
-  zramSwap.enable = true;
-
-  documentation.nixos.enable = false;
-
-  programs.zsh.enable = true;
+  environment.enableAllTerminfo = true;
 
   programs.adb.enable = true;
   users.users.nirlvy.extraGroups = [ "adbusers" ];
+
+  zramSwap.enable = true;
 }

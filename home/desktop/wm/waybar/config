@@ -1,0 +1,202 @@
+{
+  "layer": "top",
+  "modules-left": [
+    "custom/launcher",
+    "cpu",
+    "memory",
+    "network",
+    "mpd"
+  ],
+  "modules-center": [
+    "hyprland/workspaces"
+  ],
+  "modules-right": [
+    "custom/clipboard",
+    "backlight",
+    "pulseaudio",
+    "clock",
+    "battery",
+    "idle_inhibitor",
+    "tray",
+    "privacy",
+    "custom/power"
+  ],
+  "custom/launcher": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "$HOME/.config/wofi/launcher/launcher.sh"
+  },
+  "cpu": {
+    "interval": 1,
+    "format": " {usage}%",
+    "max-length": 10,
+    "on-click": "pkill alacritty || alacritty -e htop"
+  },
+  "memory": {
+    "interval": 1,
+    "format": " {}%",
+    "max-length": 10,
+    "on-click": "pkill alacritty || alacritty -e htop"
+  },
+  "network": {
+    "interval": 1,
+    "format-wifi": "  {essid}",
+    "format-ethernet": " Online",
+    "format-linked": " Linked",
+    "format-disconnected": " Offline",
+    "tooltip": true,
+    "tooltip-format": "IP  {ipaddr}\n信号 {signalStrength}%\n频率 {frequency}GHz\n上传 {bandwidthUpBytes}\n下载 {bandwidthDownBytes}",
+    "on-click": "pkill alacritty || alacritty -e nmtui"
+  },
+  "mpd": {
+    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{title}",
+    "format-disconnected": "Disconnected",
+    "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped",
+    "interval": 10,
+    "consume-icons": {
+      "on": " "
+    },
+    "random-icons": {
+      "on": " "
+    },
+    "repeat-icons": {
+      "on": " "
+    },
+    "single-icons": {
+      "on": " 1"
+    },
+    "state-icons": {
+      "paused": "",
+      "playing": ""
+    },
+    "tooltip-format": "{artist} - {album} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
+    "tooltip-format-disconnected": "MPD (disconnected)",
+    "on-click": "mpc toggle",
+    "on-click-middle": "mpc stop",
+    "on-click-right": "mpc next",
+    "on-scroll-up": "mpc volume +5",
+    "on-scroll-down": "mpc volume -5"
+  },
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "on-click": "activate",
+    "format-icons": {
+      "active": ""
+    },
+    "on-scroll-up": "hyprctl dispatch workspace e-1",
+    "on-scroll-down": "hyprctl dispatch workspace e+1",
+    "sort-by-number": true
+  },
+  "custom/clipboard": {
+    "format": "󱛣 {}",
+    "tooltip": false,
+    "exec": "cliphist list | wc -l",
+    "exec-if": "[[ $(cliphist list | wc -l) != 0 ]]",
+    "interval": 1,
+    "on-click": "pkill wofi || cliphist list | wofi --show dmenu --prompt 'select' | cliphist decode | wl-copy",
+    "on-click-middle": "rm ~/.cache/cliphist/db",
+    "on-click-right": "pkill wofi || cliphist list | wofi --show dmenu --prompt 'delete' | cliphist delete"
+  },
+  "backlight": {
+    "format": " {}%",
+    "tooltip": false,
+    "interval": 2,
+    "on-scroll-up": "light -A 5",
+    "on-scroll-down": "light -U 5"
+  },
+  "pulseaudio": {
+    "tooltip": false,
+    "scroll-step": 5,
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟 Mute",
+    "on-click": "amixer set Master toggle",
+    "on-click-right": "pkill pavucontrol || pavucontrol",
+    "format-icons": {
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    }
+  },
+  "clock": {
+    "format": " {:%H:%M}",
+    "format-alt": "{:%A, %B %d, %Y (%R)}  ",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "on-click-right": "mode",
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon}  {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+  "tray": {
+    "icon-size": 18,
+    "spacing": 10
+  },
+  "privacy": {
+    "icon-spacing": 4,
+    "icon-size": 18,
+    "transition-duration": 250,
+    "modules": [
+      {
+        "type": "screenshare",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "audio-out",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "audio-in",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      }
+    ]
+  },
+  "custom/power": {
+    "format": " ",
+    "tooltip": false,
+    "on-click": "$HOME/.config/wofi/power/power.sh"
+  }
+}

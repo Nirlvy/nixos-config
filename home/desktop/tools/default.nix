@@ -1,6 +1,7 @@
 {
   imports = [
-    ./mpd
-    ./waybar
+    ./alacritty.nix
+    ./mpd.nix
+    ./mpv.nix
   ];
 }

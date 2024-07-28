@@ -10,14 +10,8 @@
     ../base/shell.nix
     ../base/variables.nix
 
-    ../desktop/alacritty.nix
-    ../desktop/dev.nix
-    ../desktop/packages.nix
-    ../desktop/wm.nix
-    ../desktop/xdg.nix
-
-    ../desktop/hyprland
-    ../desktop/tools
+    ../desktop
+    ../desktop/wm/hyprland
 
     inputs.nix-index-database.hmModules.nix-index
   ];

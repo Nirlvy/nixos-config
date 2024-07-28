@@ -1,11 +1,16 @@
 { pkgs, ... }:
 {
-  security.polkit.enable = true;
-
-  services.gnome.gnome-keyring.enable = true;
-  security.pam.services.greetd.enableGnomeKeyring = true;
-
+  environment.systemPackages = [ pkgs.libsecret ];
   programs.seahorse.enable = true;
+  security = {
+    pam.services = {
+      login.enableGnomeKeyring = true;
+      hyprlock.text = "auth include login";
+    };
+    polkit.enable = true;
+    sudo.wheelNeedsPassword = false;
+  };
+  services.gnome.gnome-keyring.enable = true;
 
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {

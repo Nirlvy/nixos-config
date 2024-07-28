@@ -20,7 +20,7 @@ power() {
   # Check which option was selected and run the corresponding command
   case "$SELECTED" in
     "          锁屏")
-      swaylock &
+      hyprlock &
       ;;
     "          注销")
       hyprctl dispatch exit 1

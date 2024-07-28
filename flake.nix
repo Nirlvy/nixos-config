@@ -3,7 +3,9 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nur-nirlvy.url = "github:nirlvy/nur-packages";
+    # nur-nirlvy.url = "github:nirlvy/nur-packages";
+    # debug
+    nur-nirlvy.url = "/home/nirlvy/Documents/nur-packages";
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -22,10 +24,6 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    pre-commit-hooks = {
-      url = "github:cachix/pre-commit-hooks.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,27 +32,12 @@
 
   outputs =
     {
-      self,
-      nixpkgs,
       flake-parts,
       ...
     }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
       debug = true;
       systems = [ "x86_64-linux" ];
-
-      imports = [
-        ./hosts
-        # ./pre-commit-hooks.nix
-      ];
-
-      # perSystem = {
-      #   config,
-      #   system,
-      #   pkgs,
-      #   ...
-      # }: {
-      #   formatter = pkgs.alejandra;
-      # };
+      imports = [ ./hosts ];
     };
 }

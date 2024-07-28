@@ -2,7 +2,6 @@
   programs = {
     bash = {
       enable = true;
-
       historyControl = [
         "ignoredups"
         "erasedups"
@@ -11,21 +10,18 @@
 
     zsh = {
       enable = true;
-
-      dotDir = ".config/zsh";
-
-      history = {
-        path = "$ZDOTDIR/zsh_history";
-        expireDuplicatesFirst = true;
-        ignoreAllDups = true;
-      };
+      enableCompletion = true;
+      enableVteIntegration = true;
 
       autocd = true;
-      enableCompletion = true;
-
-      historySubstringSearch.enable = true;
-
       autosuggestion.enable = true;
+      dotDir = ".config/zsh";
+      history = {
+        expireDuplicatesFirst = true;
+        ignoreAllDups = true;
+        path = "$ZDOTDIR/zsh_history";
+      };
+      historySubstringSearch.enable = true;
       syntaxHighlighting.enable = true;
 
       initExtra = ''
@@ -47,7 +43,6 @@
     };
 
     starship.enable = true;
-    autojump.enable = true;
     nix-index.enable = true;
   };
 }

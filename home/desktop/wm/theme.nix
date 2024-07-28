@@ -9,7 +9,16 @@
 
   gtk = {
     enable = true;
-    gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+    gtk2 = {
+      configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+      extraConfig = ''gtk-im-module="fcitx"'';
+    };
+    gtk3.extraConfig = {
+      gtk-im-module = ''fcitx'';
+    };
+    gtk4.extraConfig = {
+      gtk-im-module = ''fcitx'';
+    };
     theme = {
       name = "catppuccin-frappe-sky-standard";
       package = pkgs.catppuccin-gtk;
@@ -25,8 +34,9 @@
     platformTheme.name = "qtct";
   };
 
-  # for Catppuccin GTK theme
+  # Catppuccin theme
   xdg.configFile = {
+    "qt5ct/colors/".source = "${pkgs.catppuccin-qt5ct}/share/qt5ct/colors";
     "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
     "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
     "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";

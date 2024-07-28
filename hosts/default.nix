@@ -26,14 +26,16 @@
           "${mod}/base/misc.nix"
           "${mod}/base/network.nix"
           "${mod}/base/nix.nix"
+          "${mod}/base/shell.nix"
           "${mod}/base/ssh.nix"
 
           "${mod}/desktop/hyprland.nix"
 
           {
             home-manager = {
+              backupFileExtension = "bak";
               useGlobalPkgs = true;
-              useUserPackages = false;
+              useUserPackages = true;
               users.nirlvy = "${self}/home/hosts/NullPointer.nix";
               extraSpecialArgs = specialArgs;
             };

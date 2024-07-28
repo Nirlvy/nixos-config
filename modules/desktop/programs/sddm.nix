@@ -1,8 +1,8 @@
-{ pkgs, inputs, ... }:
+{ inputs, pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [
-    inputs.nur-nirlvy.packages.${system}.sddm-sugar-candy
-    libsForQt5.qt5.qtgraphicaleffects
+  environment.systemPackages = [
+    inputs.nur-nirlvy.packages.${pkgs.system}.sddm-sugar-candy
+    pkgs.libsForQt5.qt5.qtgraphicaleffects
   ];
 
   services = {

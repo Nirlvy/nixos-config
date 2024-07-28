@@ -13,11 +13,6 @@
     shell = pkgs.zsh;
   };
 
-  security = {
-    pam.services.hyprlock.text = "auth include login";
-    sudo.wheelNeedsPassword = false;
-  };
-
   environment.systemPackages = with pkgs; [
     neovim
     git
@@ -30,15 +25,16 @@
     zip
     zstd
 
-    gnugrep
-    gnused
-    gawk
-    killall
     file
     findutils
+    gawk
+    gnugrep
+    gnused
+    gnutar
+    jq
+    killall
     which
     tree
-    gnutar
     rsync
     lsof
 
@@ -48,17 +44,17 @@
     ripgrep
     zoxide
 
-    iotop
+    bottom
     btop
     htop
-    bottom
+    iotop
     # nvtopPackages.full
   ];
 
   environment = {
     variables = {
       EDITOR = "nvim";
+      TERM = "xterm-256color";
     };
-    pathsToLink = [ "/share/zsh" ];
   };
 }

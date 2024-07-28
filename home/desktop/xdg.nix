@@ -1,9 +1,6 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [
-    xdg-utils
-    xdg-user-dirs
-  ];
+  home.packages = with pkgs; [ xdg-utils ];
 
   xdg = {
     configFile."mimeapps.list".force = true;
@@ -39,10 +36,8 @@
           "x-scheme-handler/http" = browser;
           "x-scheme-handler/https" = browser;
           "x-scheme-handler/vscode" = [ "code-url-handler.desktop" ];
-          "x-scheme-handler/vscode-insiders" = [ "code-insiders-url-handler.desktop" ];
           "x-scheme-handler/unknown" = editor;
 
-          "x-scheme-handler/discord" = [ "discord.desktop" ];
           "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop " ];
 
           "audio/*" = [ "mpv.desktop" ];
@@ -53,6 +48,11 @@
           "image/png" = [ "lximage-qt.desktop" ];
           "image/webp" = [ "lximage-qt.desktop" ];
         };
+    };
+
+    userDirs = {
+      enable = true;
+      createDirectories = true;
     };
   };
 }

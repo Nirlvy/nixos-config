@@ -1,0 +1,106 @@
+@import "frappe.css";
+
+* {
+  border: none;
+  font-family: "JetbrainsMono Nerd Font";
+  font-size: 15px;
+  min-height: 0px;
+}
+
+#waybar {
+  background: transparent;
+  color: @text;
+  margin: 2px 5px;
+}
+
+tooltip {
+  color: azure;
+  background: #383c4a;
+  border-radius: 6px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #4f6580;
+}
+
+#network,
+#pulseaudio,
+#battery,
+#backlight,
+#clock,
+#memory,
+#cpu,
+#tray,
+#mpd,
+#idle_inhibitor,
+#privacy,
+#custom-clipboard,
+#custom-power,
+#custom-launcher {
+  background-color: @surface0;
+  padding: 0rem 1rem;
+  margin: 2px 0;
+}
+
+#workspaces {
+  border-radius: 1rem;
+  margin: 2px 0;
+  background-color: @surface0;
+}
+
+#workspaces button {
+  color: @lavender;
+  border-radius: 1rem;
+}
+
+#workspaces button.active {
+  color: @sky;
+  border-radius: 1rem;
+}
+
+#workspaces button:hover {
+  color: @sapphire;
+  border-radius: 1rem;
+}
+
+#custom-launcher {
+  font-size: large;
+  color: #1793d1;
+  border-radius: 1rem 0px 0px 1rem;
+  margin-left: 5px;
+}
+
+#network {
+  border-radius: 0px 1rem 1rem 0px;
+}
+
+#custom-clipboard {
+  border-radius: 1rem 0px 0px 1rem;
+}
+
+#battery {
+  border-radius: 0px 1rem 1rem 0px;
+  margin-right: 5px;
+}
+
+#battery.critical:not(.charging) {
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#idle_inhibitor{
+  border-radius: 1rem 0px 0px 1rem;
+}
+
+#custom-power{
+  border-radius: 0px 1rem 1rem 0px;
+  margin-right: 5px;
+}
+
+@keyframes blink {
+  to {
+    color: #b5e8e0;
+  }
+}

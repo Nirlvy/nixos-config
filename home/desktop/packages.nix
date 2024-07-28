@@ -1,64 +1,24 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 {
   home = {
     packages = with pkgs; [
-      mako
-      wofi
-      nix-output-monitor
-
-      alsa-utils
-      pavucontrol
-
-      # mpd
-      # mpc-cli
-      # cantata
-
-      cliphist
-      grim
-      slurp
-      swappy
-      wl-clipboard
-
-      hyprpaper
-      hyprpicker
-      hypridle
-      hyprlock
-
       lxqt.lximage-qt
-
-      catppuccin-qt5ct
 
       qq
       wechat-uos
 
       firefox
+      telegram-desktop
+      obsidian
+      obs-studio
       vscode
-      # vscode crashbin need it
-      glib
 
       qjournalctl
       filelight
-      telegram-desktop
-      jetbrains-toolbox
-      obsidian
-      obs-studio
 
-      inputs.nix-gaming.packages.${system}.wine-ge
       winetricks
       winePackages.fonts
+      wineWowPackages.wayland
     ];
-  };
-
-  programs.mpv = {
-    enable = true;
-    defaultProfiles = [ "gpu-hq" ];
-    scripts = with pkgs.mpvScripts; [
-      thumbfast
-      modernx-zydezu
-    ];
-    config = {
-      osc = "no";
-      border = "no"; # optional - if you don't want to see the OS border
-    };
   };
 }

@@ -1,14 +1,30 @@
 { inputs, ... }:
 {
   nix = {
+    channel.enable = false;
+
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
+
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+
+    optimise.automatic = true;
+    registry.nixpkgs.flake = inputs.nixpkgs;
+
     settings = {
-      trusted-users = [
-        "root"
-        "@wheel"
+      auto-optimise-store = true;
+      builders-use-substitutes = true;
+      keep-derivations = true;
+      keep-outputs = true;
+      experimental-features = [
+        "nix-command"
+        "flakes"
       ];
+      nix-path = [ "nixpkgs=${inputs.nixpkgs.outPath}" ];
       substituters = [
-        "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-        "https://mirror.sjtu.edu.cn/nix-channels/store"
         "https://mirrors.ustc.edu.cn/nix-channels/store"
         "https://cache.nixos.org"
 
@@ -23,25 +39,10 @@
         "nirlvy.cachix.org-1:dOdsWPG0r4JuqWy+p150yPiVrC28tELUZUdkXobrKZM="
         "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
       ];
-
-      experimental-features = [
-        "nix-command"
-        "flakes"
+      trusted-users = [
+        "root"
+        "@wheel"
       ];
-      auto-optimise-store = true;
-      builders-use-substitutes = true;
-      keep-derivations = true;
-      keep-outputs = true;
-      nix-path = "nixpkgs=/etc/nix/inputs/nixpkgs";
-    };
-
-    channel.enable = false;
-    registry.nixpkgs.flake = inputs.nixpkgs;
-
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
     };
   };
 
@@ -50,7 +51,10 @@
       allowUnfree = true;
       permittedInsecurePackages = [ "openssl-1.1.1w" ];
     };
-
+    flake = {
+      setFlakeRegistry = false;
+      setNixPath = false;
+    };
     overlays = [ (import ../../overlays) ];
   };
 }

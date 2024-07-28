@@ -1,14 +1,8 @@
 { inputs, pkgs, ... }:
 {
   imports = [
-    ./fcitx5.nix
-    ./fonts.nix
-    ./media.nix
-    ./sddm.nix
-    ./security.nix
-    ./services.nix
-    ./thunar.nix
-    ./virtualization.nix
+    ./base
+    ./programs
   ];
 
   programs = {
