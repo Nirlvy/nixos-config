@@ -1,1 +1,4 @@
-(_final: prev: { catppuccin-gtk = prev.catppuccin-gtk.override { accents = [ "sky" ]; }; })
+args:
+builtins.map (f: (import (./. + "/${f}") args)) (
+  builtins.filter (f: f != "default.nix") (builtins.attrNames (builtins.readDir ./.))
+)

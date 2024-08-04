@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, ... }@args:
 {
   nix = {
     channel.enable = false;
@@ -51,10 +51,6 @@
       allowUnfree = true;
       permittedInsecurePackages = [ "openssl-1.1.1w" ];
     };
-    flake = {
-      setFlakeRegistry = false;
-      setNixPath = false;
-    };
-    overlays = [ (import ../../overlays) ];
+    overlays = [ ] ++ (import ../../overlays args);
   };
 }

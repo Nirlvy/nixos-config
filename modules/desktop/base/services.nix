@@ -3,7 +3,6 @@
     flatpak.enable = true;
 
     v2raya.enable = true;
-    resolved.enable = false;
 
     # thunar
     gvfs.enable = true; # Mount, trash, and other functionalities
@@ -11,7 +10,5 @@
 
     # gnome-firmware
     fwupd.enable = true;
-
-    xserver.desktopManager.xterm.enable = false;
   };
 }

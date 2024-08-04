@@ -3,6 +3,7 @@
   home.packages = with pkgs; [
     alsa-utils
     pavucontrol
+    pwvucontrol
 
     cliphist
     grim

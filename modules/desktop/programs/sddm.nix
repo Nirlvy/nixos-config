@@ -6,10 +6,10 @@
   ];
 
   services = {
-    xserver.enable = true;
+    xserver.enable = false;
     displayManager.sddm = {
       enable = true;
-      wayland.enable = false;
+      wayland.enable = true;
       autoNumlock = true;
       theme = "sugar-candy";
     };
