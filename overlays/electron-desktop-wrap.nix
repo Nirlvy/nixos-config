@@ -1,6 +1,17 @@
 { lib, ... }:
 _final: prev:
 let
+  withCommandLineArgs =
+    { app }:
+    prev.${app}.override {
+      commandLineArgs = ''
+        --enable-features=UseOzonePlatform \
+        --ozone-platform=wayland \
+        --enable-webrtc-pipewire-capturer \
+        --enable-wayland-ime \
+      '';
+    };
+
   wrap =
     {
       app,
@@ -23,7 +34,14 @@ let
     };
 in
 {
-  qq = wrap { app = "qq"; };
+  # qq = withCommandLineArgs { app = "qq"; };
+  # obsidian = withCommandLineArgs { app = "obsidian"; };
+  # vscode = withCommandLineArgs { app = "vscode"; };
+
+  qq = wrap {
+    app = "qq";
+    suffix = "%U";
+  };
   obsidian = wrap { app = "obsidian"; };
   vscode = wrap {
     app = "vscode";

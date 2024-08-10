@@ -28,7 +28,6 @@
     devbox
     devenv
     lazygit
-    tree-sitter
   ];
 
   programs = {
