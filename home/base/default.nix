@@ -1,5 +1,5 @@
 {
-  imports=[
+  imports = [
     ./editor
 
     ./dev.nix

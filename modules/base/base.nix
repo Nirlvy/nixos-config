@@ -16,6 +16,7 @@
   environment.systemPackages = with pkgs; [
     neovim
     git
+    yazi
 
     rar
     p7zip

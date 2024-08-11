@@ -19,6 +19,7 @@
     };
     honkai-railway-grub-theme.url = "github:voidlhf/StarRailGrubThemes";
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    impermanence.url = "github:nix-community/impermanence";
     nix-gaming.url = "github:fufexan/nix-gaming";
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
@@ -31,10 +32,7 @@
   };
 
   outputs =
-    {
-      flake-parts,
-      ...
-    }@inputs:
+    { flake-parts, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
       debug = true;
       systems = [ "x86_64-linux" ];
