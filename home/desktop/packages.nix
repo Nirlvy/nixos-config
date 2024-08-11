@@ -19,6 +19,7 @@
       winetricks
       winePackages.fonts
       wineWowPackages.wayland
+      bottles
     ];
   };
 }

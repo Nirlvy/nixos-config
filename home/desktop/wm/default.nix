@@ -1,8 +1,9 @@
 {
   imports = [
-    ./tools
-    
+    ./waybar
+    ./wofi
+
     ./packages.nix
-    ./xdg.nix
+    ./theme.nix
   ];
 }
