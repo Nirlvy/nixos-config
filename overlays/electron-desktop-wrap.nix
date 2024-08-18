@@ -34,18 +34,18 @@ let
     };
 in
 {
-  obsidian = withCommandLineArgs { app = "obsidian"; };
+  # obsidian = withCommandLineArgs { app = "obsidian"; };
   qq = withCommandLineArgs { app = "qq"; };
-  vscode = withCommandLineArgs { app = "vscode"; };
+  # vscode = withCommandLineArgs { app = "vscode"; };
 
-  # obsidian = wrap { app = "obsidian"; };
+  obsidian = wrap { app = "obsidian"; };
   # qq = wrap {
   #   app = "qq";
   #   suffix = "\"%@\"";
   # };
-  # vscode = wrap {
-  #   app = "vscode";
-  #   bin = "code";
-  #   suffix = "%F";
-  # };
+  vscode = wrap {
+    app = "vscode";
+    bin = "code";
+    suffix = "%F";
+  };
 }

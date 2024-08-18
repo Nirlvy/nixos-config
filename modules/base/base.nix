@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   users.users.nirlvy = {
     isNormalUser = true;
@@ -7,9 +7,7 @@
       "video"
       "wheel"
     ];
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHu883l55ki3mgiDfGRmN4H/3Pi1NXQkBAgCsvLhhvmH nirlvy@NullPointer"
-    ];
+    hashedPasswordFile = config.age.secrets.passwd.path;
     shell = pkgs.zsh;
   };
 

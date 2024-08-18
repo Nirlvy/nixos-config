@@ -11,7 +11,6 @@
     slurp
     swappy
     wl-clipboard
-    wofi
 
     hyprpaper
     hyprpicker

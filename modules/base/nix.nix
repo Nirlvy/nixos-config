@@ -51,6 +51,6 @@
       allowUnfree = true;
       permittedInsecurePackages = [ "openssl-1.1.1w" ];
     };
-    overlays = [ ] ++ (import ../../overlays args);
+    overlays = [ inputs.niri.overlays.niri ] ++ (import ../../overlays args);
   };
 }

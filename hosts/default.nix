@@ -9,10 +9,7 @@
         inherit self inputs;
       };
 
-      sharedModules = with inputs; [
-        home-manager.nixosModules.home-manager
-        sops-nix.nixosModules.sops
-      ];
+      sharedModules = with inputs; [ home-manager.nixosModules.home-manager ];
     in
     {
       NullPointer = nixosSystem {
@@ -21,15 +18,10 @@
         modules = [
           ./NullPointer
 
-          "${mod}/base/base.nix"
-          "${mod}/base/i18n.nix"
-          "${mod}/base/misc.nix"
-          "${mod}/base/network.nix"
-          "${mod}/base/nix.nix"
-          "${mod}/base/shell.nix"
-          "${mod}/base/ssh.nix"
-
+          "${mod}/base/"
           "${mod}/desktop/hyprland.nix"
+
+          "${self}/secrets"
 
           {
             home-manager = {

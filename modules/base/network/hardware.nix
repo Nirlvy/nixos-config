@@ -1,4 +1,3 @@
-{ lib, pkgs, ... }:
 {
   hardware = {
     bluetooth = {
@@ -9,12 +8,4 @@
   };
 
   services.blueman.enable = true;
-
-  environment.systemPackages = with pkgs; [
-    wget
-    curl
-    aria2
-  ];
-
-  networking.firewall.enable = lib.mkDefault false;
 }

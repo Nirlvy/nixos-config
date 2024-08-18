@@ -1,12 +1,6 @@
 { pkgs, ... }:
 {
-  imports = [
-    ../../.
-    ../.
-
-    ../packages.nix
-    ../theme.nix
-  ];
+  imports = [ ../. ];
 
   xdg.configFile."hypr" = {
     source = ./hypr;
