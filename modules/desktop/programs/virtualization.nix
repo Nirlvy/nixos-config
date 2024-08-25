@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, self, ... }:
 {
   virtualisation = {
     libvirtd = {
@@ -21,8 +21,10 @@
     #   defaultNetwork.settings.dns_enabled = true;
     # };
 
-    # waydroid.enable = true;
+    waydroid.enable = true;
   };
+
+  environment.systemPackages = [ (pkgs.callPackage "${self}/pkgs/waydroid_script.nix" { }) ];
 
   programs.virt-manager.enable = true;
 

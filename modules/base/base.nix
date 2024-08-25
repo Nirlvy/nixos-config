@@ -1,14 +1,17 @@
 { config, pkgs, ... }:
 {
-  users.users.nirlvy = {
-    isNormalUser = true;
-    extraGroups = [
-      "networkmanager"
-      "video"
-      "wheel"
-    ];
-    hashedPasswordFile = config.age.secrets.passwd.path;
-    shell = pkgs.zsh;
+  users = {
+    mutableUsers = false;
+    users.nirlvy = {
+      isNormalUser = true;
+      extraGroups = [
+        "networkmanager"
+        "video"
+        "wheel"
+      ];
+      hashedPasswordFile = config.age.secrets.passwd.path;
+      shell = pkgs.zsh;
+    };
   };
 
   environment.systemPackages = with pkgs; [
@@ -39,6 +42,7 @@
 
     bat
     fd
+    fzf
     lsd
     ripgrep
     zoxide

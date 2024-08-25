@@ -25,8 +25,6 @@
       syntaxHighlighting.enable = true;
 
       initExtra = ''
-        export RUST_LOG=debug
-
         bindkey "^H" beginning-of-line
         bindkey "^F" end-of-line
         bindkey "\e3~" delete-char
