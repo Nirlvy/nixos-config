@@ -1,8 +1,14 @@
-{ inputs, pkgs, ... }:
+{
+  inputs,
+  pkgs,
+  self,
+  ...
+}:
 {
   imports = [
     ./base
     ./programs
+    (import "${self}/modules/desktop/default.nix").wm
   ];
 
   programs = {

@@ -21,7 +21,7 @@
       url = "github:Kirottu/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    honkai-railway-grub-theme.url = "github:voidlhf/StarRailGrubThemes";
+    honkai-railway-grub-theme.url = "github:voidlhf/StarRailGrubThemes?ref=0210f87c4f09f975d1f15f79e8190d1419d198ee";
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     impermanence.url = "github:nix-community/impermanence";
     niri = {
@@ -34,7 +34,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     secrets = {
-      url = "git+ssh://git@github.com/Nirlvy/nix-secrets.git?shallow=1";
+      url = "/home/nirlvy/Documents/nix-secrets";
+      # url = "git+ssh://git@github.com/Nirlvy/nix-secrets.git?shallow=1";
       flake = false;
     };
   };
