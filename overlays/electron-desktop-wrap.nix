@@ -1,5 +1,5 @@
 { lib, ... }:
-_final: prev:
+_: prev:
 let
   withCommandLineArgs =
     { app }:
@@ -32,20 +32,28 @@ let
         " --add-flags ${suffix}"
       ];
     };
+
+  x11Wrap =
+    { app }:
+    prev.symlinkJoin {
+      name = app;
+      paths = [ prev.${app} ];
+      buildInputs = [ prev.makeWrapper ];
+      postBuild = ''
+        wrapProgram $out/bin/${app} --set DISPLAY :0
+      '';
+    };
 in
 {
   # obsidian = withCommandLineArgs { app = "obsidian"; };
-  qq = withCommandLineArgs { app = "qq"; };
   # vscode = withCommandLineArgs { app = "vscode"; };
 
   obsidian = wrap { app = "obsidian"; };
-  # qq = wrap {
-  #   app = "qq";
-  #   suffix = "\"%@\"";
-  # };
   vscode = wrap {
     app = "vscode";
     bin = "code";
     suffix = "%F";
   };
+
+  wechat-uos = x11Wrap { app = "wechat-uos"; };
 }

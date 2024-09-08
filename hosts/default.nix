@@ -19,7 +19,8 @@
           ./NullPointer
 
           "${mod}/base/"
-          "${mod}/desktop/hyprland.nix"
+          # "${mod}/desktop/hyprland.nix"
+          "${mod}/desktop/niri.nix"
 
           "${self}/secrets"
 

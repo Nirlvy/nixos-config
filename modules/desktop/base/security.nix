@@ -6,7 +6,7 @@
     pam.services = {
       sddm.enableGnomeKeyring = true;
       login.enableGnomeKeyring = true;
-      hyprlock.text = "auth include login";
+      hyprlock = { };
     };
     polkit.enable = true;
     sudo.wheelNeedsPassword = false;

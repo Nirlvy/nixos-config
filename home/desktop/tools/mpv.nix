@@ -10,6 +10,9 @@
     config = {
       osc = "no";
       border = "no";
+      hwdec = "auto-safe";
+      vo = "gpu";
+      gpu-context = "wayland";
     };
   };
 }

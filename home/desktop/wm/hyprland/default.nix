@@ -1,11 +1,6 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [ ../. ];
-
-  xdg.configFile."hypr" = {
-    source = ./hypr;
-    recursive = true;
-  };
 
   home.file.".wayland-session" = {
     source = "${pkgs.hyprland}/bin/Hyprland";
@@ -14,6 +9,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     extraConfig = builtins.readFile ./hyprland.conf;
   };
 

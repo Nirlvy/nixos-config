@@ -1,5 +1,3 @@
-@import "frappe.css";
-
 * {
   border: none;
   font-family: "JetbrainsMono Nerd Font";
@@ -9,7 +7,7 @@
 
 #waybar {
   background: transparent;
-  color: @text;
+  color: #c6d0f5;
   margin: 2px 5px;
 }
 
@@ -36,29 +34,29 @@ tooltip {
 #custom-clipboard,
 #custom-power,
 #custom-launcher {
-  background-color: @surface0;
-  padding: 0rem 1rem;
+  background-color: #414559;
+  padding: 5px 1rem;
   margin: 2px 0;
 }
 
 #workspaces {
   border-radius: 1rem;
   margin: 2px 0;
-  background-color: @surface0;
+  background-color: #414559;
 }
 
 #workspaces button {
-  color: @lavender;
+  color: #babbf1;
   border-radius: 1rem;
 }
 
 #workspaces button.active {
-  color: @sky;
+  color: #99d1db;
   border-radius: 1rem;
 }
 
 #workspaces button:hover {
-  color: @sapphire;
+  color: #85c1dc;
   border-radius: 1rem;
 }
 
