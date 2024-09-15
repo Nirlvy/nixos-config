@@ -40,7 +40,7 @@ let
       paths = [ prev.${app} ];
       buildInputs = [ prev.makeWrapper ];
       postBuild = ''
-        wrapProgram $out/bin/${app} --set DISPLAY :0
+        wrapProgram $out/bin/* --set DISPLAY :0
       '';
     };
 in
@@ -48,12 +48,14 @@ in
   # obsidian = withCommandLineArgs { app = "obsidian"; };
   # vscode = withCommandLineArgs { app = "vscode"; };
 
-  obsidian = wrap { app = "obsidian"; };
-  vscode = wrap {
-    app = "vscode";
-    bin = "code";
-    suffix = "%F";
-  };
+  # obsidian = wrap { app = "obsidian"; };
+  # vscode = wrap {
+  #   app = "vscode";
+  #   bin = "code";
+  #   suffix = "%F";
+  # };
 
+  obsidian = x11Wrap { app = "obsidian"; };
+  vscode = x11Wrap { app = "vscode"; };
   wechat-uos = x11Wrap { app = "wechat-uos"; };
 }
