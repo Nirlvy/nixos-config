@@ -8,7 +8,7 @@
     "mpd"
   ],
   "modules-center": [
-    "hyprland/workspaces"
+    "niri/workspaces"
   ],
   "modules-right": [
     "custom/clipboard",
@@ -87,15 +87,21 @@
     "on-scroll-down": "hyprctl dispatch workspace e+1",
     "sort-by-number": true
   },
+  "niri/workspaces": {
+	"format": "{icon}",
+	"format-icons": {
+		"active": ""
+	}
+},
   "custom/clipboard": {
     "format": "󱛣 {}",
     "tooltip": false,
     "exec": "cliphist list | wc -l",
     "exec-if": "[[ $(cliphist list | wc -l) != 0 ]]",
     "interval": 1,
-    "on-click": "pkill wofi || cliphist list | wofi --show dmenu --prompt 'select' | cliphist decode | wl-copy",
+    "on-click": "pkill fuzzel || cliphist list | fuzzel -d | cliphist decode | wl-copy",
     "on-click-middle": "rm ~/.cache/cliphist/db",
-    "on-click-right": "pkill wofi || cliphist list | wofi --show dmenu --prompt 'delete' | cliphist delete"
+    "on-click-right": "pkill fuzzel || cliphist list | fuzzel -d | cliphist delete"
   },
   "backlight": {
     "format": " {}%",
@@ -197,6 +203,6 @@
   "custom/power": {
     "format": " ",
     "tooltip": false,
-    "on-click": "$HOME/.config/wofi/power/power.sh"
+    "on-click": "$HOME/.config/fuzzel/power.sh"
   }
 }

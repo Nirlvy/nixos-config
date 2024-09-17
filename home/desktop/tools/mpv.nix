@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  lib,
+  osConfig,
+  pkgs,
+  ...
+}:
 {
   programs.mpv = {
     enable = true;
@@ -13,6 +18,6 @@
       hwdec = "auto-safe";
       vo = "gpu";
       gpu-context = "wayland";
-    };
+    } // lib.mkIf (osConfig.programs.nvidia.enable) { hwdec = "auto-copy"; };
   };
 }

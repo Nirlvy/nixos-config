@@ -55,7 +55,7 @@ in
   #   suffix = "%F";
   # };
 
-  obsidian = x11Wrap { app = "obsidian"; };
-  vscode = x11Wrap { app = "vscode"; };
+  # obsidian = x11Wrap { app = "obsidian"; };
+  # vscode = x11Wrap { app = "vscode"; };
   wechat-uos = x11Wrap { app = "wechat-uos"; };
 }

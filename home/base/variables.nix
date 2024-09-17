@@ -11,6 +11,7 @@ in
 
     BROWSER = "firefox";
     MAMBA_ROOT_PREFIX = c + "/micromamba";
+    TERMINAL = "alacritty";
     WINEPREFIX = d + "/wine";
   };
 }

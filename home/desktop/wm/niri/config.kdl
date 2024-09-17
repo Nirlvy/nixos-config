@@ -43,9 +43,9 @@ layout {
     center-focused-column "on-overflow"
 
     preset-column-widths {
-        proportion 0.33333
+        // proportion 0.33333
         proportion 0.5
-        proportion 0.66667
+        // proportion 0.66667
 
         fixed 1740
     }
@@ -80,10 +80,7 @@ layout {
 }
 
 spawn-at-startup "fcitx5"
-spawn-at-startup "hypridle"
-spawn-at-startup "hyprpaper"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
-spawn-at-startup "xwayland-satellite"
 
 prefer-no-csd
 
@@ -111,6 +108,7 @@ window-rule {
     geometry-corner-radius 3
     clip-to-geometry true
     open-maximized true
+    draw-border-with-background false
 }
 
 window-rule {
@@ -142,11 +140,11 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+Q { spawn "alacritty"; }
-    Mod+A { spawn "~/.config/wofi/launcher/launcher.sh"; }
+    Mod+A { spawn "fuzzel"; }
     Mod+E { spawn "firefox"; }
     Mod+D { spawn "thunar"; }
     Mod+P { spawn "hyprpicker" "-a"; }
-    Mod+V { spawn "sh" "-c" "pkill wofi || cliphist list | wofi --show dmenu --prompt 'select' | cliphist decode | wl-copy"; }
+    Mod+V { spawn "sh" "-c" "pkill fuzzel || cliphist list | fuzzel -d | cliphist decode | wl-copy"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
