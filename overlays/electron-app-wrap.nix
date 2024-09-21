@@ -32,17 +32,6 @@ let
         " --add-flags ${suffix}"
       ];
     };
-
-  x11Wrap =
-    { app }:
-    prev.symlinkJoin {
-      name = app;
-      paths = [ prev.${app} ];
-      buildInputs = [ prev.makeWrapper ];
-      postBuild = ''
-        wrapProgram $out/bin/* --set DISPLAY :0
-      '';
-    };
 in
 {
   # obsidian = withCommandLineArgs { app = "obsidian"; };
@@ -54,8 +43,4 @@ in
   #   bin = "code";
   #   suffix = "%F";
   # };
-
-  # obsidian = x11Wrap { app = "obsidian"; };
-  # vscode = x11Wrap { app = "vscode"; };
-  wechat-uos = x11Wrap { app = "wechat-uos"; };
 }
