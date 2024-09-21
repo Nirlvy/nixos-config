@@ -49,8 +49,8 @@
   nixpkgs = {
     config = {
       allowUnfree = true;
-      permittedInsecurePackages = [ "openssl-1.1.1w" ];
+      permittedInsecurePackages = [ ];
     };
-    overlays = [ inputs.niri.overlays.niri ] ++ (import ../../overlays args);
+    overlays = [ ] ++ (import ../../overlays args);
   };
 }
