@@ -1,5 +1,15 @@
-{ config, pkgs, ... }:
 {
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
+{
+  imports = with inputs; [
+    daeuniverse.nixosModules.dae
+    daeuniverse.nixosModules.daed
+  ];
+
   services.dae = {
     enable = true;
     assets = with pkgs; [
@@ -8,4 +18,6 @@
     ];
     configFile = config.age.secrets."config.dae".path;
   };
+
+  services.daed.enable = true;
 }

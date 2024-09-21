@@ -17,6 +17,7 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    daeuniverse.url = "github:daeuniverse/flake.nix";
     honkai-railway-grub-theme.url = "github:voidlhf/StarRailGrubThemes?ref=0210f87c4f09f975d1f15f79e8190d1419d198ee";
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     impermanence.url = "github:nix-community/impermanence";

@@ -28,12 +28,14 @@
         "https://mirrors.ustc.edu.cn/nix-channels/store"
         "https://cache.nixos.org"
 
+        "https://cache.garnix.io"
         "https://hyprland.cachix.org"
         "https://niri.cachix.org"
         "https://nirlvy.cachix.org"
         "https://nix-gaming.cachix.org"
       ];
       trusted-public-keys = [
+        "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
         "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
         "nirlvy.cachix.org-1:dOdsWPG0r4JuqWy+p150yPiVrC28tELUZUdkXobrKZM="
