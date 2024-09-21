@@ -77,16 +77,6 @@
     "on-scroll-up": "mpc volume +5",
     "on-scroll-down": "mpc volume -5"
   },
-  "hyprland/workspaces": {
-    "format": "{icon}",
-    "on-click": "activate",
-    "format-icons": {
-      "active": ""
-    },
-    "on-scroll-up": "hyprctl dispatch workspace e-1",
-    "on-scroll-down": "hyprctl dispatch workspace e+1",
-    "sort-by-number": true
-  },
   "niri/workspaces": {
 	"format": "{icon}",
 	"format-icons": {

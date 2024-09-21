@@ -7,7 +7,6 @@
       qq
       wechat-uos
 
-      firefox
       telegram-desktop
       obsidian
       obs-studio
