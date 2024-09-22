@@ -911,7 +911,8 @@
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_7",
         "nur-nirlvy": "nur-nirlvy",
-        "secrets": "secrets"
+        "secrets": "secrets",
+        "waydroid_script": "waydroid_script"
       }
     },
     "secrets": {
@@ -1017,6 +1018,22 @@
         "submodules": true,
         "type": "git",
         "url": "https://github.com/Open-Wine-Components/umu-launcher/?dir=packaging/nix"
+      }
+    },
+    "waydroid_script": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1705758268,
+        "narHash": "sha256-OiZO62cvsFyCUPGpWjhxVm8fZlulhccKylOCX/nEyJU=",
+        "owner": "casualsnek",
+        "repo": "waydroid_script",
+        "rev": "1a2d3ad643206ad5f040e0155bb7ab86c0430365",
+        "type": "github"
+      },
+      "original": {
+        "owner": "casualsnek",
+        "repo": "waydroid_script",
+        "type": "github"
       }
     },
     "xdph": {

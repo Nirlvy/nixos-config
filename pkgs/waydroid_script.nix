@@ -11,7 +11,7 @@ stdenv.mkDerivation {
     owner = "casualsnek";
     repo = "waydroid_script";
     rev = "main";
-    sha256 = "sha256-OiZO62cvsFyCUPGpWjhxVm8fZlulhccKylOCX/nEyJU=";
+    hash = "sha256-OiZO62cvsFyCUPGpWjhxVm8fZlulhccKylOCX/nEyJU=";
   };
 
   buildInputs = [

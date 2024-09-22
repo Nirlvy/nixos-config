@@ -6,6 +6,11 @@
     # nur-nirlvy.url = "github:nirlvy/nur-packages";
     # debug
     nur-nirlvy.url = "/home/nirlvy/Documents/nur-packages";
+    secrets = {
+      url = "/home/nirlvy/Documents/nix-secrets";
+      # url = "git+ssh://git@github.com/Nirlvy/nix-secrets.git?shallow=1";
+      flake = false;
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -29,11 +34,6 @@
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    secrets = {
-      url = "/home/nirlvy/Documents/nix-secrets";
-      # url = "git+ssh://git@github.com/Nirlvy/nix-secrets.git?shallow=1";
-      flake = false;
     };
   };
 
