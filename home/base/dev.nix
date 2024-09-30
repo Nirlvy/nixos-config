@@ -24,6 +24,9 @@
     micromamba
     virtualenv
 
+    # rust
+    rustup
+
     # misc
     devbox
     devenv

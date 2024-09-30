@@ -40,7 +40,12 @@
       };
     };
 
-    starship.enable = true;
+    starship = {
+      enable = true;
+      settings = {
+        "$schema" = "https://starship.rs/config-schema.json";
+      };
+    };
     nix-index.enable = true;
   };
 }
