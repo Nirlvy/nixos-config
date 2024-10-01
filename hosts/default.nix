@@ -19,6 +19,7 @@
           ./NullPointer
 
           "${mod}/base/"
+          # "${mod}/desktop/cosmic.nix"
           # "${mod}/desktop/hyprland.nix"
           "${mod}/desktop/niri.nix"
 
