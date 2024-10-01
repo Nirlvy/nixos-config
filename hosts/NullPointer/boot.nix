@@ -1,11 +1,16 @@
-{ inputs, pkgs, ... }:
+{
+  inputs,
+  pkgs,
+  self,
+  ...
+}:
 {
   boot = {
     loader = {
       grub = rec {
         enable = true;
         device = "nodev";
-        theme = inputs.honkai-railway-grub-theme.packages.${pkgs.system}.firefly-grub-theme;
+        theme = pkgs.callPackage "${self}/pkgs/StarRailGrubThemes-firefly.nix" { };
         splashImage = "${theme}/background.png";
         efiSupport = true;
         useOSProber = true;
