@@ -17,7 +17,6 @@
   systemd.user.services = {
     hyprpaper = {
       Unit = {
-        Wants = [ "graphical-session.target" ];
         PartOf = [ "graphical-session.target" ];
         After = [ "graphical-session.target" ];
         Requisite = [ "graphical-session.target" ];
@@ -38,7 +37,6 @@
 
     hypridle = {
       Unit = {
-        Wants = [ "graphical-session.target" ];
         PartOf = [ "graphical-session.target" ];
         After = [ "graphical-session.target" ];
         Requisite = [ "graphical-session.target" ];
@@ -46,6 +44,25 @@
 
       Service = {
         ExecStart = lib.getExe pkgs.hypridle;
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+
+      Install = {
+        WantedBy = [ "niri.service" ];
+      };
+    };
+
+    mako = {
+      Unit = {
+        PartOf = [ "graphical-session.target" ];
+        After = [ "graphical-session.target" ];
+        Requisite = [ "graphical-session.target" ];
+      };
+
+      Service = {
+        ExecStart = lib.getExe pkgs.mako;
         Restart = "on-failure";
         RestartSec = 1;
         TimeoutStopSec = 10;

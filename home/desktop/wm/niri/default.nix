@@ -8,8 +8,9 @@
 
   systemd.user.services.xwayland-satellite = {
     Unit = {
-      Wants = [ "graphical-session.target" ];
+      PartOf = [ "graphical-session.target" ];
       After = [ "graphical-session.target" ];
+      Requisite = [ "graphical-session.target" ];
     };
 
     Service = {
@@ -17,11 +18,11 @@
       Restart = "on-failure";
       RestartSec = 1;
       TimeoutStopSec = 10;
-
     };
 
     Install = {
       WantedBy = [ "niri.service" ];
     };
   };
+
 }

@@ -18,4 +18,9 @@
     enable = true;
     package = pkgs.niri-unstable;
   };
+
+  xdg.portal = {
+    extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+    configPackages = [ pkgs.niri-unstable ];
+  };
 }

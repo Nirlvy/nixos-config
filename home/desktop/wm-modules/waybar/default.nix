@@ -7,8 +7,9 @@
 
   systemd.user.services.waybar = {
     Unit = {
-      Wants = [ "graphical-session.target" ];
+      PartOf = [ "graphical-session.target" ];
       After = [ "graphical-session.target" ];
+      Requisite = [ "graphical-session.target" ];
     };
 
     Service = {

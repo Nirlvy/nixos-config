@@ -24,7 +24,7 @@ input {
     }
 
     // disable-power-key-handling
-    warp-mouse-to-focus
+    // warp-mouse-to-focus
     focus-follows-mouse
     workspace-auto-back-and-forth
 }
@@ -113,18 +113,12 @@ window-rule {
 
 window-rule {
     match is-active=false
-    opacity 0.95
+    opacity 0.9
 }
 
 window-rule {
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    match app-id="wezterm"
     default-column-width {}
-}
-
-window-rule {
-    match app-id=r#"^com\.obsproject\.Studio$"#
-
-    min-width 876
 }
 
 window-rule {
@@ -248,8 +242,8 @@ binds {
     Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
     Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
 
-    Mod+TouchpadScrollUp   { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }
-    Mod+TouchpadScrollDown { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
+    Mod+TouchpadScrollUp   { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
+    Mod+TouchpadScrollDown { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }
 
     Mod+1 { focus-workspace 1; }
     Mod+2 { focus-workspace 2; }
