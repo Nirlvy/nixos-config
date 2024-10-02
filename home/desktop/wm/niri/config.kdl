@@ -117,7 +117,7 @@ window-rule {
 }
 
 window-rule {
-    match app-id="wezterm"
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
     default-column-width {}
 }
 
