@@ -47,5 +47,6 @@
       };
     };
     nix-index.enable = true;
+    zoxide.enable = true;
   };
 }
