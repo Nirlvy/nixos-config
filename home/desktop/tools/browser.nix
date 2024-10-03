@@ -4,6 +4,8 @@
   programs.chromium = {
     enable = true;
     commandLineArgs = [
+      "--enable-features=UseOzonePlatform"
+      "--ozone-platform=wayland"
       "--enable-experimental-web-platform-features"
       "--enable-wayland-ime"
       "--wayland-text-input-version=3"

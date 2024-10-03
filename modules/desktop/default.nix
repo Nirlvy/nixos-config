@@ -5,7 +5,8 @@ let
       ./programs
     ];
 
-    environment.variables.NIXOS_OZONE_WL = "1";
+    # for electron apps use gtk input method
+    # environment.variables.NIXOS_OZONE_WL = "1";
   };
   wm =
     { pkgs, ... }:
