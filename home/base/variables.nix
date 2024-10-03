@@ -7,7 +7,6 @@ in
 {
   home.sessionVariables = {
     LANG = "zh_CN.UTF-8";
-    RUST_LOG = "debug";
 
     BROWSER = "firefox";
     MAMBA_ROOT_PREFIX = c + "/micromamba";

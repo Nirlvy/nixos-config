@@ -1,5 +1,6 @@
 {
-  environment.enableAllTerminfo = true;
+  # contour break it
+  environment.enableAllTerminfo = false;
 
   programs.adb.enable = true;
   users.users.nirlvy.extraGroups = [ "adbusers" ];
