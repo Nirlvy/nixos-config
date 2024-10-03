@@ -11,7 +11,7 @@
   ];
 
   services.dae = {
-    enable = false;
+    enable = true;
     assets = with pkgs; [
       v2ray-geoip
       v2ray-domain-list-community
@@ -19,5 +19,5 @@
     configFile = config.age.secrets."config.dae".path;
   };
 
-  services.daed.enable = config.services.dae.enable;
+  services.daed.enable = false;
 }
