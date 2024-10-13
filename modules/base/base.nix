@@ -45,7 +45,6 @@
     fzf
     lsd
     ripgrep
-    zoxide
 
     bottom
     btop
