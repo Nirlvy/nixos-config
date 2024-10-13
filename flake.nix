@@ -23,6 +23,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     daeuniverse.url = "github:daeuniverse/flake.nix";
+    firefox = {
+      url = "github:nix-community/flake-firefox-nightly";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     impermanence.url = "github:nix-community/impermanence";
     niri = {

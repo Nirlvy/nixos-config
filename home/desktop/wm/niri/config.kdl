@@ -135,7 +135,7 @@ binds {
 
     Mod+Q { spawn "alacritty"; }
     Mod+A { spawn "fuzzel"; }
-    Mod+E { spawn "firefox"; }
+    Mod+E { spawn "firefox-nightly"; }
     Mod+D { spawn "thunar"; }
     Mod+P { spawn "hyprpicker" "-a"; }
     Mod+V { spawn "sh" "-c" "pkill fuzzel || cliphist list | fuzzel -d | cliphist decode | wl-copy"; }
