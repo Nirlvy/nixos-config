@@ -30,6 +30,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.4.1";
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
