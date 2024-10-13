@@ -5,7 +5,6 @@
       lxqt.lximage-qt
 
       qq
-      wechat-uos
 
       telegram-desktop
       obsidian
@@ -17,7 +16,6 @@
 
       winetricks
       wineWowPackages.wayland
-      bottles
     ];
   };
 }

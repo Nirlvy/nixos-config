@@ -6,13 +6,13 @@ let
       app,
       bin ? null,
     }:
-    prev.${app}.overrideAttrs (_: {
+    prev.${app}.overrideAttrs {
       postInstall = lib.strings.concatStrings [
         "wrapProgram $out/bin/"
         (if bin != null then bin else app)
         " --set DISPLAY \":0\""
       ];
-    });
+    };
 in
 {
   flatpak = x11Wrap { app = "flatpak"; };
