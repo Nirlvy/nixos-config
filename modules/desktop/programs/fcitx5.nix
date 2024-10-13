@@ -13,10 +13,10 @@
       addons = with pkgs; [
         fcitx5-configtool
         fcitx5-chinese-addons
-        fcitx5-gtk
         fcitx5-nord
         fcitx5-pinyin-moegirl
         fcitx5-pinyin-zhwiki
+        fcitx5-gtk
         libsForQt5.fcitx5-qt
       ];
     };
@@ -29,8 +29,7 @@
       GLFW_IM_MODULE = "ibus";
     }
     // lib.mkIf (config.i18n.inputMethod.fcitx5.waylandFrontend) {
-      # only kwin support text-input-v2
+      # niri don't support text-input-v2
       QT_IM_MODULE = "fcitx";
-      QT_IM_MODULES = "wayland;fcitx;ibus";
     };
 }
