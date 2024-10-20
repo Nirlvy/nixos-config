@@ -35,7 +35,7 @@
       shellAliases = {
         nfu = "nix flake update";
         sns = "sudo nixos-rebuild switch --show-trace -L -v";
-        ll = "ls -alF";
+        e = "env DISPLAY=:0 ";
         c = "clear";
       };
     };
@@ -47,6 +47,9 @@
       };
     };
     nix-index.enable = true;
+
+    eza.enable = true;
+    fzf.enable = true;
     zoxide.enable = true;
   };
 }

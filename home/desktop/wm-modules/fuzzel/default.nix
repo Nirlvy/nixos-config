@@ -2,9 +2,6 @@
   programs.fuzzel = {
     enable = true;
     settings = {
-      main = {
-        font = "Noto Sans CJK SC";
-      };
       colors = {
         background = "303446dd";
         text = "c6d0f5ff";

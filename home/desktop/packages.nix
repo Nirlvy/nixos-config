@@ -1,21 +1,19 @@
 { pkgs, ... }:
 {
-  home = {
-    packages = with pkgs; [
-      lxqt.lximage-qt
+  home.packages = with pkgs; [
+    lxqt.lximage-qt
 
-      qq
+    qq
 
-      telegram-desktop
-      obsidian
-      obs-studio
-      vscode
+    telegram-desktop
+    obsidian
+    obs-studio
+    vscode
 
-      qjournalctl
-      filelight
+    qjournalctl
+    filelight
 
-      winetricks
-      wineWowPackages.wayland
-    ];
-  };
+    winetricks
+    wineWowPackages.wayland
+  ];
 }

@@ -29,14 +29,17 @@
     };
   };
 
+  systemd.user.sessionVariables = {
+    QT_QPA_PLATFORMTHEME = "gtk3";
+  };
   qt = {
-    enable = true;
+    enable = false;
     platformTheme.name = "qtct";
   };
 
   # Catppuccin theme
   xdg.configFile = {
-    "qt5ct/colors/".source = "${pkgs.catppuccin-qt5ct}/share/qt5ct/colors";
+    # "qt5ct/colors/".source = "${pkgs.catppuccin-qt5ct}/share/qt5ct/colors";
     "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
     "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
     "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";

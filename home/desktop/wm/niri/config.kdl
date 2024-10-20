@@ -79,7 +79,8 @@ layout {
     }
 }
 
-spawn-at-startup "fcitx5"
+spawn-at-startup "systemctl" "--user" "stop" "app-org.fcitx.Fcitx5@autostart.service"
+spawn-at-startup "sh" "-c" "sleep 5 && fcitx5"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 
 prefer-no-csd
@@ -88,7 +89,7 @@ screenshot-path "~/Pictures/Screenshots/%Y-%m-%d %H-%M-%S.png"
 
 environment {
     // QT_QPA_PLATFORM "wayland"
-    // DISPLAY null
+    DISPLAY ":0"
 }
 
 cursor {

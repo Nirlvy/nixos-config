@@ -21,10 +21,10 @@
     #   defaultNetwork.settings.dns_enabled = true;
     # };
 
-    waydroid.enable = true;
+    waydroid.enable = false;
   };
 
-  environment.systemPackages = [ (pkgs.callPackage "${self}/pkgs/waydroid_script.nix" { }) ];
+  # environment.systemPackages = [ (pkgs.callPackage "${self}/pkgs/waydroid_script.nix" { }) ];
 
   programs.virt-manager.enable = true;
 

@@ -24,5 +24,4 @@
       WantedBy = [ "niri.service" ];
     };
   };
-
 }

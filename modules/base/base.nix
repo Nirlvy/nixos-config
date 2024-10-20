@@ -42,8 +42,6 @@
 
     bat
     fd
-    fzf
-    lsd
     ripgrep
 
     bottom

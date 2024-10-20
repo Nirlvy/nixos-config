@@ -14,63 +14,32 @@
     recursive = true;
   };
 
-  systemd.user.services = {
-    hyprpaper = {
-      Unit = {
-        PartOf = [ "graphical-session.target" ];
-        After = [ "graphical-session.target" ];
-        Requisite = [ "graphical-session.target" ];
-      };
+  systemd.user.services =
+    let
+      app =
+        { app }:
+        {
+          Unit = {
+            PartOf = [ "graphical-session.target" ];
+            After = [ "graphical-session.target" ];
+            Requisite = [ "graphical-session.target" ];
+          };
 
-      Service = {
-        ExecStart = lib.getExe pkgs.hyprpaper;
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
+          Service = {
+            ExecStart = lib.getExe pkgs.${app};
+            Restart = "on-failure";
+            RestartSec = 1;
+            TimeoutStopSec = 10;
+          };
 
-      Install = {
-        WantedBy = [ "niri.service" ];
-      };
-
+          Install = {
+            WantedBy = [ "niri.service" ];
+          };
+        };
+    in
+    {
+      hyprpaper = app { app = "hyprpaper"; };
+      hypridle = app { app = "hypridle"; };
+      mako = app { app = "mako"; };
     };
-
-    hypridle = {
-      Unit = {
-        PartOf = [ "graphical-session.target" ];
-        After = [ "graphical-session.target" ];
-        Requisite = [ "graphical-session.target" ];
-      };
-
-      Service = {
-        ExecStart = lib.getExe pkgs.hypridle;
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-
-      Install = {
-        WantedBy = [ "niri.service" ];
-      };
-    };
-
-    mako = {
-      Unit = {
-        PartOf = [ "graphical-session.target" ];
-        After = [ "graphical-session.target" ];
-        Requisite = [ "graphical-session.target" ];
-      };
-
-      Service = {
-        ExecStart = lib.getExe pkgs.mako;
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-
-      Install = {
-        WantedBy = [ "niri.service" ];
-      };
-    };
-  };
 }
