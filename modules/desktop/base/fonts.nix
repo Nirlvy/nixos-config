@@ -6,7 +6,8 @@
     packages = with pkgs; [
       font-awesome
 
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
       noto-fonts-emoji
 
       source-sans
