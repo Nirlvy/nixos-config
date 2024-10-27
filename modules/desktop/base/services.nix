@@ -7,6 +7,6 @@
     tumbler.enable = true; # Thumbnail support for images
 
     # gnome-firmware
-    fwupd.enable = true;
+    fwupd.enable = false;
   };
 }
