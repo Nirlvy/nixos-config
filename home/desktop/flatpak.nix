@@ -15,6 +15,7 @@
       "com.github.tchx84.Flatseal"
       "com.qq.QQmusic"
       "com.tencent.WeChat"
+      "io.github.zen_browser.zen"
     ];
     overrides = {
       global = {
