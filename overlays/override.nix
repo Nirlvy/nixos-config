@@ -1,1 +1,1 @@
-_: _final: prev: { catppuccin-gtk = prev.catppuccin-gtk.override { accents = [ "sky" ]; }; }
+_: _: prev: { catppuccin-gtk = prev.catppuccin-gtk.override { accents = [ "sky" ]; }; }
