@@ -1,9 +1,9 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 {
   programs = {
     firefox = {
       enable = true;
-      package = inputs.firefox.packages.${pkgs.system}.firefox-nightly-bin;
+      package = pkgs.firefox-beta;
     };
 
     chromium = {
