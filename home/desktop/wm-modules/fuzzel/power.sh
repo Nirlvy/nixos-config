@@ -36,6 +36,6 @@ power() {
 if [[ -z "$(pidof fuzzel)" ]];then
   power
 else
-  killall fuzzel
+  pkill fuzzel
 fi
 

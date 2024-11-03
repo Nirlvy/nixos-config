@@ -34,7 +34,6 @@
     gnused
     gnutar
     jq
-    killall
     which
     tree
     rsync

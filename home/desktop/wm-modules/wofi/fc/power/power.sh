@@ -42,6 +42,6 @@ power() {
 if [[ -z "$(pidof wofi)" ]];then
   power
 else
-  killall wofi
+  pkill wofi
 fi
 
