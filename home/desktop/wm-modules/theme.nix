@@ -20,7 +20,7 @@
       gtk-im-module = ''fcitx'';
     };
     theme = {
-      name = "catppuccin-frappe-sky-standard";
+      name = "catppuccin-frappe-sky-compact+rimless";
       package = pkgs.catppuccin-gtk;
     };
     iconTheme = {

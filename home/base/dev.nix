@@ -18,6 +18,13 @@
     nixd
     nixfmt-rfc-style
 
+    # node
+    eslint
+    nodejs
+    pnpm
+    typescript
+    typescript-language-server
+
     # python
     black
     conda

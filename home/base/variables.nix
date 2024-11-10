@@ -8,7 +8,7 @@ in
   home.sessionVariables = {
     LANG = "zh_CN.UTF-8";
 
-    BROWSER = "firefox";
+    BROWSER = "firefox-beta";
     MAMBA_ROOT_PREFIX = c + "/micromamba";
     TERMINAL = "alacritty";
     WINEPREFIX = d + "/wine";

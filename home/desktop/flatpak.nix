@@ -26,7 +26,7 @@
         ];
 
         Environment = {
-          XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons";
+          XCURSOR_PATH = "$HOME/.local/share/icons";
         };
       };
 

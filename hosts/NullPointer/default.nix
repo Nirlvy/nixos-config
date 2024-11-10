@@ -6,6 +6,8 @@
     ./hardware-configuration.nix
   ];
 
+  hardware.enableAllFirmware = true;
+
   networking = {
     hostName = "NullPointer";
     networkmanager.enable = true;
