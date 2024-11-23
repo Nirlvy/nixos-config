@@ -4,14 +4,15 @@
     enable = true;
     package = inputs.wezterm.packages.${pkgs.system}.default;
     extraConfig = ''
-      local config = {}
+      local w = require("wezterm")
+      local config = w.config_builder()
 
       config.color_scheme = "Catppuccin Frappe"
       config.window_background_opacity = 0.8
       config.window_decorations = "RESIZE"
       config.adjust_window_size_when_changing_font_size = false  
 
-      config.font = wezterm.font("JetBrainsMono Nerd Font")
+      config.font = w.font("JetBrainsMono Nerd Font")
       config.font_size = 10
 
       default_cursor_style = "SteadyBlock"

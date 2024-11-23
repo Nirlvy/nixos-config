@@ -13,9 +13,7 @@ let
     };
 
   wrap =
-    {
-      app,
-    }:
+    { app }:
     prev.${app}.overrideAttrs (o: {
       postInstall = lib.strings.concatStrings [
         "wrapProgram $out/bin/"

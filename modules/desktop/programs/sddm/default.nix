@@ -1,13 +1,7 @@
-{
-  inputs,
-  pkgs,
-  ...
-}:
+{ inputs, pkgs, ... }:
 {
   environment.systemPackages = [
-    (inputs.nur-nirlvy.packages.${pkgs.system}.sddm-sugar-candy.override {
-      background = ./plana.jpg;
-    })
+    (inputs.nur-nirlvy.packages.${pkgs.system}.sddm-sugar-candy.override { background = ./plana.jpg; })
   ];
 
   services = {

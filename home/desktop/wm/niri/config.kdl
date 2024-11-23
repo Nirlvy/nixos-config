@@ -47,7 +47,7 @@ layout {
         proportion 0.5
         // proportion 0.66667
 
-        fixed 1740
+        fixed 1900
     }
 
     default-column-width { proportion 0.5; }
@@ -74,8 +74,8 @@ layout {
     }
 
     struts {
-        left 40
-        right 40
+        left 10
+        right 10
     }
 }
 

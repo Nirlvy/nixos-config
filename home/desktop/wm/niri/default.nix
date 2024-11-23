@@ -1,8 +1,6 @@
 { lib, pkgs, ... }:
 {
-  imports = [
-    ../.
-  ];
+  imports = [ ../. ];
 
   programs.niri.config = builtins.readFile ./config.kdl;
 

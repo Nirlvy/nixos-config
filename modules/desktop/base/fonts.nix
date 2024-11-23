@@ -17,15 +17,7 @@
 
       jetbrains-mono
 
-      wqy_microhei
-      wqy_zenhei
-
-      (nerdfonts.override {
-        fonts = [
-          "JetBrainsMono"
-          "FiraCode"
-        ];
-      })
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     ];
 
     fontconfig.defaultFonts = {

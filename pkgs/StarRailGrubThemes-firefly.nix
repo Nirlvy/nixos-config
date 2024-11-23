@@ -1,8 +1,4 @@
-{
-  stdenvNoCC,
-  fetchFromGitHub,
-  ...
-}:
+{ stdenvNoCC, fetchFromGitHub, ... }:
 stdenvNoCC.mkDerivation {
   name = "StarRailGrubThemes";
 
