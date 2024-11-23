@@ -15,19 +15,19 @@
       "com.github.tchx84.Flatseal"
       "com.qq.QQmusic"
       "com.tencent.WeChat"
-      "io.github.zen_browser.zen"
     ];
     overrides = {
       global = {
+        Context.fileSystems = [
+          "/home/nirlvy/.local/share/fonts:ro"
+          "/home/nirlvy/.icon:ro"
+          "/nix/store:ro"
+        ];
         Context.sockets = [
           "wayland"
           "!x11"
           "!fallback-x11"
         ];
-
-        Environment = {
-          XCURSOR_PATH = "$HOME/.local/share/icons";
-        };
       };
 
       "com.qq.QQmusic".Context.sockets = [ "x11" ];
