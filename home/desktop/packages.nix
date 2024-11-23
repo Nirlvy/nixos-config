@@ -9,6 +9,7 @@
     obsidian
     obs-studio
     vscode
+    zed-editor
 
     qjournalctl
     filelight
