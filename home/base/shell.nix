@@ -35,7 +35,6 @@
       shellAliases = {
         nfu = "nix flake update";
         sns = "sudo nixos-rebuild switch --show-trace -L -v";
-        e = "env DISPLAY=:0 ";
         c = "clear";
       };
     };
@@ -49,7 +48,14 @@
     nix-index.enable = true;
 
     eza.enable = true;
-    fzf.enable = true;
+    fzf = {
+      enable = true;
+      changeDirWidgetCommand = "fd --type d";
+      changeDirWidgetOptions = [ "--preview 'tree -C {} | head -200'" ];
+      defaultCommand = "fd --type f";
+      fileWidgetCommand = "fd --type f";
+
+    };
     zoxide.enable = true;
   };
 }
