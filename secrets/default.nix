@@ -12,5 +12,6 @@ in
   age.secrets = {
     "config.dae".file = "${secrets}/config.dae";
     "passwd".file = "${secrets}/passwd.age";
+    "sub-link".file = "${secrets}/sub-link.age";
   };
 }
