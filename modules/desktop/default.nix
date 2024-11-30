@@ -21,8 +21,14 @@ let
             default = [ "gtk" ];
             "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
           };
-          hyprland.default = [ "hyprland" ];
-          niri.default = [ "gnome" ];
+          hyprland.default = [
+            "gtk"
+            "hyprland"
+          ];
+          niri.default = [
+            "gtk"
+            "gnome"
+          ];
         };
         extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
       };
