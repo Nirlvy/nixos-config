@@ -1,6 +1,6 @@
 {
   imports = [
-    ./tools
+    ./programs
 
     ./flatpak.nix
     ./packages.nix

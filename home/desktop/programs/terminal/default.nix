@@ -1,9 +1,7 @@
 {
   imports = [
     ./alacritty.nix
-    ./browser.nix
-    ./mpd.nix
-    ./mpv.nix
+    ./kitty.nix
     ./wezterm.nix
   ];
 }
