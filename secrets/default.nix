@@ -10,8 +10,7 @@ in
   age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
   age.secrets = {
-    "config.dae".file = "${secrets}/config.dae";
     "passwd".file = "${secrets}/passwd.age";
-    "sub-link".file = "${secrets}/sub-link.age";
+    "sub".file = "${secrets}/sub.age";
   };
 }

@@ -1,9 +1,4 @@
-{
-  config,
-  inputs,
-  pkgs,
-  ...
-}:
+{ config, inputs, ... }:
 {
   imports = with inputs; [ daeuniverse.nixosModules.dae ];
 
@@ -11,22 +6,20 @@
     enable = true;
     config = ''
       include {
-        configFull.dae
-      }'';
-  };
-
-  environment.etc."dae/configFull.dae" = {
-    text = ''
+          sub.dae
+      }
       global {
-          log_level: info
-          wan_interface: auto
-          auto_config_kernel_parameter: true
-      }
+          enable_local_tcp_fast_redirect: true
 
-      subscription {
-          sub: '@sub-link@'
-      }
+          # lan_interface: docker0
+          wan_interface: auto         
 
+          tcp_check_url: 'https://www.apple.com/library/test/success.html'
+          udp_check_dns: 'dns.google.com:53,114.114.114.114:53,2001:4860:4860::8888,1.1.1.1:53'
+          check_tolerance: 100ms 
+
+          tls_implementation: utls
+      }
       dns {
           upstream {
               alidns: 'udp://dns.alidns.com:53'
@@ -36,8 +29,9 @@
               request {
                   qname(geosite:category-ads-all) -> reject
                   qname(geosite:google@cn) -> alidns 
+                  qname(geosite:cn) -> alidns
                   qname(suffix: com, keyword: google) -> googledns
-                  fallback: asis
+                  fallback: alidns
               }
               response {
                   upstream(googledns) -> accept
@@ -46,36 +40,21 @@
               }
           }
       }
-
       group {
           group {
-              # filter: name(keyword: '高')
               policy: min_avg10
               policy: random
           }
       }
-
       routing {
           pname(NetworkManager) -> direct
-          dip(geoip:private) -> direct
-
-          # Disable h3 because it usually consumes too much cpu/mem resources.
-          l4proto(udp) && dport(443) -> block
-          dip(geoip:cn) -> direct
+          dip(geoip:private,geoip:cn) -> direct
           domain(geosite:cn) -> direct
-
-          # waydroid
-          # sport(53) -> group
-          # sport(67) -> group
-
+          l4proto(udp) && dport(443) -> block
           fallback: group
-      }'';
-    mode = "0600";
+      }
+    '';
   };
 
-  system.activationScripts."sub-link" = ''
-    secret=$(cat "${config.age.secrets.sub-link.path}")
-    configFile=/etc/dae/configFull.dae
-    ${pkgs.gnused}/bin/sed -i "s#@sub-link@#$secret#" "$configFile"
-  '';
+  environment.etc."dae/sub.dae".source = config.age.secrets.sub.path;
 }
