@@ -4,7 +4,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nur-nirlvy.url = "github:nirlvy/nur-packages";
-    # debug
     # nur-nirlvy.url = "/home/nirlvy/Documents/nur-packages";
     secrets = {
       # url = "/home/nirlvy/Documents/nix-secrets";
@@ -35,7 +34,7 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    wezterm.url = "github:wez/wezterm?dir=nix";
+    # wezterm.url = "github:wez/wezterm?dir=nix";
   };
 
   outputs =

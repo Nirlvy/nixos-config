@@ -30,13 +30,13 @@
     "interval": 1,
     "format": " {usage}%",
     "max-length": 10,
-    "on-click": "pkill alacritty || alacritty -e htop"
+    "on-click": "pkill kitty || kitty -e htop"
   },
   "memory": {
     "interval": 1,
     "format": " {}%",
     "max-length": 10,
-    "on-click": "pkill alacritty || alacritty -e htop"
+    "on-click": "pkill kitty || kitty -e htop"
   },
   "network": {
     "interval": 1,
@@ -46,7 +46,7 @@
     "format-disconnected": " Offline",
     "tooltip": true,
     "tooltip-format": "IP  {ipaddr}\n信号 {signalStrength}%\n频率 {frequency}GHz\n上传 {bandwidthUpBytes}\n下载 {bandwidthDownBytes}",
-    "on-click": "pkill alacritty || alacritty -e nmtui"
+    "on-click": "pkill kitty || kitty -e nmtui"
   },
   "mpd": {
     "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{title}",

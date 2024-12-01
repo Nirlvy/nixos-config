@@ -84,7 +84,7 @@
     '';
 
     "xfce4/helpers.rc".text = ''
-      TerminalEmulator=alacritty
+      TerminalEmulator=kitty
     '';
   };
 }

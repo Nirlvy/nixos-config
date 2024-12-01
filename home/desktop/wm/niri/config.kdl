@@ -118,11 +118,6 @@ window-rule {
 }
 
 window-rule {
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
-}
-
-window-rule {
     match app-id=r#"^org\.gnome\.World\.Secrets$"#
 
     block-out-from "screen-capture"
@@ -134,7 +129,7 @@ window-rule {
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+Q { spawn "alacritty"; }
+    Mod+Q { spawn "kitty"; }
     Mod+A { spawn "fuzzel"; }
     Mod+E { spawn "firefox-beta"; }
     Mod+D { spawn "thunar"; }
