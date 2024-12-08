@@ -14,10 +14,6 @@
           # lan_interface: docker0
           wan_interface: auto         
 
-          tcp_check_url: 'https://www.apple.com/library/test/success.html'
-          udp_check_dns: 'dns.google.com:53,114.114.114.114:53,2001:4860:4860::8888,1.1.1.1:53'
-          check_tolerance: 100ms 
-
           tls_implementation: utls
       }
       dns {
@@ -31,7 +27,7 @@
                   qname(geosite:google@cn) -> alidns 
                   qname(geosite:cn) -> alidns
                   qname(suffix: com, keyword: google) -> googledns
-                  fallback: alidns
+                  fallback: asis
               }
               response {
                   upstream(googledns) -> accept
@@ -50,7 +46,6 @@
           pname(NetworkManager) -> direct
           dip(geoip:private,geoip:cn) -> direct
           domain(geosite:cn) -> direct
-          l4proto(udp) && dport(443) -> block
           fallback: group
       }
     '';
