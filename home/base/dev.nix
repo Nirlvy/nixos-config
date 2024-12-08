@@ -2,19 +2,19 @@
 {
   home.packages = with pkgs; [
     # c/c++
-    autoconf
-    automake
-    bison
+    # autoconf
+    # automake
+    # bison
     clang-analyzer
     clang-tools
     cmake
     gcc
-    gdb
+    # gdb
     gnumake
-    pkgconf
+    # pkgconf
 
     # nix
-    nil
+    # nil
     nixd
     nixfmt-rfc-style
 
@@ -23,27 +23,27 @@
     nodejs
     pnpm
     typescript
-    typescript-language-server
+    # typescript-language-server
+    vtsls
 
     # python
-    black
-    conda
-    micromamba
-    virtualenv
+    # conda
+    ruff
+    # micromamba
+    pyright
 
     # rust
     rustup
 
     # misc
-    devbox
+    # devbox
     devenv
     lazygit
   ];
 
-  programs = {
-    direnv = {
-      enable = true;
-      nix-direnv.enable = true;
-    };
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+
   };
 }

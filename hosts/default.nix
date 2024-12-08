@@ -5,9 +5,7 @@
       nixosSystem = inputs.nixpkgs.lib.nixosSystem;
       mod = "${self}/modules";
 
-      specialArgs = {
-        inherit self inputs;
-      };
+      specialArgs = { inherit self inputs; };
 
       sharedModules = with inputs; [ home-manager.nixosModules.home-manager ];
     in

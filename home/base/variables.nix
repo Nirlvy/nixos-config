@@ -1,16 +1,15 @@
 { config, ... }:
 let
   d = config.xdg.dataHome;
-  cfg = config.xdg.configHome;
-  c = config.xdg.cacheHome;
 in
+# cfg = config.xdg.configHome;
+# c = config.xdg.cacheHome;
 {
   home.sessionVariables = {
     LANG = "zh_CN.UTF-8";
 
     BROWSER = "firefox-beta";
-    MAMBA_ROOT_PREFIX = c + "/micromamba";
-    TERMINAL = "alacritty";
+    TERMINAL = "kitty";
     WINEPREFIX = d + "/wine";
   };
 }
