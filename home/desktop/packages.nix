@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    lxqt.lximage-qt
+    # lxqt.lximage-qt
 
     qq
 
@@ -11,6 +11,7 @@
     vscode
     zed-editor
 
+    distrobox
     qjournalctl
     filelight
 

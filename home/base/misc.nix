@@ -84,7 +84,7 @@
     '';
 
     "xfce4/helpers.rc".text = ''
-      TerminalEmulator=kitty
+      TerminalEmulator=ghostty
     '';
   };
 }

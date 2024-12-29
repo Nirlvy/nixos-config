@@ -26,7 +26,7 @@
                   qname(geosite:category-ads-all) -> reject
                   qname(geosite:google@cn) -> alidns 
                   qname(geosite:cn) -> alidns
-                  qname(suffix: com, keyword: google) -> googledns
+                  qname(suffix:com, keyword:google) -> googledns
                   fallback: asis
               }
               response {

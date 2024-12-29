@@ -129,7 +129,7 @@ window-rule {
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+Q { spawn "kitty"; }
+    Mod+Q { spawn "ghostty"; }
     Mod+A { spawn "fuzzel"; }
     Mod+E { spawn "firefox-beta"; }
     Mod+D { spawn "thunar"; }

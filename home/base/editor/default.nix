@@ -10,11 +10,10 @@
     };
   };
 
-  xdg.configFile."nvim/lua" = {
-    source = config.lib.file.mkOutOfStoreSymlink ./nvim/lua;
-    recursive = true;
-  };
+  # xdg.configFile."nvim/lua/" = {
+  #   source = config.lib.file.mkOutOfStoreSymlink ./nvim/lua;
+  #   recursive = true;
+  # };
 
-  xdg.configFile."nvim/init.lua".source = config.lib.file.mkOutOfStoreSymlink ./nvim/init.lua;
-
+  # xdg.configFile."nvim/init.lua".source = config.lib.file.mkOutOfStoreSymlink ./nvim/init.lua;
 }

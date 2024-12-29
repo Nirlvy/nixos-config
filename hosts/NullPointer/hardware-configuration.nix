@@ -4,7 +4,6 @@
 {
   config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }:
@@ -21,7 +20,7 @@
   ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ pkgs.linuxKernel.packages.linux_xanmod_latest.v4l2loopback ];
+  boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
     device = "/dev/nvme0n1p6";

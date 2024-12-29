@@ -31,6 +31,7 @@
     ruff
     # micromamba
     pyright
+    python3
 
     # rust
     rustup

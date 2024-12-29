@@ -8,8 +8,6 @@ in
   home.sessionVariables = {
     LANG = "zh_CN.UTF-8";
 
-    BROWSER = "firefox-beta";
-    TERMINAL = "kitty";
     WINEPREFIX = d + "/wine";
   };
 }
