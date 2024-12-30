@@ -6,15 +6,19 @@
     # automake
     # bison
     clang-analyzer
-    clang-tools
+    # clang-tools
     cmake
     gcc
     # gdb
     gnumake
     # pkgconf
 
+    # lua
+    lua
+    luarocks
+    lua-language-server
+
     # nix
-    # nil
     nixd
     nixfmt-rfc-style
 
@@ -45,6 +49,5 @@
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
-
   };
 }

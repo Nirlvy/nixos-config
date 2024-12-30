@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   imports = [ ./nvidia.nix ];
-  programs.nvidia.enable = false;
+  programs.nvidia.enable = true;
 
   hardware.graphics = {
     enable = true;

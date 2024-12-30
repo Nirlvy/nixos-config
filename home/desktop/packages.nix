@@ -8,7 +8,7 @@
     telegram-desktop
     obsidian
     obs-studio
-    vscode
+    vscode-fhs
     zed-editor
 
     distrobox
