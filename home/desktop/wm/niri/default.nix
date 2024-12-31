@@ -4,6 +4,10 @@
 
   programs.niri.config = builtins.readFile ./config.kdl;
 
+  home.sessionVariables = {
+    DISPLAY = ":0";
+  };
+
   systemd.user.services.xwayland-satellite = {
     Unit = {
       PartOf = [ "graphical-session.target" ];
