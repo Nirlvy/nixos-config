@@ -30,7 +30,6 @@ jobs:
           pr-labels: |
             automated
             dependencies
-            automated
           nix-options: "--access-tokens github.com=${{ secrets.PAT }}"
           token: ${{ secrets.PAT }}
       - run: |
