@@ -23,12 +23,11 @@
       registry=https://registry.npmmirror.com
     '';
 
-    ".ssh/config".text = ''
-      Host github.com
-        Hostname ssh.github.com
-        Port 443
-        User git
-    '';
+    # ".ssh/config".text = ''
+    #   Host github.com
+    #     Hostname ssh.github.com
+    #     Port 443
+    # '';
 
   };
 

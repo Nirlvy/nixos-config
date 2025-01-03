@@ -109,9 +109,9 @@
     "on-click-right": "pkill pavucontrol || pavucontrol",
     "format-icons": {
       "default": [
-        "",
-        "",
-        ""
+        " ",
+        " ",
+        " "
       ]
     }
   },
