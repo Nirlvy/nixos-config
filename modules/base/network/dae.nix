@@ -43,7 +43,7 @@
           }
       }
       routing {
-          pname(NetworkManager) -> direct
+          pname(NetworkManager) -> must_direct
           dip(geoip:private,geoip:cn) -> direct
           domain(geosite:cn) -> direct
           fallback: group

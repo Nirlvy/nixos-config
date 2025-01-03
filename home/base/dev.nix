@@ -17,6 +17,7 @@
     lua
     luarocks
     lua-language-server
+    stylua
 
     # nix
     nixd
@@ -34,6 +35,7 @@
     # conda
     ruff
     # micromamba
+    poetry
     pyright
     python3
 
@@ -44,6 +46,7 @@
     # devbox
     devenv
     lazygit
+    tree-sitter
   ];
 
   programs.direnv = {
