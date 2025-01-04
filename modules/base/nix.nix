@@ -16,7 +16,6 @@
 
     settings = {
       auto-optimise-store = true;
-      allow-dirty = true;
       builders-use-substitutes = true;
       keep-derivations = true;
       keep-outputs = true;
