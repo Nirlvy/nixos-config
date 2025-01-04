@@ -433,13 +433,13 @@
       "locked": {
         "lastModified": 1735630463,
         "narHash": "sha256-7pgJ3lG3FT8QWbvWiFzrzmwB8ePU4NEGRO9eUblaOLI=",
-        "owner": "nirlvy",
+        "owner": "Nirlvy",
         "repo": "nur-packages",
         "rev": "f6880c2870bcf6077d668b3817a9877433c6c0ae",
         "type": "github"
       },
       "original": {
-        "owner": "nirlvy",
+        "owner": "Nirlvy",
         "repo": "nur-packages",
         "type": "github"
       }
@@ -465,16 +465,15 @@
       "locked": {
         "lastModified": 1733036433,
         "narHash": "sha256-2PEnW4lCd8e1HnisQakSw5gMqvn2xS11tFgYhtTTxBU=",
-        "ref": "refs/heads/main",
+        "owner": "Nirlvy",
+        "repo": "nix-secrets",
         "rev": "33cf013d6af5a20ed153ecfef754cb14f4817aef",
-        "shallow": true,
-        "type": "git",
-        "url": "ssh://git@github.com/Nirlvy/nix-secrets.git"
+        "type": "github"
       },
       "original": {
-        "shallow": true,
-        "type": "git",
-        "url": "ssh://git@github.com/Nirlvy/nix-secrets.git"
+        "owner": "Nirlvy",
+        "repo": "nix-secrets",
+        "type": "github"
       }
     },
     "systems": {

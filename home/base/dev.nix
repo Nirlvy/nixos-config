@@ -6,7 +6,7 @@
     # automake
     # bison
     clang-analyzer
-    # clang-tools
+    clang-tools
     cmake
     gcc
     # gdb

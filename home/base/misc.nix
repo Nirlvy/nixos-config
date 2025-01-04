@@ -23,11 +23,17 @@
       registry=https://registry.npmmirror.com
     '';
 
-    # ".ssh/config".text = ''
-    #   Host github.com
-    #     Hostname ssh.github.com
-    #     Port 443
-    # '';
+    ".ssh/config.bak" = {
+      text = ''
+        Host github.com
+          Hostname ssh.github.com
+          Port 443
+      '';
+      onChange = ''
+        cp $HOME/.ssh/config.bak $HOME/.ssh/config
+        chmod u+w $HOME/.ssh/config
+      '';
+    };
 
   };
 
@@ -56,9 +62,10 @@
       invisible=1
     '';
 
-    "nix/nix.conf".text = ''
-      experimental-features = nix-command flakes 
-    '';
+    # touch it manually
+    # "nix/nix.conf".text = ''
+    #   experimental-features = nix-command flakes 
+    # '';
 
     "nixpkgs/config.nix".text = ''
       { allowUnfree = true; }

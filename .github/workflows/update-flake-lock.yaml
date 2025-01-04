@@ -14,13 +14,6 @@ jobs:
         uses: actions/checkout@v4
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
-        # with:
-        #   github-token: |
-        #     access-tokens = github.com=${{ secrets.PAT }}
-      - name: Install SSH key
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@main
         id: update-flake-lock
@@ -29,9 +22,9 @@ jobs:
           pr-title: "chore(flake.lock): bump inputs"
           pr-labels: |
             automated
+            automerge
             dependencies
-          # nix-options: "--access-tokens github.com=${{ secrets.PAT }}"
-          # token: ${{ secrets.PAT }}
+          nix-options: "--access-tokens github.com=${{ secrets.PRIVATE_FLAKE_UPDATE }}"
       - run: |
           if [ -n "${{ steps.update.outputs.pull-request-number }}" ]; then
             gh pr merge --auto --rebase ${{ steps.update.outputs.pull-request-number }}

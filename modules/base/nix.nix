@@ -4,7 +4,7 @@
     channel.enable = false;
 
     gc = {
-      automatic = true;
+      automatic = false;
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
@@ -16,6 +16,7 @@
 
     settings = {
       auto-optimise-store = true;
+      allow-dirty = true;
       builders-use-substitutes = true;
       keep-derivations = true;
       keep-outputs = true;
@@ -56,5 +57,12 @@
       permittedInsecurePackages = [ ];
     };
     overlays = [ ] ++ (import ../../overlays args);
+  };
+
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 7d --keep 5";
+    flake = "/etc/nixos";
   };
 }

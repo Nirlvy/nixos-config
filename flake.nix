@@ -3,9 +3,9 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nur-nirlvy.url = "github:nirlvy/nur-packages";
+    nur-nirlvy.url = "github:Nirlvy/nur-packages";
     secrets = {
-      url = "git+ssh://git@github.com/Nirlvy/nix-secrets.git?shallow=1";
+      url = "github:Nirlvy/nix-secrets";
       flake = false;
     };
 
