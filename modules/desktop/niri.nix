@@ -12,15 +12,16 @@
     ./programs
     (import "${self}/modules/desktop/default.nix").wm
   ];
-  nixpkgs.overlays = [ inputs.niri.overlays.niri ];
+  # for garnix skip build
+  # nixpkgs.overlays = [ inputs.niri.overlays.niri ];
 
   programs.niri = {
     enable = true;
-    package = pkgs.niri-unstable;
+    package = pkgs.niri;
   };
 
   xdg.portal = {
     extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
-    configPackages = [ pkgs.niri-unstable ];
+    configPackages = [ pkgs.niri ];
   };
 }

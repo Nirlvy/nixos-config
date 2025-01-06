@@ -64,7 +64,7 @@
 
     # touch it manually
     # "nix/nix.conf".text = ''
-    #   experimental-features = nix-command flakes 
+    #   experimental-features = nix-command flakes
     # '';
 
     "nixpkgs/config.nix".text = ''

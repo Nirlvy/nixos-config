@@ -277,8 +277,8 @@ binds {
     Mod+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
     Mod+Shift+C { center-column; }
-    Mod+G       { toggle-window-floating; }
-    Mod+Shift+G { switch-focus-between-floating-and-tiling; }
+    // Mod+G       { toggle-window-floating; }
+    // Mod+Shift+G { switch-focus-between-floating-and-tiling; }
 
     Mod+Minus { set-column-width "-10%"; }
     Mod+Equal { set-column-width "+10%"; }
