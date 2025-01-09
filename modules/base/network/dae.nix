@@ -12,9 +12,9 @@
           enable_local_tcp_fast_redirect: true
 
           # lan_interface: docker0
-          wan_interface: auto         
+          wan_interface: auto     
 
-          tls_implementation: utls
+          check_tolerance: 20ms    
       }
       dns {
           upstream {
@@ -27,6 +27,9 @@
                   qname(geosite:google@cn) -> alidns 
                   qname(geosite:cn) -> alidns
                   qname(suffix:com, keyword:google) -> googledns
+                  qname(keyword:eoffcn) -> alidns
+
+                  qtype(https) -> reject
                   fallback: asis
               }
               response {
@@ -37,16 +40,17 @@
           }
       }
       group {
-          group {
+          g {
               policy: min_avg10
-              policy: random
+              filter: name(keyword:'高')
           }
       }
       routing {
           pname(NetworkManager) -> must_direct
           dip(geoip:private,geoip:cn) -> direct
           domain(geosite:cn) -> direct
-          fallback: group
+          domain(keyword:eoffcn) -> direct
+          fallback: g
       }
     '';
   };

@@ -79,8 +79,7 @@ layout {
     }
 }
 
-spawn-at-startup "systemctl" "--user" "stop" "app-org.fcitx.Fcitx5@autostart.service"
-spawn-at-startup "sh" "-c" "sleep 5 && fcitx5"
+spawn-at-startup "sh" "-c" "sleep 10 && fcitx5 -r"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 
 prefer-no-csd

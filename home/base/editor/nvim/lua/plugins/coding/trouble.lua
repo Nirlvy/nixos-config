@@ -2,6 +2,7 @@ return {
   {
     "folke/trouble.nvim",
     cmd = { "Trouble" },
+    dependencies = { "L3MON4D3/LuaSnip", version = "v2.*" },
     opts = {
       modes = {
         lsp = {
@@ -9,6 +10,13 @@ return {
         },
       },
     },
+    config = function()
+      vim.api.nvim_create_autocmd("QuickFixCmdPost", {
+        callback = function()
+          vim.cmd([[Trouble qflist open]])
+        end,
+      })
+    end,
     keys = {
       { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
       { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },

@@ -142,11 +142,11 @@
         "zig": "zig"
       },
       "locked": {
-        "lastModified": 1736395712,
-        "narHash": "sha256-qUNzyQAMCRQkf3FTRQ18Pjd4Bffa/vHjVxrw9e4Ffgo=",
+        "lastModified": 1736311992,
+        "narHash": "sha256-hWDDKYpLDS8/146mZh726UEO8HottjwqNkxcvJ04lHA=",
         "owner": "ghostty-org",
         "repo": "ghostty",
-        "rev": "1057fd23be68ba37155e6499e0ada56c2cfeeb8b",
+        "rev": "29c2f095a6bb73f2579bc1adfa5833dbe3e3ef0a",
         "type": "github"
       },
       "original": {
