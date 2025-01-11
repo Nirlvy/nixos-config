@@ -72,7 +72,6 @@ return {
           ["l"] = "open",
           ["h"] = "close_node",
           ["<space>"] = "none",
-          ---TODO:add hide keymap
         },
       },
     },

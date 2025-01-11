@@ -17,24 +17,19 @@ return {
       scroll = { enabled = true },
       statuscolumn = { enabled = true },
       words = { enabled = true },
-      styles = {
-        notification = {
-          -- wo = { wrap = true } -- Wrap notifications
-        },
-      },
     },
     keys = {
       -- { "<leader>z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
       -- { "<leader>Z",  function() Snacks.zen.zoom() end, desc = "Toggle Zoom" },
       {
-        "<leader>.",
+        "<leader>S.",
         function()
           Snacks.scratch()
         end,
         desc = "Toggle Scratch Buffer",
       },
       {
-        "<leader>S",
+        "<leader>Ss",
         function()
           Snacks.scratch.select()
         end,
@@ -48,14 +43,7 @@ return {
         desc = "Notification History",
       },
       {
-        "<leader>bd",
-        function()
-          Snacks.bufdelete()
-        end,
-        desc = "Delete Buffer",
-      },
-      {
-        "<leader>cR",
+        "<leader>cr",
         function()
           Snacks.rename.rename_file()
         end,
@@ -132,7 +120,6 @@ return {
       vim.api.nvim_create_autocmd("User", {
         pattern = "VeryLazy",
         callback = function()
-          -- Setup some globals for debugging (lazy-loaded)
           _G.dd = function(...)
             Snacks.debug.inspect(...)
           end
@@ -141,7 +128,6 @@ return {
           end
           vim.print = _G.dd -- Override print to use snacks for `:=` command
 
-          -- Create some toggle mappings
           Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
           Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
           Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>uL")

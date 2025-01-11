@@ -4,19 +4,22 @@
     fontDir.enable = true;
 
     packages = with pkgs; [
-      font-awesome
+      # font-awesome
 
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
       noto-fonts-emoji
 
-      source-sans
-      source-serif
-      source-han-sans
-      source-han-serif
+      # source-sans
+      # source-serif
+      # source-han-sans
+      # source-han-serif
 
-      jetbrains-mono
+      corefonts
+      vistafonts
+      vistafonts-chs
 
+      # jetbrains-mono
       nerd-fonts.jetbrains-mono
     ];
 

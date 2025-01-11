@@ -4,23 +4,26 @@ return {
     event = "VeryLazy",
     opts = {
       win = {
-        height = { min = 6, max = 25 },
+        height = { min = 6 },
       },
-    },
-    keys = {
-      {
-        "<leader>?",
-        function()
-          require("which-key").show({ global = false })
-        end,
-        desc = "Buffer Local Keymaps",
-      },
-      {
-        "<leader>f",
-        function()
-          require("which-key").show({ global = true })
-        end,
-        desc = "fzf",
+      spec = {
+        {
+          "<leader>b",
+          group = "Buffer",
+        },
+        {
+          "<leader>f",
+          group = "Fzf",
+        },
+        {
+          "<leader>g",
+          group = "Git",
+        },
+        { "<leader>q", group = "Quit" },
+        { "<leader>t", group = "Neo-tree" },
+        { "<leader>u", group = "Ui" },
+        { "<leader>x", group = "Trouble" },
+        { "<leader>c", group = "Code" },
       },
     },
   },

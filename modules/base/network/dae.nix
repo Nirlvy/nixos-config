@@ -12,9 +12,7 @@
           enable_local_tcp_fast_redirect: true
 
           # lan_interface: docker0
-          wan_interface: auto     
-
-          check_tolerance: 20ms    
+          wan_interface: auto        
       }
       dns {
           upstream {

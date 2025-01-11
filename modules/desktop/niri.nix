@@ -24,4 +24,6 @@
     extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
     configPackages = [ pkgs.niri ];
   };
+
+  systemd.user.services.niri-flake-polkit.enable = false;
 }
