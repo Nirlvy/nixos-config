@@ -22,9 +22,9 @@
     daeuniverse.url = "github:daeuniverse/flake.nix";
     ghostty.url = "github:ghostty-org/ghostty";
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    impermanence.url = "github:nix-community/impermanence";
+    # impermanence.url = "github:nix-community/impermanence";
     niri = {
-      url = "github:sodiboo/niri-flake";
+      url = "github:YaLTeR/niri";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";

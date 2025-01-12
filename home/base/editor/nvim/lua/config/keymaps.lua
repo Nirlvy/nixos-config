@@ -68,7 +68,7 @@ map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Commen
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
 -- new file
-map("n", "<leader>cf", "<cmd>enew<cr>", { desc = "New File" })
+map("n", "<leader>cn", "<cmd>enew<cr>", { desc = "New File" })
 
 -- diagnostic
 local diagnostic_goto = function(next, severity)
@@ -101,6 +101,9 @@ map("n", "<leader>uI", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })
 
 -- Terminal Mappings
 map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+
+-- copy to system clipboard
+map("v", "<C-c>", '"+y', { noremap = true, silent = true })
 
 -- windows
 -- map("n", "<leader>w", "<c-w>", { desc = "Windows", remap = true })

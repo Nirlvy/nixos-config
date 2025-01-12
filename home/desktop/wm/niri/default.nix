@@ -2,7 +2,7 @@
 {
   imports = [ ../. ];
 
-  programs.niri.config = builtins.readFile ./config.kdl;
+  xdg.configFile."niri/config.kdl".source = ./config.kdl;
 
   home.sessionVariables = {
     DISPLAY = ":0";

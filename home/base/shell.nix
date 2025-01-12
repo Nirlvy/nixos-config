@@ -50,7 +50,7 @@
     eza.enable = true;
     fzf =
       let
-        command = "fd --type f -L -E .git -E node_modules . /home /etc";
+        command = "fd --type f -L -E .git -E node_modules . /home /etc/nixos";
       in
       {
         enable = true;

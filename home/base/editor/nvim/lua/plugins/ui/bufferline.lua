@@ -15,7 +15,7 @@ return {
         close_command = function(n)
           Snacks.bufdelete(n)
         end,
-        always_show_bufferline = false,
+        always_show_bufferline = true,
         indicator = { "underline" },
         diagnostics = "nvim_lsp",
         diagnostics_indicator = function(count, level, diagnostics_dict, context)

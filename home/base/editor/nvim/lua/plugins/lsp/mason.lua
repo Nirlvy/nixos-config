@@ -1,21 +1,23 @@
 return {
   {
     "williamboman/mason.nvim",
-    {
-      "williamboman/mason-lspconfig.nvim",
-    },
-    cmd = "Mason",
     keys = {
-      { "<leader>m", "<cmd>Mason<cr>", desc = "open mason" },
+      { "<leader>m", "<cmd>Mason<cr>", desc = "Mason" },
     },
-    build = ":MasonUpdate",
-    opts_extend = { "ensure_installed" },
+    opts = {},
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    event = {
+      "Filetype",
+    },
+    dependencies = {
+      "williamboman/mason.nvim",
+      "neovim/nvim-lspconfig",
+    },
     opts = {
-      PATH = "append",
-      ensure_installed = {
-        "stylua",
-        "shfmt",
-      },
+      automatic_installation = true,
+      ensure_installed = {},
     },
   },
 }

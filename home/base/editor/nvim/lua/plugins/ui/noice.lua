@@ -6,10 +6,18 @@ return {
       "MunifTanjim/nui.nvim",
     },
     opts = {
-      cmdline = { enabled = true },
+      cmdline = {
+        enabled = true,
+        opts = {
+          position = {
+            row = "20%",
+          },
+        },
+      },
       messages = { enabled = false },
-      popmenu = { enabled = false },
-      redirect = { enabled = false },
+      popupmenu = { enabled = true },
+      hover = { enabled = false },
+      signature = { enabled = false },
     },
   },
 }

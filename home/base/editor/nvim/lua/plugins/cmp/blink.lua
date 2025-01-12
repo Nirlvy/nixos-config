@@ -1,4 +1,3 @@
----@type Lazy
 return {
   {
     "saghen/blink.cmp",

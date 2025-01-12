@@ -10,13 +10,14 @@ return {
         },
       },
     },
-    config = function()
-      vim.api.nvim_create_autocmd("QuickFixCmdPost", {
-        callback = function()
-          vim.cmd([[Trouble qflist open]])
-        end,
-      })
-    end,
+    -- config = function()
+    --   require("Trouble").setup()
+    --   vim.api.nvim_create_autocmd("QuickFixCmdPost", {
+    --     callback = function()
+    --       vim.cmd([[Trouble qflist open]])
+    --     end,
+    --   })
+    -- end,
     keys = {
       { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
       { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },
