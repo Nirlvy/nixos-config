@@ -1,12 +1,7 @@
 {
-  inputs,
-  pkgs,
   self,
   ...
 }:
-let
-  niri = inputs.niri.packages.${pkgs.system}.niri;
-in
 {
   imports = [
     ./base
@@ -14,8 +9,5 @@ in
     (import "${self}/modules/desktop/default.nix").wm
   ];
 
-  programs.niri = {
-    enable = true;
-    package = niri;
-  };
+  programs.niri.enable = true;
 }

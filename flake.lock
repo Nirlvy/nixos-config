@@ -399,7 +399,6 @@
         "flake-parts": "flake-parts_2",
         "ghostty": "ghostty",
         "home-manager": "home-manager_2",
-        "niri": "niri",
         "nix-flatpak": "nix-flatpak",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_2",

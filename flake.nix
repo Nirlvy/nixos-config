@@ -23,10 +23,6 @@
     ghostty.url = "github:ghostty-org/ghostty";
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     # impermanence.url = "github:nix-community/impermanence";
-    niri = {
-      url = "github:YaLTeR/niri";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     # nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.4.1";
     nix-index-database = {

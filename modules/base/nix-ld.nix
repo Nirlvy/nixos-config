@@ -44,7 +44,8 @@
         at-spi2-atk
         at-spi2-core
         gdk-pixbuf
-        glib
+        glib.out
+        glibc
         gtk3
         libGL
         libappindicator-gtk3

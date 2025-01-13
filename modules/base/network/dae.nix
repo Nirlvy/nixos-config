@@ -24,8 +24,8 @@
                   qname(geosite:category-ads-all) -> reject
                   qname(geosite:google@cn) -> alidns 
                   qname(geosite:cn) -> alidns
-                  qname(suffix:com, keyword:google) -> googledns
-                  qname(keyword:eoffcn) -> alidns
+                  qname(keyword: google) -> googledns
+                  qname(keyword: eoffcn) -> alidns
 
                   qtype(https) -> reject
                   fallback: asis
@@ -40,14 +40,14 @@
       group {
           g {
               policy: min_avg10
-              filter: name(keyword:'高')
+              filter: name(keyword: '高')
           }
       }
       routing {
           pname(NetworkManager) -> must_direct
           dip(geoip:private,geoip:cn) -> direct
           domain(geosite:cn) -> direct
-          domain(keyword:eoffcn) -> direct
+          domain(keyword: eoffcn) -> direct
           fallback: g
       }
     '';
