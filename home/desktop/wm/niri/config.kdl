@@ -125,6 +125,12 @@ window-rule {
     // block-out-from "screencast"
 }
 
+window-rule {
+    match app-id=r#"firefox$"# title="^我的足迹$"
+    match app-id=r#"QQ$"# title="^图片查看器$"
+    open-floating true
+}
+
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
@@ -276,8 +282,8 @@ binds {
     Mod+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
     Mod+Shift+C { center-column; }
-    // Mod+G       { toggle-window-floating; }
-    // Mod+Shift+G { switch-focus-between-floating-and-tiling; }
+    Mod+G       { toggle-window-floating; }
+    Mod+Shift+G { switch-focus-between-floating-and-tiling; }
 
     Mod+Minus { set-column-width "-10%"; }
     Mod+Equal { set-column-width "+10%"; }
