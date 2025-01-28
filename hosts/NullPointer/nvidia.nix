@@ -17,7 +17,7 @@ in
       powerManagement.finegrained = false;
       open = false;
       nvidiaSettings = false;
-      package = config.boot.kernelPackages.nvidiaPackages.production;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
       prime = {
         sync.enable = true;
         intelBusId = "PCI:0:2:0";

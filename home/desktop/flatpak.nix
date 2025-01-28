@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [ inputs.nix-flatpak.homeManagerModules.nix-flatpak ];
 
@@ -21,7 +21,8 @@
         Context.fileSystems = [
           "/home/nirlvy/.local/share/fonts:ro"
           "/home/nirlvy/.icon:ro"
-          "/nix/store:ro"
+          # "/nix/store:ro"
+          "${pkgs.capitaine-cursors}:ro"
         ];
         Context.sockets = [
           "wayland"

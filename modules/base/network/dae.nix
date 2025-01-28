@@ -40,7 +40,6 @@
       group {
           g {
               policy: min_avg10
-              filter: name(keyword: '高')
           }
       }
       routing {

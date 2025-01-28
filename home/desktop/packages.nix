@@ -37,6 +37,6 @@ in
 
     bottles
     winetricks
-    wineWowPackages.wayland
+    # wineWowPackages.wayland
   ];
 }
