@@ -19,22 +19,6 @@ return {
       words = { enabled = true },
     },
     keys = {
-      -- { "<leader>z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
-      -- { "<leader>Z",  function() Snacks.zen.zoom() end, desc = "Toggle Zoom" },
-      {
-        "<leader>S.",
-        function()
-          Snacks.scratch()
-        end,
-        desc = "Toggle Scratch Buffer",
-      },
-      {
-        "<leader>Ss",
-        function()
-          Snacks.scratch.select()
-        end,
-        desc = "Select Scratch Buffer",
-      },
       {
         "<leader>n",
         function()

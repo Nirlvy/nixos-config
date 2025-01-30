@@ -4,7 +4,7 @@
     fontDir.enable = true;
 
     packages = with pkgs; [
-      # font-awesome
+      font-awesome
 
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
@@ -19,7 +19,7 @@
       vistafonts
       vistafonts-chs
 
-      # jetbrains-mono
+      jetbrains-mono
       nerd-fonts.jetbrains-mono
     ];
 

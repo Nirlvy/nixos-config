@@ -12,7 +12,7 @@
       wireplumber.enable = true;
     };
 
-    printing.enable = true;
+    printing.enable = false;
 
     libinput.enable = true;
 

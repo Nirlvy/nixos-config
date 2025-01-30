@@ -26,8 +26,5 @@
 
   programs.virt-manager.enable = true;
 
-  users.users.nirlvy.extraGroups = [
-    "libvirtd"
-    # "docker"
-  ];
+  users.users.nirlvy.extraGroups = [ "libvirtd" ];
 }
