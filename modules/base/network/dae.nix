@@ -12,7 +12,7 @@
           enable_local_tcp_fast_redirect: true
 
           # lan_interface: docker0
-          wan_interface: auto        
+          wan_interface: auto
       }
       dns {
           upstream {
@@ -25,7 +25,6 @@
                   qname(geosite:google@cn) -> alidns 
                   qname(geosite:cn) -> alidns
                   qname(keyword: google) -> googledns
-                  qname(keyword: eoffcn) -> alidns
 
                   qtype(https) -> reject
                   fallback: asis
@@ -44,9 +43,10 @@
       }
       routing {
           pname(NetworkManager) -> must_direct
+          pname(nix-daemon,nh) -> g
           dip(geoip:private,geoip:cn) -> direct
-          domain(geosite:cn) -> direct
-          domain(keyword: eoffcn) -> direct
+          domain(geosite:cn,keyword: eoffcn) -> direct
+          domain(keyword: garnix) -> g
           fallback: g
       }
     '';

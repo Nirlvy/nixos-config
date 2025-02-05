@@ -20,10 +20,10 @@ in
     qq
     wpsoffice-cn
 
-    (jetbrains.idea-ultimate.override { vmopts = vmoptions; })
+    # (jetbrains.idea-ultimate.override { vmopts = vmoptions; })
     (jetbrains.clion.override { vmopts = vmoptions; })
     (jetbrains.rust-rover.override { vmopts = vmoptions; })
-    (jetbrains.pycharm-professional.override { vmopts = vmoptions; })
+    # (jetbrains.pycharm-professional.override { vmopts = vmoptions; })
 
     telegram-desktop
     obsidian
@@ -37,6 +37,5 @@ in
 
     bottles
     winetricks
-    # wineWowPackages.wayland
   ];
 }

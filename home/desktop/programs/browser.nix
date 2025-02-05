@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   programs = {
+    # media.ffmpeg.vaapi.enabled = true
     firefox = {
       enable = true;
       package = pkgs.firefox-beta;

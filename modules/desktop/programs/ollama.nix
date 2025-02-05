@@ -1,8 +1,8 @@
 {
   services.ollama = {
-    enable = true;
+    enable = false;
     acceleration = "cuda";
   };
 
-  services.open-webui.enable = true;
+  services.open-webui.enable = false;
 }
