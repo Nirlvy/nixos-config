@@ -1,21 +1,21 @@
-{ inputs, ... }:
 {
-  home.packages = [ inputs.ghostty.packages.x86_64-linux.default ];
+  programs.ghostty = {
+    enable = true;
+    settings = {
+      font-size = 11;
+      theme = "catppuccin-frappe";
+      background-opacity = 0.8;
+      window-padding-x = 5;
 
-  xdg.configFile."ghostty/config".text = ''
-    font-size = 11
-    theme = catppuccin-frappe
-    background-opacity = 0.8
-    window-padding-x = 5
+      window-decoration = false;
+      gtk-wide-tabs = false;
 
-    window-decoration = false
-    gtk-wide-tabs = false
+      mouse-hide-while-typing = true;
 
-    mouse-hide-while-typing = true
-
-    clipboard-read = allow
-    clipboard-write = allow
-    copy-on-select = clipboard
-    auto-update = off
-  '';
+      clipboard-read = "allow";
+      clipboard-write = "allow";
+      copy-on-select = "clipboard";
+      auto-update = "off";
+    };
+  };
 }
