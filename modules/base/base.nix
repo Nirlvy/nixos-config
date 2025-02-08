@@ -14,46 +14,46 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    neovim
-    git
-    yazi
+  environment.systemPackages =
+    with pkgs;
+    [
+      neovim
+      git
+      yazi
 
-    rar
-    p7zip
-    unzip
-    unar
-    xz
-    zip
-    zstd
+      rar
+      p7zip
+      unzip
+      unar
+      xz
+      zip
+      zstd
 
-    file
-    findutils
-    gawk
-    gnugrep
-    gnused
-    gnutar
-    jq
-    which
-    tree
-    rsync
-    lsof
+      file
+      findutils
+      gawk
+      gnugrep
+      gnused
+      gnutar
+      jq
+      which
+      tree
+      rsync
+      lsof
 
-    bat
-    fd
-    ripgrep
+      bat
+      fd
+      ripgrep
 
-    bottom
-    btop
-    htop
-    iotop
-    # nvtopPackages.full
-  ];
+      btop
+      htop
+      iotop
+      nvtopPackages.intel
+    ]
+    ++ [ (if config.programs.nvidia.enable == true then nvtopPackages.nvidia else null) ];
 
-  environment = {
-    variables = {
-      EDITOR = "nvim";
-      TERM = "xterm-256color";
-    };
+  environment.variables = {
+    EDITOR = "nvim";
+    TERM = "xterm-256color";
   };
 }

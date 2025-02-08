@@ -24,20 +24,21 @@
     nixfmt-rfc-style
 
     # node
-    eslint
-    nodejs
-    pnpm
-    typescript
+    # eslint
+    # nodejs
+    # pnpm
+    # typescript
     # typescript-language-server
-    vtsls
+    # vtsls
 
     # python
     # conda
     ruff
     # micromamba
-    poetry
+    # poetry
     pyright
     python3
+    uv
 
     # rust
     rustup

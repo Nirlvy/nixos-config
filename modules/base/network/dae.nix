@@ -22,9 +22,8 @@
           routing {
               request {
                   qname(geosite:category-ads-all) -> reject
-                  qname(geosite:google@cn) -> alidns 
-                  qname(geosite:cn) -> alidns
-                  qname(keyword: google) -> googledns
+                  qname(geosite:google@cn, geosite:cn) -> alidns
+                  qname(keyword: garnix, keyword: bing, keyword: deepseek) -> googledns
 
                   qtype(https) -> reject
                   fallback: asis
@@ -37,17 +36,16 @@
           }
       }
       group {
-          g {
-              policy: min_avg10
+          proxy {
+              policy: min_moving_avg
           }
       }
       routing {
           pname(NetworkManager) -> must_direct
-          pname(nix-daemon,nh) -> g
-          dip(geoip:private,geoip:cn) -> direct
-          domain(geosite:cn,keyword: eoffcn) -> direct
-          domain(keyword: garnix) -> g
-          fallback: g
+          dip(geoip:private, geoip:cn) -> direct
+          domain(geosite:cn, keyword: eoffcn) -> direct
+          domain(keyword: garnix, keyword: bing, keyword: deepseek) -> proxy
+          fallback: proxy
       }
     '';
   };
