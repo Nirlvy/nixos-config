@@ -22,8 +22,6 @@ jobs:
           pr-title: "chore(flake.lock): bump inputs"
           pr-labels: |
             automated
-            automerge
-            dependencies
           nix-options: "--access-tokens github.com=${{ secrets.PRIVATE_FLAKE_UPDATE }}"
       - run: |
           if [ -n "${{ steps.update.outputs.pull-request-number }}" ]; then
