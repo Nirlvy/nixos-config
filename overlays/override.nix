@@ -6,6 +6,7 @@ _: _: prev: {
   };
   fcitx5-configtool = prev.fcitx5-configtool.override { kcmSupport = false; };
   tela-icon-theme = prev.tela-icon-theme.overrideAttrs {
+    dontCheckForBrokenSymlinks = true;
     installPhase = ''
       runHook preInstall
 
