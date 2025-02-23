@@ -45,7 +45,7 @@
 
     # misc
     # devbox
-    devenv
+    # devenv
     lazygit
     tree-sitter
   ];

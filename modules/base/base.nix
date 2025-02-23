@@ -48,9 +48,8 @@
       btop
       htop
       iotop
-      nvtopPackages.intel
     ]
-    ++ [ (if config.programs.nvidia.enable == true then nvtopPackages.nvidia else null) ];
+    ++ [ (if config.programs.nvidia.enable == true then nvtopPackages.full else null) ];
 
   environment.variables = {
     EDITOR = "nvim";

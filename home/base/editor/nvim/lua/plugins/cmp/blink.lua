@@ -8,13 +8,16 @@ return {
     opts = {
       keymap = {
         preset = "enter",
-        cmdline = {
+      },
+      cmdline = {
+        keymap = {
           ["<C-y>"] = { "select_and_accept" },
           ["<cr>"] = { "fallback" },
           ["<C-p>"] = { "select_prev", "fallback" },
           ["<C-n>"] = { "select_next", "fallback" },
         },
       },
+
       appearance = {
         use_nvim_cmp_as_default = false,
         nerd_font_variant = "mono",
