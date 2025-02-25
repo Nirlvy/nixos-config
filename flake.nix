@@ -3,7 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nur-nirlvy.url = "github:Nirlvy/nur-packages";
+    nur-nirlvy = {
+      url = "github:Nirlvy/nur-packages";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     secrets = {
       url = "github:Nirlvy/nix-secrets";
       flake = false;
@@ -19,7 +22,10 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    daeuniverse.url = "github:daeuniverse/flake.nix";
+    daeuniverse = {
+      url = "github:daeuniverse/flake.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     # impermanence.url = "github:nix-community/impermanence";
     # nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";

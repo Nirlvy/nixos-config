@@ -33,7 +33,7 @@ in
 
     distrobox
     qjournalctl
-    filelight
+    kdePackages.filelight
 
     bottles
     winetricks
