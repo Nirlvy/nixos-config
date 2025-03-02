@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   users = {
     mutableUsers = false;
@@ -49,7 +54,9 @@
       htop
       iotop
     ]
-    ++ [ (if config.programs.nvidia.enable == true then nvtopPackages.full else null) ];
+    ++ lib.optionals (config.programs.nvidia.enable) [
+      nvtopPackages.full
+    ];
 
   environment.variables = {
     EDITOR = "nvim";
