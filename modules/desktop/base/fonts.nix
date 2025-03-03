@@ -5,6 +5,7 @@
 
     packages = with pkgs; [
       font-awesome
+      wqy_zenhei
 
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif

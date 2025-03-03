@@ -34,7 +34,6 @@
         chmod u+w $HOME/.ssh/config
       '';
     };
-
   };
 
   xdg.configFile = {

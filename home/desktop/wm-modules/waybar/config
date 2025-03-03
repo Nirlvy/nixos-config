@@ -117,14 +117,13 @@
   },
   "clock": {
     "format": " {:%H:%M}",
-    "format-alt": "{:%A, %B %d, %Y (%R)}  ",
-    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "format-alt": "{:L%A, %B %d, %Y (%R)}",
+    "tooltip-format": "<span size='9pt' font='WenQuanYi Zen Hei Mono'>{calendar}</span>",
     "calendar": {
       "mode": "year",
       "mode-mon-col": 3,
       "weeks-pos": "right",
       "on-scroll": 1,
-      "on-click-right": "mode",
       "format": {
         "months": "<span color='#ffead3'><b>{}</b></span>",
         "days": "<span color='#ecc6d9'><b>{}</b></span>",
