@@ -220,26 +220,6 @@
         "url": "https://github.com/NixOS/nixpkgs/archive/6d3702243441165a03f699f64416f635220f4f15.tar.gz"
       }
     },
-    "nur-nirlvy": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1736052971,
-        "narHash": "sha256-gsA8DPtslYF7HkmZVxSuqGQtO4OSodLPbmdwTh079SI=",
-        "owner": "Nirlvy",
-        "repo": "nur-packages",
-        "rev": "26114cd27648146791eaab3a013f5d43c3fd46fe",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Nirlvy",
-        "repo": "nur-packages",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "agenix": "agenix",
@@ -249,7 +229,6 @@
         "nix-flatpak": "nix-flatpak",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
-        "nur-nirlvy": "nur-nirlvy",
         "secrets": "secrets"
       }
     },

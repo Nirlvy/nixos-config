@@ -54,9 +54,7 @@
       htop
       iotop
     ]
-    ++ lib.optionals (config.programs.nvidia.enable) [
-      nvtopPackages.full
-    ];
+    ++ lib.optionals (config.programs.nvidia.enable) [ nvtopPackages.full ];
 
   environment.variables = {
     EDITOR = "nvim";

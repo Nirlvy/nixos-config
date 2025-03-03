@@ -1,16 +1,11 @@
-{
-  inputs,
-  pkgs,
-  self,
-  ...
-}:
+{ pkgs, ... }:
 {
   boot = {
     loader = {
       grub = rec {
         enable = true;
         device = "nodev";
-        theme = pkgs.callPackage "${self}/pkgs/StarRailGrubThemes-firefly.nix" { };
+        theme = pkgs.StarRailGrubThemes-firefly;
         splashImage = "${theme}/background.png";
         efiSupport = true;
         useOSProber = true;
@@ -33,7 +28,7 @@
 
     plymouth = {
       enable = true;
-      themePackages = [ inputs.nur-nirlvy.packages.${pkgs.system}.aris-plymouth ];
+      themePackages = [ pkgs.aris-plymouth ];
       theme = "aris";
     };
 

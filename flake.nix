@@ -3,10 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nur-nirlvy = {
-      url = "github:Nirlvy/nur-packages";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     secrets = {
       url = "github:Nirlvy/nix-secrets";
       flake = false;
