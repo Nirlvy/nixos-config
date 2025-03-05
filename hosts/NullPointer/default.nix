@@ -6,7 +6,7 @@
     ./hardware-configuration.nix
   ];
 
-  hardware.enableAllFirmware = true;
+  hardware.enableAllFirmware = false;
 
   networking = {
     hostName = "NullPointer";

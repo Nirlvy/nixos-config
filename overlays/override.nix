@@ -4,7 +4,6 @@ _: _: prev: {
     size = "compact";
     tweaks = [ "rimless" ];
   };
-  fcitx5-configtool = prev.fcitx5-configtool.override { kcmSupport = false; };
   tela-icon-theme = prev.tela-icon-theme.overrideAttrs {
     dontCheckForBrokenSymlinks = true;
     installPhase = ''

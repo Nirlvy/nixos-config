@@ -10,14 +10,13 @@
     type = "fcitx5";
     fcitx5 = {
       waylandFrontend = true;
+      plasma6Support = true;
       addons = with pkgs; [
-        fcitx5-configtool
         fcitx5-chinese-addons
         fcitx5-nord
         fcitx5-pinyin-moegirl
         fcitx5-pinyin-zhwiki
         fcitx5-gtk
-        libsForQt5.fcitx5-qt
         kdePackages.fcitx5-qt
       ];
     };

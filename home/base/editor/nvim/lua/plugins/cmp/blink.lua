@@ -2,7 +2,7 @@ return {
   {
     "saghen/blink.cmp",
     event = "InsertEnter",
-    build = "nix run .#build-plugin",
+    build = "cargo build --release",
     opts = {
       keymap = {
         preset = "enter",
