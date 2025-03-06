@@ -2,12 +2,12 @@
   documentation.nixos.enable = false;
 
   programs.appimage = {
-    enable = true;
+    enable = false;
     binfmt = true;
   };
 
   programs.java = {
-    enable = true;
+    enable = false;
     binfmt = true;
   };
 
