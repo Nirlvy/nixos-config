@@ -13,9 +13,4 @@
       };
     };
   };
-
-  xdg.configFile."fuzzel/power.sh" = {
-    source = ./power.sh;
-    executable = true;
-  };
 }

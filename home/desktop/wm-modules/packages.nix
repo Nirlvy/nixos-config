@@ -5,14 +5,14 @@
     pavucontrol
 
     cliphist
-    grim
+    # grim
     mako
-    slurp
-    swappy
+    # slurp
+    # swappy
     wl-clipboard
+    wlogout
 
     hyprpaper
-    hyprpicker
     hypridle
     hyprlock
   ];

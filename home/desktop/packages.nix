@@ -28,7 +28,7 @@ in
     telegram-desktop
     obsidian
     obs-studio
-    vscode-fhs
+    vscode
     zed-editor
 
     distrobox

@@ -24,7 +24,7 @@
   "custom/launcher": {
     "format": "",
     "tooltip": false,
-    "on-click": "$HOME/.config/wofi/launcher/launcher.sh"
+    "on-click": "fuzzel"
   },
   "cpu": {
     "interval": 1,
@@ -192,6 +192,6 @@
   "custom/power": {
     "format": " ",
     "tooltip": false,
-    "on-click": "$HOME/.config/fuzzel/power.sh"
+    "on-click": "wlogout"
   }
 }

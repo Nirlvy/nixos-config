@@ -1,10 +1,10 @@
 { lib, pkgs, ... }:
 {
   imports = [
-    ./fuzzel
     ./waybar
     ./wofi
 
+    ./fuzzel.nix
     ./packages.nix
     ./theme.nix
   ];
@@ -16,7 +16,7 @@
 
   systemd.user.services =
     let
-      app =
+      userSystemdService =
         { app }:
         {
           Unit = {
@@ -38,8 +38,8 @@
         };
     in
     {
-      hyprpaper = app { app = "hyprpaper"; };
-      hypridle = app { app = "hypridle"; };
-      mako = app { app = "mako"; };
+      hyprpaper = userSystemdService { app = "hyprpaper"; };
+      hypridle = userSystemdService { app = "hypridle"; };
+      mako = userSystemdService { app = "mako"; };
     };
 }
