@@ -5,6 +5,7 @@
   security = {
     pam.services = {
       login.enableGnomeKeyring = true;
+      sddm.enableGnomeKeyring = true;
       hyprlock = { };
     };
     polkit.enable = true;

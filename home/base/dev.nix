@@ -15,7 +15,7 @@
 
     # lua
     lua
-    luarocks
+    # luarocks
     lua-language-server
     stylua
 
@@ -33,11 +33,11 @@
 
     # python
     # conda
-    ruff
+    # ruff
     # micromamba
     # poetry
-    pyright
-    python3
+    # pyright
+    # python3
     uv
 
     # rust

@@ -118,7 +118,8 @@
   "clock": {
     "format": " {:%H:%M}",
     "format-alt": "{:L%A, %B %d, %Y (%R)}",
-    "tooltip-format": "<span size='9pt' font='WenQuanYi Zen Hei Mono'>{calendar}</span>",
+    "locale": "en_US.UTF-8",
+    "tooltip-format": "<tt>{calendar}</tt>",
     "calendar": {
       "mode": "year",
       "mode-mon-col": 3,

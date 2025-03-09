@@ -29,6 +29,7 @@ in
     obsidian
     obs-studio
     vscode
+    trash-cli # for vscode trash
     zed-editor
 
     distrobox
