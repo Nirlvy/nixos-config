@@ -1,5 +1,8 @@
 { pkgs, ... }:
 {
+  disabledModules = [ "services/display-managers/sddm.nix" ];
+  imports = [ ./sddm.nix ];
+
   environment.systemPackages = [ (pkgs.sddm-sugar-candy.override { background = ./plana.jpg; }) ];
 
   services = {

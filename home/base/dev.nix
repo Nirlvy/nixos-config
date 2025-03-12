@@ -7,7 +7,7 @@
     # bison
     clang-analyzer
     clang-tools
-    cmake
+    # cmake
     gcc
     # gdb
     gnumake

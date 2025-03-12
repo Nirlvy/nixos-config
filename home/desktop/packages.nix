@@ -21,7 +21,7 @@ in
     wpsoffice-cn
 
     # (jetbrains.idea-ultimate.override { vmopts = vmoptions; })
-    (jetbrains.clion.override { vmopts = vmoptions; })
+    # (jetbrains.clion.override { vmopts = vmoptions; })
     (jetbrains.rust-rover.override { vmopts = vmoptions; })
     # (jetbrains.pycharm-professional.override { vmopts = vmoptions; })
 
@@ -35,8 +35,5 @@ in
     distrobox
     qjournalctl
     kdePackages.filelight
-
-    bottles
-    winetricks
   ];
 }

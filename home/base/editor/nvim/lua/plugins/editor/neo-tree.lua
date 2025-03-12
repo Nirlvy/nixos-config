@@ -1,10 +1,36 @@
 return {
   {
+    "antosha417/nvim-lsp-file-operations",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-neo-tree/neo-tree.nvim",
+    },
+    config = function()
+      require("lsp-file-operations").setup()
+    end,
+  },
+  {
     "nvim-neo-tree/neo-tree.nvim",
-    requires = {
+    dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons",
-      "MunifTanjim/nui.nvim", -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+      "MunifTanjim/nui.nvim",
+      {
+        "s1n7ax/nvim-window-picker", -- for open_with_window_picker keymaps
+        opts = {
+          filter_rules = {
+            include_current_win = false,
+            autoselect_one = true,
+            -- filter using buffer options
+            bo = {
+              -- if the file type is one of following, the window will be ignored
+              filetype = { "neo-tree", "neo-tree-popup", "notify" },
+              -- if the buffer type is one of following, the window will be ignored
+              buftype = { "terminal", "quickfix" },
+            },
+          },
+        },
+      },
     },
     cmd = "Neotree",
     keys = {
@@ -52,6 +78,9 @@ return {
       })
     end,
     opts = {
+      close_if_last_window = false,
+      enable_git_status = true,
+      enable_diagnostics = true,
       sources = { "filesystem", "buffers", "git_status" },
       open_files_do_not_replace_types = { "terminal", "Trouble", "trouble", "qf", "Outline" },
       filesystem = {
@@ -76,19 +105,12 @@ return {
       },
     },
     config = function(_, opts)
+      vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
+      vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
+      vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
+      vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
+
       require("neo-tree").setup(opts)
     end,
-  },
-  {
-    "nvim-lua/plenary.nvim",
-    lazy = true,
-  },
-  {
-    "MunifTanjim/nui.nvim",
-    lazy = true,
-  },
-  {
-    "s1n7ax/nvim-window-picker",
-    lazy = true,
   },
 }
