@@ -3,7 +3,7 @@
     enable = true;
 
     userName = "Nirlvy";
-    userEmail = "nirlvy@qq.com";
+    userEmail = "nirlvy@outlook.com";
 
     extraConfig = {
       init.defaultBranch = "main";
