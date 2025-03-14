@@ -15,7 +15,7 @@ let
 in
 {
   home.packages = with pkgs; [
-    lxqt.lximage-qt
+    xfce.ristretto
 
     qq
     wpsoffice-cn

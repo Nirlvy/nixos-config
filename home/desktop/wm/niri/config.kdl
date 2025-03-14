@@ -138,7 +138,7 @@ binds {
     Mod+Q { spawn "ghostty"; }
     Mod+A { spawn "fuzzel"; }
     Mod+E { spawn "firefox"; }
-    Mod+D { spawn "thunar"; }
+    Mod+D { spawn "nautilus"; }
     Mod+V { spawn "sh" "-c" "pkill fuzzel || cliphist list | fuzzel -d | cliphist decode | wl-copy"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }

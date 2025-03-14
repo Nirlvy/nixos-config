@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   programs.alacritty = {
-    enable = true;
+    enable = false;
 
     settings = {
       env = {

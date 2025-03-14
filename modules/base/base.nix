@@ -24,7 +24,6 @@
     [
       neovim
       git
-      yazi
 
       rar
       p7zip

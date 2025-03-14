@@ -3,11 +3,11 @@
     ./sddm
 
     ./fcitx5.nix
+    ./filesManager.nix
     ./flatpak.nix
     ./misc.nix
     ./ollama.nix
     ./steam.nix
-    ./thunar.nix
     ./virtualization.nix
   ];
 }
