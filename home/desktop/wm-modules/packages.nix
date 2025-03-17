@@ -5,11 +5,9 @@
     pavucontrol
 
     cliphist
-    # grim
     mako
-    # slurp
-    # swappy
     wl-clipboard
+    wl-shot-edit
     wlogout
 
     hyprpaper

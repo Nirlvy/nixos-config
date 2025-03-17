@@ -302,6 +302,7 @@ binds {
     Print { screenshot; }
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
+    Mod+Print { spawn "wl-shot-edit"; }
 
     Mod+M { quit; }
 

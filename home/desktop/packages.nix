@@ -34,6 +34,6 @@ in
 
     distrobox
     qjournalctl
-    kdePackages.filelight
+    baobab
   ];
 }
