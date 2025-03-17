@@ -15,6 +15,8 @@
       efi.efiSysMountPoint = "/boot/efi";
     };
 
+    tmp.cleanOnBoot = true;
+
     supportedFilesystems = [
       "btrfs"
       "exfat"
@@ -40,6 +42,7 @@
       "systemd.show_status=auto"
       "rd.udev.log_level=3"
     ];
+    kernel.sysctl."kernel.sysrq" = 1;
     loader.timeout = 1;
   };
 }

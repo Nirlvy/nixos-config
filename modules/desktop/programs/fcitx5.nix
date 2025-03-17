@@ -16,8 +16,6 @@
         fcitx5-nord
         fcitx5-pinyin-moegirl
         fcitx5-pinyin-zhwiki
-        fcitx5-gtk
-        kdePackages.fcitx5-qt
       ];
     };
   };

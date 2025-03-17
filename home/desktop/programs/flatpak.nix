@@ -8,6 +8,10 @@
         name = "flathub";
         location = "https://mirror.sjtu.edu.cn/flathub/flathub.flatpakrepo";
       }
+      {
+        name = "flathub-beta";
+        location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
+      }
     ];
     update.auto.enable = true;
     uninstallUnmanaged = true;
@@ -17,6 +21,11 @@
       "com.qq.QQmusic"
       "com.tencent.WeChat"
       "com.usebottles.bottles"
+
+      {
+        appId = "org.gimp.GIMP";
+        origin = "flathub-beta";
+      }
     ];
     overrides = {
       global = {

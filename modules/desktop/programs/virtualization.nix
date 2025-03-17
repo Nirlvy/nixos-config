@@ -24,6 +24,11 @@
     waydroid.enable = false;
   };
 
+  environment.systemPackages = with pkgs; [
+    boxbuddy
+    pods
+  ];
+
   programs.virt-manager.enable = true;
 
   users.users.nirlvy.extraGroups = [ "libvirtd" ];

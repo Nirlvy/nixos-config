@@ -11,7 +11,7 @@
       global {
           enable_local_tcp_fast_redirect: true
 
-          # lan_interface: docker0
+          lan_interface: podman0
           wan_interface: auto
       }
       dns {
