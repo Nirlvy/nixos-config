@@ -3,7 +3,7 @@
   boot = {
     loader = {
       grub = rec {
-        enable = true;
+        enable = false;
         device = "nodev";
         theme = pkgs.StarRailGrubThemes-firefly;
         splashImage = "${theme}/background.png";
@@ -11,11 +11,18 @@
         useOSProber = true;
         configurationLimit = 10;
       };
-      efi.canTouchEfiVariables = true;
-      efi.efiSysMountPoint = "/boot/efi";
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 5;
+      };
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot/efi";
+      };
+      timeout = 0;
     };
 
-    tmp.cleanOnBoot = true;
+    tmp.useTmpfs = true;
 
     supportedFilesystems = [
       "btrfs"
@@ -43,6 +50,5 @@
       "rd.udev.log_level=3"
     ];
     kernel.sysctl."kernel.sysrq" = 1;
-    loader.timeout = 1;
   };
 }

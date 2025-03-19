@@ -1,6 +1,10 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [ pulseaudio ];
+  # ugly workaround
+  environment.extraSetup = ''
+    rm $out/share/applications/cups.desktop
+  '';
 
   services = {
     pipewire = {

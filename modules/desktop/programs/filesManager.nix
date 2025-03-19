@@ -2,7 +2,7 @@
 {
   programs = {
     thunar = {
-      enable = false;
+      enable = true;
       plugins = with pkgs.xfce; [
         thunar-volman
         thunar-archive-plugin
@@ -16,7 +16,7 @@
     file-roller.enable = true;
 
     nautilus-open-any-terminal = {
-      enable = true;
+      enable = false;
       terminal = "ghostty";
     };
   };
@@ -24,11 +24,11 @@
   environment.systemPackages =
     with pkgs;
     [
-      nautilus
+      # nautilus
       # selectdefaultapplication
       yazi
     ]
-    ++ lib.optional (config.programs.thunar.enable) [ xfce.exo ];
+    ++ lib.optionals (config.programs.thunar.enable) [ xfce.exo ];
 
   services = {
     gvfs.enable = true;

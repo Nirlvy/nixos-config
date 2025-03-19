@@ -12,7 +12,7 @@
       waylandFrontend = true;
       plasma6Support = true;
       addons = with pkgs; [
-        fcitx5-chinese-addons
+        kdePackages.fcitx5-chinese-addons
         fcitx5-nord
         fcitx5-pinyin-moegirl
         fcitx5-pinyin-zhwiki
