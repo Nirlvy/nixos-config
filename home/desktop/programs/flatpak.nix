@@ -20,7 +20,6 @@
       "com.github.tchx84.Flatseal"
       "com.qq.QQmusic"
       "com.tencent.WeChat"
-      "com.usebottles.bottles"
 
       {
         appId = "org.gimp.GIMP";

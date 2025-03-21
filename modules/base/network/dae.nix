@@ -23,7 +23,7 @@
               request {
                   qname(geosite:category-ads-all) -> reject
                   qname(geosite:google@cn, geosite:cn) -> alidns
-                  qname(keyword: garnix, keyword: bing, keyword: deepseek) -> googledns
+                  qname(keyword: nexon, keyword: bing, keyword: deepseek) -> googledns
 
                   qtype(https) -> reject
                   fallback: asis
@@ -44,7 +44,7 @@
           pname(NetworkManager) -> must_direct
           dip(geoip:private, geoip:cn) -> direct
           domain(geosite:cn, keyword: eoffcn) -> direct
-          domain(keyword: garnix, keyword: bing, keyword: deepseek) -> proxy
+          domain(keyword: nexon, keyword: bing, keyword: deepseek) -> proxy
           fallback: proxy
       }
     '';

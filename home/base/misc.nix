@@ -1,6 +1,20 @@
 {
   home.file = {
-    ".condarc".text = ''
+    ".ssh/config.bak" = {
+      text = ''
+        Host github.com
+          Hostname ssh.github.com
+          Port 443
+      '';
+      onChange = ''
+        cp $HOME/.ssh/config.bak $HOME/.ssh/config
+        chmod u+w $HOME/.ssh/config
+      '';
+    };
+  };
+
+  xdg.configFile = {
+    "condarc".text = ''
       channels:
         - defaults
         - conda-forge
@@ -19,24 +33,6 @@
         simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
     '';
 
-    ".npmrc".text = ''
-      registry=https://registry.npmmirror.com
-    '';
-
-    ".ssh/config.bak" = {
-      text = ''
-        Host github.com
-          Hostname ssh.github.com
-          Port 443
-      '';
-      onChange = ''
-        cp $HOME/.ssh/config.bak $HOME/.ssh/config
-        chmod u+w $HOME/.ssh/config
-      '';
-    };
-  };
-
-  xdg.configFile = {
     "mako/config".text = ''
       text-color=#dedede
       background-color=#383c4a
@@ -68,6 +64,10 @@
 
     "nixpkgs/config.nix".text = ''
       { allowUnfree = true; }
+    '';
+
+    "npmrc".text = ''
+      registry=https://registry.npmmirror.com
     '';
 
     "pip/pip.conf".text = ''

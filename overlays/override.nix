@@ -17,4 +17,11 @@ _: _: prev: {
       runHook postInstall
     '';
   };
+  wpsoffice = prev.wpsoffice.overrideAttrs (o: {
+    nativeBuildInputs = o.nativeBuildInputs or [ ] ++ [ prev.zstd ];
+    postInstall = ''
+      mkdir -p $out/opt/kingsoft/wps-office/office6/mui/zh_CN
+      tar -I zstd -xf ${../pkgs/resources/wps-office-mui-zh-cn.tar.zst} -C $out/opt/kingsoft/wps-office/office6/mui/zh_CN
+    '';
+  });
 }

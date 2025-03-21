@@ -18,7 +18,7 @@ in
     xfce.ristretto
 
     qq
-    wpsoffice-cn
+    wpsoffice
 
     # (jetbrains.idea-ultimate.override { vmopts = vmoptions; })
     # (jetbrains.clion.override { vmopts = vmoptions; })
@@ -35,5 +35,6 @@ in
     distrobox
     qjournalctl
     baobab
+    bottles
   ];
 }

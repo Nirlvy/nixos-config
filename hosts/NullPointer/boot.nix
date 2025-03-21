@@ -19,7 +19,7 @@
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot/efi";
       };
-      timeout = 0;
+      timeout = 1;
     };
 
     tmp.useTmpfs = true;

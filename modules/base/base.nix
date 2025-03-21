@@ -42,7 +42,7 @@
       jq
       which
       tree
-      rsync
+      # rsync
       lsof
 
       bat
@@ -51,9 +51,9 @@
 
       btop
       htop
-      iotop
+      # iotop
     ]
-    ++ lib.optional config.programs.nvidia.enable [ nvtopPackages.full ];
+    ++ lib.optionals (config.programs.nvidia.enable) [ nvtopPackages.full ];
 
   environment.variables = {
     EDITOR = "nvim";
