@@ -1,0 +1,130 @@
+port: 7890 
+socks-port: 7891 
+mixed-port: 7892
+redir-port: 7893 
+tproxy-port: 7894
+
+allow-lan: true
+bind-address: "*" 
+lan-allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+lan-disallowed-ips: []
+# interface-name: en0 # 设置出口网卡
+
+find-process-mode: strict
+mode: rule
+log-level: info
+ipv6: false
+
+external-controller: 127.0.0.1:9090
+
+disable-keep-alive: false 
+keep-alive-idle: 15
+keep-alive-interval: 15
+
+profile: 
+  store-selected: true
+  store-fake-ip: true
+unified-delay: true
+tcp-concurrent: true 
+global-client-fingerprint: chrome
+
+geox-url:
+  geoip: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
+  geosite: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
+  mmdb: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.metadb"
+  asn: "https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb"
+geo-auto-update: true
+geo-update-interval: 24 
+geodata-loader: standard
+
+tun:
+  enable: true
+  device: tun0
+  stack: mixed
+  dns-hijack:
+    - any:53
+  auto-detect-interface: true
+  auto-redirect: true
+  auto-route: true
+  strict-route: true # 将所有连接路由到 tun 来防止泄漏，但你的设备将无法其他设备被访问
+
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: true
+
+dns:
+  enable: true
+  cache-algorithm: arc
+  prefer-h3: true
+  listen: 0.0.0.0:53
+  ipv6: false
+
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - +.lan
+    - +.local
+    - time.*.com
+    - ntp.*.com
+    - geosite:fakeip-filter
+  fake-ip-filter-mode: blacklist
+
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  fallback:
+    - https://dns.google/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: CN 
+    geosite:
+      - gfw
+    ipcidr:
+      - 240.0.0.0/4
+    domain:
+      - '+.google.com'
+      - '+.youtube.com'
+
+  nameserver-policy:
+    "geosite:cn,private,apple":
+      - https://doh.pub/dns-query
+      - https://dns.alidns.com/dns-query
+    "geosite:category-ads-all": rcode://success
+
+proxy-providers:
+  provider:
+    type: file
+    interval: 3600
+    path: /etc/mihomo/sub.yaml # 默认只允许存储在 mihomo 的 Home Dir，如果想存储到任意位置，添加环境变量 SKIP_SAFE_PATH_CHECK=1
+    proxy: DIRECT
+    health-check:
+      enable: true
+      interval: 600
+      timeout: 500
+      url: https://cp.cloudflare.com/generate_204
+      expected-status: 204
+
+rule-providers:
+    reject: { type: http, behavior: domain, url: 'https://raw.v2raysocks.com/Loyalsoldier/clash-rules/release/reject.txt', path: ./ruleset/reject.yaml, interval: 86400 }
+    icloud: { type: http, behavior: domain, url: 'https://raw.v2raysocks.com/Loyalsoldier/clash-rules/release/icloud.txt', path: ./ruleset/icloud.yaml, interval: 86400 }
+    apple: { type: http, behavior: domain, url: 'https://raw.v2raysocks.com/Loyalsoldier/clash-rules/release/apple.txt', path: ./ruleset/apple.yaml, interval: 86400 }
+    google: { type: http, behavior: domain, url: 'https://raw.v2raysocks.com/Loyalsoldier/clash-rules/release/google.txt', path: ./ruleset/google.yaml, interval: 86400 }
+    proxy: { type: http, behavior: domain, url: 'https://raw.v2raysocks.com/Loyalsoldier/clash-rules/release/proxy.txt', path: ./ruleset/proxy.yaml, interval: 86400 }
+    direct: { type: http, behavior: domain, url: 'https://raw.v2raysocks.com/Loyalsoldier/clash-rules/release/direct.txt', path: ./ruleset/direct.yaml, interval: 86400 }
+    cncidr: { type: http, behavior: ipcidr, url: 'https://raw.v2raysocks.com/Loyalsoldier/clash-rules/release/cncidr.txt', path: ./ruleset/cncidr.yaml, interval: 86400 }
+    lancidr: { type: http, behavior: ipcidr, url: 'https://raw.v2raysocks.com/Loyalsoldier/clash-rules/release/lancidr.txt', path: ./ruleset/lancidr.yaml, interval: 86400 }
+
+rules:
+    - 'RULE-SET,icloud,Apple Services'
+    - 'RULE-SET,apple,Apple Services'
+    - 'RULE-SET,google,Google Services'
+    - 'RULE-SET,proxy,Blocked Domains'
+    - 'RULE-SET,cncidr,CHN Mainland'
+    - 'RULE-SET,direct,DIRECT'
+    - 'RULE-SET,lancidr,DIRECT,no-resolve'
+    - 'MATCH,Main Node'
+  

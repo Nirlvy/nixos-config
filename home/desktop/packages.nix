@@ -15,6 +15,7 @@ let
 in
 {
   home.packages = with pkgs; [
+    baobab
     xfce.ristretto
 
     qq
@@ -32,9 +33,8 @@ in
     trash-cli # for vscode trash
     zed-editor
 
+    bottles
     distrobox
     qjournalctl
-    baobab
-    bottles
   ];
 }

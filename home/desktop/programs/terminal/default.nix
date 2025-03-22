@@ -1,12 +1,8 @@
 {
   imports = [
-    ./alacritty.nix
+    # ./alacritty.nix
     ./ghostty.nix
-    ./kitty.nix
+    # ./kitty.nix
     # ./wezterm.nix
   ];
-
-  home.sessionVariables = {
-    TERMINAL = "ghostty";
-  };
 }

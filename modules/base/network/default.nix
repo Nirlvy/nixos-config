@@ -1,7 +1,8 @@
 { lib, pkgs, ... }:
 {
   imports = [
-    ./dae.nix
+    ./proxy/dae
+
     ./hardware.nix
     ./ssh.nix
     # ./tailscale.nix

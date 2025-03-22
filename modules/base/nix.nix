@@ -3,14 +3,6 @@
   nix = {
     channel.enable = false;
 
-    gc = {
-      automatic = false;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
-
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
-
     optimise.automatic = true;
     registry.nixpkgs.flake = inputs.nixpkgs;
 
@@ -23,7 +15,7 @@
         "nix-command"
         "flakes"
       ];
-      nix-path = [ "nixpkgs=${inputs.nixpkgs.outPath}" ];
+      nix-path = [ "nixpkgs=${inputs.nixpkgs}" ];
       substituters = [
         "https://mirrors.ustc.edu.cn/nix-channels/store"
         "https://nix-community.cachix.org"

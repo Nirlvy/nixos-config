@@ -2,7 +2,6 @@
 {
   imports = [
     ./waybar
-    ./wofi
 
     ./fuzzel.nix
     ./packages.nix

@@ -87,7 +87,6 @@
     "format": "󱛣 {}",
     "tooltip": false,
     "exec": "cliphist list | wc -l",
-    "exec-if": "[[ $(cliphist list | wc -l) != 0 ]]",
     "interval": 1,
     "on-click": "pkill fuzzel || cliphist list | fuzzel -d | cliphist decode | wl-copy",
     "on-click-middle": "rm ~/.cache/cliphist/db",

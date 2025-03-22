@@ -2,10 +2,8 @@
 {
   home.packages = with pkgs; [ xdg-utils ];
 
-  xdg = {
-    userDirs = {
-      enable = true;
-      createDirectories = true;
-    };
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
   };
 }
