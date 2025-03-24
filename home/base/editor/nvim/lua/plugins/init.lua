@@ -1,5 +1,4 @@
 return {
-  { import = "plugins.cmp" },
   { import = "plugins.coding" },
   { import = "plugins.editor" },
   { import = "plugins.format" },

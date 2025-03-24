@@ -1,13 +1,18 @@
 return {
   {
     "saghen/blink.cmp",
-    event = "InsertEnter",
+    event = { "InsertEnter", "CmdlineEnter" },
     build = "cargo build --release",
     opts = {
       keymap = {
         preset = "enter",
       },
       cmdline = {
+        completion = {
+          menu = {
+            auto_show = true,
+          },
+        },
         keymap = {
           ["<C-y>"] = { "select_and_accept" },
           ["<cr>"] = { "fallback" },
@@ -21,11 +26,6 @@ return {
         nerd_font_variant = "mono",
       },
       completion = {
-        accept = {
-          auto_brackets = {
-            enabled = true,
-          },
-        },
         documentation = { auto_show = true },
         ghost_text = {
           enabled = true,
@@ -42,6 +42,15 @@ return {
           lsp = {
             name = "LSP",
             module = "blink.cmp.sources.lsp",
+          },
+          buffer = {
+            opts = {
+              get_bufnrs = function()
+                return vim.tbl_filter(function(bufnr)
+                  return vim.bo[bufnr].buftype == ""
+                end, vim.api.nvim_list_bufs())
+              end,
+            },
           },
         },
       },
