@@ -1,9 +1,9 @@
 { config, pkgs, ... }:
 {
   # by Mic92 dotfiles
-  services.envfs.enable = true;
+  services.envfs.enable = false;
   programs.nix-ld = {
-    enable = true;
+    enable = false;
     libraries =
       with pkgs;
       [

@@ -4,6 +4,11 @@ _: _: prev: {
     size = "compact";
     tweaks = [ "rimless" ];
   };
+  qt6Packages = prev.qt6Packages // {
+    fcitx5-with-addons = prev.qt6Packages.fcitx5-with-addons.override {
+      fcitx5-configtool = prev.qt6Packages.fcitx5-configtool.override { kcmSupport = false; };
+    };
+  };
   tela-icon-theme = prev.tela-icon-theme.overrideAttrs {
     dontCheckForBrokenSymlinks = true;
     installPhase = ''

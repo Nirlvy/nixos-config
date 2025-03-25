@@ -40,6 +40,19 @@ map("n", "<leader>bo", function()
 end, { desc = "Delete Other Buffers" })
 map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 
+-- clear hlsearch
+map("n", "<esc>", function()
+  vim.cmd("noh")
+end, { desc = "Clear hlsearch" })
+
+-- set pwd
+map("n", "<leader>cd", function()
+  local file_dir = vim.fn.expand("%:p:h")
+  vim.cmd("cd " .. file_dir)
+  vim.cmd("Neotree reveal filesystem dir=" .. file_dir)
+  vim.cmd("pwd")
+end, { desc = "Set pwd" })
+
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
 map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
@@ -47,11 +60,6 @@ map("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result
 map("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev Search Result" })
 map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
 map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
-
--- Add undo break-points
-map("i", ",", ",<c-g>u")
-map("i", ".", ".<c-g>u")
-map("i", ";", ";<c-g>u")
 
 -- save file
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })

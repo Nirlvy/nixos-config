@@ -13,14 +13,13 @@
         location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
       }
     ];
-    update.auto.enable = true;
+    update.auto.enable = false;
     uninstallUnmanaged = true;
 
     packages = [
       "com.github.tchx84.Flatseal"
       "com.qq.QQmusic"
       "com.tencent.WeChat"
-
       {
         appId = "org.gimp.GIMP";
         origin = "flathub-beta";
