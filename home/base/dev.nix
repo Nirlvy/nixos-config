@@ -6,7 +6,7 @@
     # automake
     # bison
     clang-analyzer
-    clang-tools
+    # clang-tools
     # cmake
     gcc
     # gdb
@@ -14,8 +14,7 @@
     # pkgconf
 
     # lua
-    lua
-    # luarocks
+    # lua
     lua-language-server
     stylua
 
@@ -32,13 +31,11 @@
     # vtsls
 
     # python
-    # conda
     # ruff
-    # micromamba
     # poetry
     # pyright
     # python3
-    uv
+    # uv
 
     # rust
     rustup
@@ -47,7 +44,6 @@
     # devbox
     # devenv
     lazygit
-    tree-sitter
   ];
 
   programs.direnv = {

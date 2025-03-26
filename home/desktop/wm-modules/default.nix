@@ -39,6 +39,5 @@
     {
       hyprpaper = userSystemdService { app = "hyprpaper"; };
       hypridle = userSystemdService { app = "hypridle"; };
-      mako = userSystemdService { app = "mako"; };
     };
 }

@@ -29,15 +29,4 @@ _: _: prev: {
       tar -I zstd -xf ${../pkgs/resources/wps-office-mui-zh-cn.tar.zst} -C $out/opt/kingsoft/wps-office/office6/mui/zh_CN
     '';
   });
-  # https://github.com/NixOS/nixpkgs/pull/392319
-  zed-editor = prev.zed-editor.overrideAttrs (o: {
-    postPatch =
-      o.postPatch or ''''
-      +
-        # nixpkgs ships cargo-about 0.7, which is a seamless upgrade from 0.6
-        ''
-          substituteInPlace script/generate-licenses \
-            --replace-fail 'CARGO_ABOUT_VERSION="0.6"' 'CARGO_ABOUT_VERSION="0.7"'
-        '';
-  });
 }
