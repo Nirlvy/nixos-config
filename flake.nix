@@ -27,10 +27,6 @@
     # impermanence.url = "github:nix-community/impermanence";
     # nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
-    nix-index-database = {
-      url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     # wezterm.url = "github:wez/wezterm?dir=nix";
   };
 

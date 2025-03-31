@@ -202,7 +202,6 @@
         "flake-parts": "flake-parts",
         "home-manager": "home-manager_2",
         "nix-flatpak": "nix-flatpak",
-        "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
         "secrets": "secrets"
       }

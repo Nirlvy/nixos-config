@@ -3,19 +3,17 @@
   disabledModules = [ "services/display-managers/sddm.nix" ];
   imports = [ ./sddm.nix ];
 
-  environment.systemPackages = [ (pkgs.sddm-sugar-candy.override { background = ./plana.jpg; }) ];
+  environment.systemPackages = [ (pkgs.sddm-eucalyptus-drop.override { background = ./plana.jpg; }) ];
 
   services = {
     xserver.enable = false;
     displayManager.sddm = {
       enable = true;
+      package = pkgs.kdePackages.sddm;
       wayland.enable = true;
-      extraPackages = [
-        # don't know why propagatedBuildInputs invaild
-        pkgs.libsForQt5.qt5.qtgraphicaleffects
-      ];
+      extraPackages = [ pkgs.kdePackages.qt5compat ];
       autoNumlock = true;
-      theme = "sugar-candy";
+      theme = "eucalyptus-drop";
     };
   };
 }

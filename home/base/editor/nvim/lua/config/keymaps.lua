@@ -32,18 +32,14 @@ map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 map("n", "]b", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-map("n", "<leader>bd", function()
-  Snacks.bufdelete()
-end, { desc = "Delete Buffer" })
+map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete Buffer" })
 map("n", "<leader>bo", function()
   Snacks.bufdelete.other()
 end, { desc = "Delete Other Buffers" })
 map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 
 -- clear hlsearch
-map("n", "<esc>", function()
-  vim.cmd("noh")
-end, { desc = "Clear hlsearch" })
+map("n", "<esc>", "<cmd>noh<cr>", { desc = "Clear hlsearch" })
 
 -- set pwd
 map("n", "<leader>cd", function()
@@ -86,7 +82,7 @@ local diagnostic_goto = function(next, severity)
     go({ severity = severity })
   end
 end
--- map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+map("n", "<leader>cl", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
 map("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
 map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })

@@ -21,10 +21,7 @@ return {
         cpp = { "clang_format" },
         lua = { "stylua" },
         nix = { "nixfmt" },
-        python = { "ruff_fix", "ruff_format" },
-        javascript = { "prettier" },
         json = { "jq" },
-        sh = { "shfmt" },
       },
       default_format_opts = {
         lsp_format = "fallback",

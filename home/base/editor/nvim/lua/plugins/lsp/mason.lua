@@ -1,6 +1,7 @@
 return {
   {
     "williamboman/mason.nvim",
+    enabled = false,
     keys = {
       { "<leader>m", "<cmd>Mason<cr>", desc = "Mason" },
     },
@@ -8,6 +9,7 @@ return {
   },
   {
     "williamboman/mason-lspconfig.nvim",
+    enabled = false,
     event = {
       "Filetype",
     },

@@ -4,11 +4,15 @@ _: _: prev: {
     size = "compact";
     tweaks = [ "rimless" ];
   };
+
+  mpv = prev.mpv.override { youtubeSupport = false; };
+
   qt6Packages = prev.qt6Packages // {
     fcitx5-with-addons = prev.qt6Packages.fcitx5-with-addons.override {
       fcitx5-configtool = prev.qt6Packages.fcitx5-configtool.override { kcmSupport = false; };
     };
   };
+
   tela-icon-theme = prev.tela-icon-theme.overrideAttrs {
     dontCheckForBrokenSymlinks = true;
     installPhase = ''
@@ -22,6 +26,7 @@ _: _: prev: {
       runHook postInstall
     '';
   };
+
   wpsoffice = prev.wpsoffice.overrideAttrs (o: {
     nativeBuildInputs = o.nativeBuildInputs or [ ] ++ [ prev.zstd ];
     postInstall = ''
