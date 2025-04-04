@@ -7,6 +7,8 @@ _: _: prev: {
 
   mpv = prev.mpv.override { youtubeSupport = false; };
 
+  obs-studio = prev.obs-studio.override { browserSupport = false; };
+
   qt6Packages = prev.qt6Packages // {
     fcitx5-with-addons = prev.qt6Packages.fcitx5-with-addons.override {
       fcitx5-configtool = prev.qt6Packages.fcitx5-configtool.override { kcmSupport = false; };
@@ -32,6 +34,9 @@ _: _: prev: {
     postInstall = ''
       mkdir -p $out/opt/kingsoft/wps-office/office6/mui/zh_CN
       tar -I zstd -xf ${../pkgs/resources/wps-office-mui-zh-cn.tar.zst} -C $out/opt/kingsoft/wps-office/office6/mui/zh_CN
+      install -Dm444 ${prev.corefonts}/share/fonts/truetype/* $out/share/fonts/wps-office
+      install -Dm444 ${prev.vistafonts}/share/fonts/truetype/* $out/share/fonts/wps-office
+      install -Dm444 ${prev.vistafonts-chs}/share/fonts/truetype/* $out/share/fonts/wps-office
     '';
   });
 }

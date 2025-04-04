@@ -15,7 +15,7 @@ return {
         },
         {
           path = "lazy.nvim",
-          words = { "Lazy" },
+          words = { "LazyPluginSpec" },
         },
       },
     },

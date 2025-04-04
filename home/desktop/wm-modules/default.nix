@@ -2,6 +2,7 @@
 {
   imports = [
     ./waybar
+    ./swaync
 
     ./fuzzel.nix
     ./packages.nix

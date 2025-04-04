@@ -1,4 +1,5 @@
 return {
+  --- @type Lazy
   {
     "stevearc/conform.nvim",
     dependencies = { "mason.nvim" },
@@ -19,9 +20,10 @@ return {
     opts = {
       formatters_by_ft = {
         cpp = { "clang_format" },
+        css = { "prettier" },
         lua = { "stylua" },
         nix = { "nixfmt" },
-        json = { "jq" },
+        json = { "prettier" },
       },
       default_format_opts = {
         lsp_format = "fallback",

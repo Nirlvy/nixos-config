@@ -6,7 +6,9 @@ return {
     opts = {
       servers = {
         clangd = {},
+        cssls = {},
         lua_ls = {},
+        jsonls = {},
         nixd = {},
       },
     },

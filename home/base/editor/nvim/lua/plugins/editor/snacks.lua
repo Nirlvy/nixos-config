@@ -1,8 +1,10 @@
 return {
+  ---@type LazyPluginSpec
   {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
+    ---@module "snacks"
     ---@type snacks.Config
     opts = {
       bigfile = { enabled = true },
@@ -16,9 +18,23 @@ return {
       quickfile = { enabled = true },
       scroll = { enabled = true },
       statuscolumn = { enabled = true },
-      words = { enabled = true },
+      words = { enabled = false },
     },
     keys = {
+      {
+        "<leader>bd",
+        function()
+          Snacks.bufdelete()
+        end,
+        desc = "Delete Buffer",
+      },
+      {
+        "<leader>bo",
+        function()
+          Snacks.bufdelete.other()
+        end,
+        desc = "Delete Other Buffers",
+      },
       {
         "<leader>n",
         function()

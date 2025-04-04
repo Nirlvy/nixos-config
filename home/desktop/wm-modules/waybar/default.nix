@@ -26,6 +26,6 @@
   };
 
   xdg.configFile = {
-    "waybar/config".source = ./config;
+    "waybar/config".source = ./config.json;
   };
 }

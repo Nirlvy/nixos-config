@@ -1,23 +1,24 @@
 * {
-  border: none;
-  font-family: "JetbrainsMono Nerd Font";
-  font-size: 15px;
-  min-height: 0px;
+    border: none;
+    border-radius: 0;
+    font-family: "Jetbrains Mono", "Font Awesome 6 Free";
+    font-size: 12px;
+    font-weight: 700;
+    min-height: 0;
 }
 
-#waybar {
-  background: transparent;
-  color: #c6d0f5;
-  margin: 2px 5px 0px;
+window#waybar {
+    background: transparent;
+    color: #c6d0f5;
 }
 
 tooltip {
-  color: azure;
-  background: #383c4a;
-  border-radius: 6px;
-  border-width: 2px;
-  border-style: solid;
-  border-color: #4f6580;
+    color: azure;
+    background: #383c4a;
+    border-radius: 5px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #4f6580;
 }
 
 #network,
@@ -27,78 +28,77 @@ tooltip {
 #clock,
 #memory,
 #cpu,
+#workspaces,
 #tray,
 #mpd,
 #idle_inhibitor,
 #privacy,
 #custom-clipboard,
+#custom-notification,
 #custom-power,
 #custom-launcher {
-  background-color: #414559;
-  padding: 5px 1rem;
-  margin: 2px 0;
+    background-color: #414559;
+    padding: 3px 0.6rem;
+    margin: 2px 0 0;
 }
 
 #workspaces {
-  border-radius: 1rem;
-  margin: 2px 0;
-  background-color: #414559;
+    border-radius: 0.8rem;
+    padding: 0;
 }
 
 #workspaces button {
-  color: #babbf1;
-  border-radius: 1rem;
+    padding: 0;
+    margin: 0;
+    color: #babbf1;
+    border-radius: 0.6rem;
 }
 
 #workspaces button.active {
-  color: #99d1db;
-  border-radius: 1rem;
+    color: #99d1db;
+    border-radius: 0.6rem;
 }
 
 #workspaces button:hover {
-  color: #85c1dc;
-  border-radius: 1rem;
+    color: #85c1dc;
+    border-radius: 0.6rem;
+}
+
+#custom-launcher,
+#custom-clipboard,
+#idle_inhibitor {
+    border-radius: 0.8rem 0px 0px 0.8rem;
+    padding-left: 1rem;
 }
 
 #custom-launcher {
-  font-size: large;
-  color: #1793d1;
-  border-radius: 1rem 0px 0px 1rem;
-  margin-left: 5px;
+    color: #1793d1;
+    margin-left: 5px;
 }
 
-#network {
-  border-radius: 0px 1rem 1rem 0px;
+#network,
+#battery,
+#custom-power {
+    border-radius: 0px 0.8rem 0.8rem 0px;
+    padding-right: 1rem;
 }
 
-#custom-clipboard {
-  border-radius: 1rem 0px 0px 1rem;
-}
-
-#battery {
-  border-radius: 0px 1rem 1rem 0px;
-  margin-right: 5px;
+#battery,
+#custom-power {
+    margin-right: 5px;
 }
 
 #battery.critical:not(.charging) {
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-
-#idle_inhibitor{
-  border-radius: 1rem 0px 0px 1rem;
-}
-
-#custom-power{
-  border-radius: 0px 1rem 1rem 0px;
-  margin-right: 5px;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 @keyframes blink {
-  to {
-    color: #b5e8e0;
-  }
+    to {
+        color: #b5e8e0;
+    }
 }
+

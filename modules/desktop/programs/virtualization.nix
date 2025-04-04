@@ -16,7 +16,7 @@
     # };
 
     podman = {
-      enable = true;
+      enable = false;
       dockerCompat = true;
       defaultNetwork.settings.dns_enabled = true;
     };
@@ -24,10 +24,11 @@
     waydroid.enable = false;
   };
 
-  environment.systemPackages = with pkgs; [
-    boxbuddy
-    pods
-  ];
+  # environment.systemPackages = with pkgs; [
+  # boxbuddy
+  # distrobox
+  # pods
+  # ];
 
   programs.virt-manager.enable = true;
 

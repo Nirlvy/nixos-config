@@ -5,7 +5,7 @@
     pavucontrol
 
     cliphist
-    mako
+    # mako
     wl-clipboard
     wl-shot-edit
     wlogout

@@ -21,6 +21,7 @@ return {
         },
         { "<leader>q", group = "Quit" },
         { "<leader>t", group = "Neo-tree" },
+        { "<leader>s", group = "Select Node" },
         { "<leader>u", group = "Ui" },
         { "<leader>x", group = "Trouble" },
         { "<leader>c", group = "Code" },

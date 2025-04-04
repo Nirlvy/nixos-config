@@ -1,25 +1,28 @@
 return {
+  --- @type LazyPluginSpec
   {
     "williamboman/mason.nvim",
-    enabled = false,
     keys = {
       { "<leader>m", "<cmd>Mason<cr>", desc = "Mason" },
     },
-    opts = {},
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    enabled = false,
-    event = {
-      "Filetype",
-    },
-    dependencies = {
-      "williamboman/mason.nvim",
-      "neovim/nvim-lspconfig",
-    },
     opts = {
-      automatic_installation = true,
-      ensure_installed = {},
+      PATH = "append",
+    },
+  },
+  --- @type LazyPluginSpec
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    event = { "Filetype" },
+    opts = {
+      ensure_installed = {
+        "css-lsp",
+        "lua-language-server",
+        "json-lsp",
+
+        "prettier",
+        "stylua",
+      },
+      auto_update = true,
     },
   },
 }

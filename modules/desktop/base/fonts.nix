@@ -15,9 +15,7 @@
       # source-han-sans
       # source-han-serif
 
-      corefonts
-      vistafonts
-      vistafonts-chs
+      # sarasa-gothic
 
       jetbrains-mono
       nerd-fonts.jetbrains-mono

@@ -39,7 +39,7 @@ output "eDP-1" {
 }
 
 layout {
-    gaps 5
+    gaps 3
     center-focused-column "on-overflow"
 
     preset-column-widths {
@@ -53,7 +53,7 @@ layout {
     default-column-width { proportion 0.5; }
 
     focus-ring {
-        width 3
+        width 1
 
         active-color "#7fc8ff"
         inactive-color "#505050"
@@ -74,8 +74,8 @@ layout {
     }
 
     struts {
-        left 8
-        right 8
+        left 3
+        right 3
     }
 }
 
@@ -127,8 +127,9 @@ window-rule {
 window-rule {
     match app-id=r#"firefox$"# title="^我的足迹$"
     match app-id=r#"QQ$"# title="^图片查看器$"
-    match app-id=r#"^jetbrains"# title="^设置$"
-    match app-id=r#"^jetbrains"# title="^提取函数$"
+    match app-id=r#"jetbrains"# title="^设置$"
+    match app-id=r#"jetbrains"# title="^提取函数$"
+    match app-id=r#"wps"# title="^查找和替换$"
     open-floating true
 }
 
