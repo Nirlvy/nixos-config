@@ -11,7 +11,7 @@
   networking.hostName = "WSL";
   users = {
     allowNoPasswordLogin = true;
-    users.nirlvy.hashedPasswordFile = null;
+    users.nirlvy.hashedPasswordFile = lib.mkForce null;
   };
   system.stateVersion = "25.05";
 }

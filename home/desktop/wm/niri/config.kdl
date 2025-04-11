@@ -138,7 +138,7 @@ window-rule {
 window-rule{
   match title=r#"^QQ$"#
   match title=r#"WPS"#
-  match app-id=r#"jetbrains"# title=" "
+  match app-id=r#"jetbrains"# title="^ $"
   open-floating false
 }
 
