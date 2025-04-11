@@ -25,7 +25,7 @@ input {
 
     // disable-power-key-handling
     // warp-mouse-to-focus
-    focus-follows-mouse
+    // focus-follows-mouse
     workspace-auto-back-and-forth
 }
 
@@ -126,11 +126,20 @@ window-rule {
 
 window-rule {
     match app-id=r#"firefox$"# title="^我的足迹$"
-    match app-id=r#"QQ$"# title="^图片查看器$"
-    match app-id=r#"jetbrains"# title="^设置$"
-    match app-id=r#"jetbrains"# title="^提取函数$"
-    match app-id=r#"wps"# title="^查找和替换$"
+    match app-id=r#"^QQ$"#
+    match app-id=r#"jetbrains"#
+    match app-id=r#"^wps$"#
+    match app-id=r#"^et$"#
+    match app-id=r#"^pdf$"#
+    match app-id=r#"^wpp$"#
     open-floating true
+}
+
+window-rule{
+  match title=r#"^QQ$"#
+  match title=r#"WPS"#
+  match app-id=r#"jetbrains"# title=" "
+  open-floating false
 }
 
 binds {

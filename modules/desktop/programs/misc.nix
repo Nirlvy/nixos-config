@@ -1,14 +1,16 @@
 {
   documentation.nixos.enable = false;
 
-  programs.appimage = {
-    enable = false;
-    binfmt = true;
-  };
-
-  programs.java = {
-    enable = false;
-    binfmt = true;
+  programs = {
+    appimage = {
+      enable = false;
+      binfmt = true;
+    };
+    nano.enable = false;
+    java = {
+      enable = false;
+      binfmt = true;
+    };
   };
 
   xdg.terminal-exec = {

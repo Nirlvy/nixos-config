@@ -2,9 +2,10 @@
 {
   fonts = {
     fontDir.enable = true;
-
+    enableDefaultPackages = false;
     packages = with pkgs; [
       font-awesome
+      dejavu_fonts
 
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
@@ -20,12 +21,29 @@
       jetbrains-mono
       nerd-fonts.jetbrains-mono
     ];
+    fontconfig = {
+      defaultFonts = {
+        serif = [
+          "Noto Serif CJK SC"
+          "Noto Color Emoji"
+          "Font Awesome 6 Free"
+        ];
+        sansSerif = [
+          "Noto Sans CJK SC"
+          "Noto Color Emoji"
+          "Font Awesome 6 Free"
 
-    fontconfig.defaultFonts = {
-      serif = [ "Noto Serif CJK SC" ];
-      sansSerif = [ "Noto Sans CJK SC" ];
-      monospace = [ "JetBrainsMono Nerd Font" ];
-      emoji = [ "Noto Color Emoji" ];
+        ];
+        monospace = [
+          "JetBrains Mono"
+          "Noto Color Emoji"
+          "Font Awesome 6 Free"
+
+        ];
+        emoji = [ "Noto Color Emoji" ];
+      };
     };
   };
+
+  environment.systemPackages = [ pkgs.tela-icon-theme ];
 }

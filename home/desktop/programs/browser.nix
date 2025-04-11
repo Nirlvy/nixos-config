@@ -1,6 +1,6 @@
 {
   programs = {
-    # media.ffmpeg.vaapi.enabled = true
+    # media.hardware-vedio-decoding.force-enabled = true
     firefox.enable = true;
 
     chromium = {

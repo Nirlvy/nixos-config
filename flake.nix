@@ -3,6 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     secrets = {
       url = "github:Nirlvy/nix-secrets";
       flake = false;
@@ -23,11 +27,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
-    # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     # impermanence.url = "github:nix-community/impermanence";
-    # nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
-    # wezterm.url = "github:wez/wezterm?dir=nix";
   };
 
   outputs =
