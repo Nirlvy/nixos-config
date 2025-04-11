@@ -5,7 +5,7 @@
   wsl = {
     enable = true;
     defaultUser = "nirlvy";
-    useWindowsDrive = true;
+    useWindowsDriver = true;
   };
   programs.nix-ld.enable = lib.mkForce true;
   networking.hostName = "WSL";
