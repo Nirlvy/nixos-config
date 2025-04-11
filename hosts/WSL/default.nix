@@ -9,6 +9,9 @@
   };
   programs.nix-ld.enable = lib.mkForce true;
   networking.hostName = "WSL";
-
+  users = {
+    allowNoPasswordLogin = true;
+    users.nirlvy.hashedPasswordFile = null;
+  };
   system.stateVersion = "25.05";
 }
