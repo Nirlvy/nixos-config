@@ -19,6 +19,7 @@
       # sarasa-gothic
 
       jetbrains-mono
+      jetbrains-maple-mono
       nerd-fonts.jetbrains-mono
     ];
     fontconfig = {
@@ -35,12 +36,15 @@
 
         ];
         monospace = [
-          "JetBrains Mono"
+          "JetBrains Maple Mono"
           "Noto Color Emoji"
           "Font Awesome 6 Free"
 
         ];
-        emoji = [ "Noto Color Emoji" ];
+        emoji = [
+          "Noto Color Emoji"
+          "Font Awesome 6 Free"
+        ];
       };
     };
   };

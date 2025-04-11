@@ -44,9 +44,8 @@ _: _: prev: {
       <?xml version="1.0"?>
       <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
       <fontconfig>
-      <dir>${prev.corefonts}/share/fonts</dir>
-      <dir>${prev.vistafonts}/share/fonts</dir>
-      <dir>${prev.vistafonts-chs}/share/fonts</dir>
+      <dir>${prev.vista-fonts-chs}/share/fonts</dir>
+      <dir>${prev.callPackage ../pkgs/ttf-wps-fonts { }}/share/fonts</dir>
       <cachedir>$out/share/wps-fontconfig-cache</cachedir>
       </fontconfig>
       EOF
