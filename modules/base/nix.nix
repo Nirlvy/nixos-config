@@ -1,10 +1,12 @@
-{ inputs, ... }@args:
+{ inputs, pkgs, ... }@args:
 {
   nix = {
     channel.enable = false;
 
     optimise.automatic = true;
     registry.nixpkgs.flake = inputs.nixpkgs;
+
+    package = pkgs.lix;
 
     settings = {
       auto-optimise-store = true;

@@ -27,7 +27,7 @@ stdenvNoCC.mkDerivation {
   inherit pname version;
 
   src = fetchzip {
-    url = "https://github.com/SpaceTimee/Fusion-JetBrainsMapleMono/releases/download/${version}/JetBrainsMapleMono-${variants}.zip";
+    url = "https://github.com/${owner}/Fusion-JetBrainsMapleMono/releases/download/${version}/JetBrainsMapleMono-${variants}.zip";
     sha256 = hashes.${variants};
     stripRoot = false;
   };

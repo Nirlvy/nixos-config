@@ -18,7 +18,7 @@
 
       # sarasa-gothic
 
-      jetbrains-mono
+      # jetbrains-mono
       jetbrains-maple-mono
       nerd-fonts.jetbrains-mono
     ];

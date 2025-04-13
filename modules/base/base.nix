@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  lib,
   ...
 }:
 {
@@ -19,41 +18,38 @@
     };
   };
 
-  environment.systemPackages =
-    with pkgs;
-    [
-      neovim
-      git
+  environment.systemPackages = with pkgs; [
+    neovim
+    git
 
-      rar
-      p7zip
-      unzip
-      unar
-      xz
-      zip
-      zstd
+    rar
+    p7zip
+    unzip
+    unar
+    xz
+    zip
+    zstd
 
-      file
-      findutils
-      gawk
-      gnugrep
-      gnused
-      gnutar
-      jq
-      which
-      tree
-      # rsync
-      lsof
+    file
+    findutils
+    gawk
+    gnugrep
+    gnused
+    gnutar
+    jq
+    which
+    tree
+    # rsync
+    lsof
 
-      bat
-      fd
-      ripgrep
+    bat
+    fd
+    ripgrep
 
-      btop
-      htop
-      # iotop
-    ]
-    ++ lib.optionals (config.programs.nvidia.enable) [ nvtopPackages.full ];
+    btop
+    htop
+    # iotop
+  ];
 
   environment.variables = {
     EDITOR = "nvim";

@@ -1,24 +1,24 @@
 * {
-    border: none;
-    border-radius: 0;
-    font-family: "Jetbrains Mono", "Font Awesome 6 Free";
-    font-size: 12px;
-    font-weight: 700;
-    min-height: 0;
+  border: none;
+  border-radius: 0;
+  font-family: "JetBrains Maple Mono", "Font Awesome 6 Free";
+  font-size: 12px;
+  font-weight: 700;
+  min-height: 0;
 }
 
 window#waybar {
-    background: transparent;
-    color: #c6d0f5;
+  background: transparent;
+  color: #c6d0f5;
 }
 
 tooltip {
-    color: azure;
-    background: #383c4a;
-    border-radius: 5px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #4f6580;
+  color: azure;
+  background: #383c4a;
+  border-radius: 5px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #4f6580;
 }
 
 #network,
@@ -37,68 +37,67 @@ tooltip {
 #custom-notification,
 #custom-power,
 #custom-launcher {
-    background-color: #414559;
-    padding: 3px 0.6rem;
-    margin: 2px 0 0;
+  background-color: #414559;
+  padding: 3px 0.6rem;
+  margin: 2px 0 0;
 }
 
 #workspaces {
-    border-radius: 0.8rem;
-    padding: 0;
+  border-radius: 0.8rem;
+  padding: 0;
 }
 
 #workspaces button {
-    padding: 0;
-    margin: 0;
-    color: #babbf1;
-    border-radius: 0.6rem;
+  padding: 0;
+  margin: 0;
+  color: #babbf1;
+  border-radius: 0.6rem;
 }
 
 #workspaces button.active {
-    color: #99d1db;
-    border-radius: 0.6rem;
+  color: #99d1db;
+  border-radius: 0.6rem;
 }
 
 #workspaces button:hover {
-    color: #85c1dc;
-    border-radius: 0.6rem;
+  color: #85c1dc;
+  border-radius: 0.6rem;
 }
 
 #custom-launcher,
 #custom-clipboard,
 #idle_inhibitor {
-    border-radius: 0.8rem 0px 0px 0.8rem;
-    padding-left: 1rem;
+  border-radius: 0.8rem 0px 0px 0.8rem;
+  padding-left: 1rem;
 }
 
 #custom-launcher {
-    color: #1793d1;
-    margin-left: 5px;
+  color: #1793d1;
+  margin-left: 5px;
 }
 
 #network,
 #battery,
 #custom-power {
-    border-radius: 0px 0.8rem 0.8rem 0px;
-    padding-right: 1rem;
+  border-radius: 0px 0.8rem 0.8rem 0px;
+  padding-right: 1rem;
 }
 
 #battery,
 #custom-power {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
 #battery.critical:not(.charging) {
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 @keyframes blink {
-    to {
-        color: #b5e8e0;
-    }
+  to {
+    color: #b5e8e0;
+  }
 }
-

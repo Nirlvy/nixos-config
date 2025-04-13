@@ -31,7 +31,10 @@
     ++ lib.optionals (config.programs.thunar.enable) [ xfce.exo ];
 
   services = {
-    gvfs.enable = true;
+    gvfs = {
+      enable = true;
+      package = pkgs.gvfs;
+    };
     tumbler.enable = true;
   };
 }

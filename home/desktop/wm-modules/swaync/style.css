@@ -33,7 +33,7 @@
 @define-color mauve_lighter #caa6f7;
 
 * {
-  font-family: "JetBrains Mono", "Font Awesome 6 Free";
+  font-family: "JetBrains Maple Mono", "Font Awesome 6 Free";
   background-clip: border-box;
 }
 
@@ -86,7 +86,6 @@ label {
   background: transparent;
   border: none;
 }
-
 
 .notification-default-action {
   border-radius: 4px;
@@ -156,10 +155,10 @@ label {
 /* Control center */
 
 .control-center {
-  background: alpha(@crust, .80);
+  background: alpha(@crust, 0.8);
   border-radius: 15px;
   border: 0px solid @selected;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, .80);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.8);
   margin: 10px;
   padding: 4px;
 }
@@ -170,7 +169,7 @@ label {
 
 .control-center-list {
   /* background: @base; */
-  background: alpha(@crust, .80);
+  background: alpha(@crust, 0.8);
   min-height: 5px;
   /* border: 1px solid @surface1; */
   border-top: none;
@@ -182,7 +181,7 @@ label {
 .notification-group {
   /* opacity: 1.0; */
   /* opacity: 0; */
-  color: alpha(@theme_text_color, 0.50);
+  color: alpha(@theme_text_color, 0.5);
 }
 
 .notification-group {
@@ -192,7 +191,7 @@ label {
   /* selectable: no; */
 }
 
-.notification-group>box {
+.notification-group > box {
   all: unset;
   background: transparent;
   /* background: alpha(currentColor, 0.072); */
@@ -207,7 +206,7 @@ label {
 .notification-row {
   outline: none;
   transition: all 1s ease;
-  background: alpha(@mantle, .80);
+  background: alpha(@mantle, 0.8);
   /* background: @theme_bg_color; */
   border: 0px solid @crust;
   margin: 10px 5px 0px 5px;
@@ -221,9 +220,9 @@ label {
   box-shadow: none;
 }
 
-.control-center-list>row,
-.control-center-list>row:focus,
-.control-center-list>row:hover {
+.control-center-list > row,
+.control-center-list > row:focus,
+.control-center-list > row:hover {
   background: transparent;
   border: none;
   margin: 0px;
@@ -231,10 +230,9 @@ label {
   box-shadow: none;
 }
 
-.control-center-list>row:last-child {
+.control-center-list > row:last-child {
   padding: 5px 10px 10px 10px;
 }
-
 
 /* Window behind control center and on all other monitors */
 .blank-window {
@@ -253,13 +251,13 @@ label {
   border-bottom: none;
 }
 
-.widget-title>label {
+.widget-title > label {
   margin: 18px 10px;
   font-size: 20px;
   font-weight: 500;
 }
 
-.widget-title>button {
+.widget-title > button {
   font-weight: 700;
   padding: 7px 3px;
   margin-right: 10px;
@@ -270,7 +268,7 @@ label {
   border-radius: 4px;
 }
 
-.widget-title>button:hover {
+.widget-title > button:hover {
   background: @base;
   /* background: alpha(currentColor, 0.1); */
 }
@@ -280,14 +278,14 @@ label {
   margin: 0px;
   padding: 0px;
   min-height: 5px;
-  background: alpha(@mantle, .80);
+  background: alpha(@mantle, 0.8);
   /* background: @theme_bg_color; */
   border-radius: 0px 0px 4px 4px;
   /* border: 1px solid @surface1; */
   border-top: none;
 }
 
-.widget-label>label {
+.widget-label > label {
   font-size: 15px;
   font-weight: 400;
 }
@@ -301,15 +299,15 @@ label {
   border-bottom: none;
 }
 
-.widget-menubar>box>box {
+.widget-menubar > box > box {
   margin: 5px 10px 5px 10px;
   min-height: 40px;
   border-radius: 4px;
   background: transparent;
 }
 
-.widget-menubar>box>box>button {
-  background: alpha(@mantle, .80);
+.widget-menubar > box > box > button {
+  background: alpha(@mantle, 0.8);
   /* background: alpha(currentColor, 0.05); */
   min-width: 185px;
   min-height: 50px;
@@ -318,7 +316,7 @@ label {
   padding: 0px;
 }
 
-.widget-menubar>box>box>button:nth-child(2) {
+.widget-menubar > box > box > button:nth-child(2) {
   margin-right: 0px;
 }
 
@@ -332,14 +330,14 @@ label {
   box-shadow: none;
 }
 
-.widget-menubar>box>revealer>box {
+.widget-menubar > box > revealer > box {
   margin: 5px 10px 5px 10px;
-  background: alpha(@mantle, .80);
+  background: alpha(@mantle, 0.8);
   /* background: alpha(currentColor, 0.05); */
   border-radius: 4px;
 }
 
-.widget-menubar>box>revealer>box>button {
+.widget-menubar > box > revealer > box > button {
   background: transparent;
   min-height: 50px;
   padding: 0px;
@@ -360,8 +358,8 @@ label {
   border-radius: 0px;
 }
 
-.widget-buttons-grid>flowbox>flowboxchild {
-  background: alpha(@mantle, .80);
+.widget-buttons-grid > flowbox > flowboxchild {
+  background: alpha(@mantle, 0.8);
   /* background: alpha(currentColor, 0.05); */
   border-radius: 4px;
   min-height: 50px;
@@ -370,7 +368,7 @@ label {
   padding: 0px;
 }
 
-.widget-buttons-grid>flowbox>flowboxchild>button {
+.widget-buttons-grid > flowbox > flowboxchild > button {
   background: transparent;
   border-radius: 4px;
   margin: 0px;
@@ -378,9 +376,8 @@ label {
   box-shadow: none;
 }
 
-
-.widget-buttons-grid>flowbox>flowboxchild>button:hover {
-  background: alpha(@mantle, .80);
+.widget-buttons-grid > flowbox > flowboxchild > button:hover {
+  background: alpha(@mantle, 0.8);
   /* background: alpha(currentColor, 0.1); */
 }
 
@@ -391,27 +388,27 @@ label {
   margin-bottom: -33px;
 }
 
-.widget-mpris>box {
+.widget-mpris > box {
   padding: 0px;
   margin: -5px 0px -10px 0px;
   padding: 0px;
   border-radius: 4px;
   /* background: alpha(currentColor, 0.05); */
-  background: alpha(@mantle, .80);
+  background: alpha(@mantle, 0.8);
 }
 
-.widget-mpris>box>button:nth-child(1),
-.widget-mpris>box>button:nth-child(3) {
+.widget-mpris > box > button:nth-child(1),
+.widget-mpris > box > button:nth-child(3) {
   margin-bottom: 0px;
 }
 
-.widget-mpris>box>button:nth-child(1) {
+.widget-mpris > box > button:nth-child(1) {
   margin-left: -25px;
   margin-right: -25px;
   opacity: 0;
 }
 
-.widget-mpris>box>button:nth-child(3) {
+.widget-mpris > box > button:nth-child(3) {
   margin-left: -25px;
   margin-right: -25px;
   opacity: 0;
@@ -422,16 +419,22 @@ label {
 }
 
 /* Player button box */
-.widget-mpris>box>carousel>widget>box>box:nth-child(2) {
+.widget-mpris > box > carousel > widget > box > box:nth-child(2) {
   margin: 5px 0px -5px 90px;
 }
 
 /* Player buttons */
-.widget-mpris>box>carousel>widget>box>box:nth-child(2)>button {
+.widget-mpris > box > carousel > widget > box > box:nth-child(2) > button {
   border-radius: 4px;
 }
 
-.widget-mpris>box>carousel>widget>box>box:nth-child(2)>button:hover {
+.widget-mpris
+  > box
+  > carousel
+  > widget
+  > box
+  > box:nth-child(2)
+  > button:hover {
   background: alpha(currentColor, 0.1);
 }
 
@@ -457,13 +460,13 @@ carouselindicatordots {
   margin: 0px;
 }
 
-.widget-mpris-player>box>image {
+.widget-mpris-player > box > image {
   margin: 0px 0px -48px 0px;
 }
 
-.notification-group>box.vertical {
+.notification-group > box.vertical {
   /* border: solid 5px red; */
-  margin-top: 3px
+  margin-top: 3px;
 }
 
 /* Backlight and volume widgets */
@@ -482,52 +485,52 @@ carouselindicatordots {
   padding: 0px;
 }
 
-.widget-volume>box {
-  background: alpha(@mantle, .80);
+.widget-volume > box {
+  background: alpha(@mantle, 0.8);
   /* background: alpha(currentColor, 0.05); */
   border-radius: 4px;
   margin: 5px 10px 5px 10px;
   min-height: 50px;
 }
 
-.widget-volume>box>label {
+.widget-volume > box > label {
   min-width: 50px;
   padding: 0px;
 }
 
-.widget-volume>box>button {
+.widget-volume > box > button {
   min-width: 50px;
   box-shadow: none;
   padding: 0px;
 }
 
-.widget-volume>box>button:hover {
+.widget-volume > box > button:hover {
   /* background: alpha(currentColor, 0.05); */
   background: @surface0;
 }
 
-.widget-volume>revealer>list {
-  background: alpha(@mantle, .80);
+.widget-volume > revealer > list {
+  background: alpha(@mantle, 0.8);
   /* background: alpha(currentColor, 0.05); */
   border-radius: 4px;
   margin-top: 5px;
   padding: 0px;
 }
 
-.widget-volume>revealer>list>row {
+.widget-volume > revealer > list > row {
   padding-left: 10px;
   min-height: 40px;
   background: transparent;
 }
 
-.widget-volume>revealer>list>row:hover {
+.widget-volume > revealer > list > row:hover {
   background: transparent;
   box-shadow: none;
   border-radius: 4px;
 }
 
-.widget-backlight>scale {
-  background: alpha(@mantle, .80);
+.widget-backlight > scale {
+  background: alpha(@mantle, 0.8);
   /* background: alpha(currentColor, 0.05); */
   border-radius: 0px 4px 4px 0px;
   margin: 5px 10px 5px 0px;
@@ -535,7 +538,7 @@ carouselindicatordots {
   min-height: 50px;
 }
 
-.widget-backlight>label {
+.widget-backlight > label {
   background: @surface0;
   /* background: alpha(currentColor, 0.05); */
   margin: 5px 0px 5px 10px;
@@ -551,28 +554,28 @@ carouselindicatordots {
   font-size: 1.2rem;
 }
 
-.widget-dnd>switch {
-  background: alpha(@mantle, .80);
+.widget-dnd > switch {
+  background: alpha(@mantle, 0.8);
   font-size: initial;
   border-radius: 8px;
   box-shadow: none;
   padding: 2px;
 }
 
-.widget-dnd>switch:hover {
-  background: alpha(@mauve_lighter, .80);
+.widget-dnd > switch:hover {
+  background: alpha(@mauve_lighter, 0.8);
 }
 
-.widget-dnd>switch:checked {
+.widget-dnd > switch:checked {
   background: @mauve;
 }
 
-.widget-dnd>switch:checked:hover {
-  background: alpha(@mauve_lighter, .80);
+.widget-dnd > switch:checked:hover {
+  background: alpha(@mauve_lighter, 0.8);
 }
 
-.widget-dnd>switch slider {
-  background: alpha(@mauve_lighter, .80);
+.widget-dnd > switch slider {
+  background: alpha(@mauve_lighter, 0.8);
   border-radius: 6px;
 }
 
@@ -617,7 +620,8 @@ scale slider {
   padding: 0px;
 }
 
-scale slider:hover {}
+scale slider:hover {
+}
 
 .right.overlay-indicator {
   all: unset;

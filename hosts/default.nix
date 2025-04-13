@@ -7,7 +7,17 @@
 
       specialArgs = { inherit self inputs; };
 
-      sharedModules = with inputs; [ home-manager.nixosModules.home-manager ];
+      sharedModules = with inputs; [
+        home-manager.nixosModules.home-manager
+
+        "${mod}/base/base.nix"
+        "${mod}/base/i18n.nix"
+        "${mod}/base/misc.nix"
+        "${mod}/base/nix-ld.nix"
+        "${mod}/base/nix.nix"
+
+        "${self}/secrets"
+      ];
     in
     {
       NullPointer = nixosSystem {
@@ -16,12 +26,12 @@
         modules = [
           ./NullPointer
 
-          "${mod}/base/"
-          # "${mod}/desktop/cosmic.nix"
-          # "${mod}/desktop/hyprland.nix"
-          "${mod}/desktop/niri.nix"
+          "${mod}/base/network"
 
-          "${self}/secrets"
+          "${mod}/base/memory.nix"
+          "${mod}/base/nvidia.nix"
+
+          "${mod}/desktop/niri.nix"
 
           {
             home-manager = {
@@ -40,12 +50,6 @@
         inherit specialArgs;
         modules = [
           ./WSL
-
-          "${mod}/base/base.nix"
-          "${mod}/base/i18n.nix"
-          "${mod}/base/misc.nix"
-          "${mod}/base/nix-ld.nix"
-          "${mod}/base/nix.nix"
 
           {
             home-manager = {

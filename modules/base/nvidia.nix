@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.programs.nvidia;
 in
@@ -26,6 +31,8 @@ in
     };
 
     hardware.nvidia-container-toolkit.enable = true;
+
+    environment.systemPackages = with pkgs; [ nvtopPackages.full ];
 
     # specialisation = {
     #   on-the-go.configuration = {

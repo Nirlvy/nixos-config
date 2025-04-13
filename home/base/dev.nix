@@ -5,17 +5,17 @@
     # autoconf
     # automake
     # bison
-    clang-tools
+    # clang-tools
     # cmake
-    gcc
+    # gcc
     # gdb
-    gnumake
+    # gnumake
     # pkgconf
 
     # lua
     # lua
-    lua-language-server
-    stylua
+    # lua-language-server
+    # stylua
 
     # nix
     nixd
