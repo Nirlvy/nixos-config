@@ -18,9 +18,8 @@
     "battery",
     "idle_inhibitor",
     "tray",
-    "custom/notification",
     "privacy",
-    "custom/power"
+    "custom/notification"
   ],
   "custom/launcher": {
     "format": "",

@@ -3,13 +3,11 @@
   # by Mic92 dotfiles
   services.envfs.enable = false;
   programs.nix-ld = {
-    enable = false;
+    enable = true;
     libraries =
       with pkgs;
       [
         acl
-        attr
-        bzip2
         dbus
         expat
         fontconfig
@@ -17,17 +15,11 @@
         fuse3
         icu
         libnotify
-        libsodium
-        libssh
         libunwind
         libusb1
         libuuid
         nspr
         nss
-        stdenv.cc.cc
-        util-linux
-        zlib
-        zstd
       ]
       ++ lib.optionals (config.hardware.graphics.enable) [
         pipewire

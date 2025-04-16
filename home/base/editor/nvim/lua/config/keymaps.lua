@@ -72,7 +72,8 @@ map("n", "<leader>cn", "<cmd>enew<cr>", { desc = "New File" })
 
 -- diagnostic
 local diagnostic_goto = function(next, severity)
-  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+  -- local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+  local go = next and vim.diagnostic.jump
   severity = severity and vim.diagnostic.severity[severity] or nil
   return function()
     go({ severity = severity })

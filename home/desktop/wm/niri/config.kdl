@@ -125,20 +125,23 @@ window-rule {
 }
 
 window-rule {
-    match app-id=r#"firefox$"# title="^我的足迹$"
-    match app-id=r#"^QQ$"#
-    match app-id=r#"jetbrains"#
-    match app-id=r#"^wps$"#
-    match app-id=r#"^et$"#
-    match app-id=r#"^pdf$"#
-    match app-id=r#"^wpp$"#
+    match app-id="firefox" 
+    match app-id="^QQ$"
+    match app-id="jetbrains"
+    match app-id="^wps$"
+    match app-id="^et$"
+    match app-id="^pdf$"
+    match app-id="^wpp$"
+    match app-id="^org.telegram.desktop$"
     open-floating true
 }
 
 window-rule{
-  match title=r#"^QQ$"#
-  match title=r#"WPS"#
-  match app-id=r#"jetbrains"# title="^ $"
+  match app-id="firefox" title="Firefox$"
+  match title="^QQ$"
+  match app-id="jetbrains" title="^ $"
+  match title="WPS"
+  match app-id="^org.telegram.desktop$" title="Nirlvy"
   open-floating false
 }
 
@@ -151,15 +154,15 @@ binds {
     Mod+D { spawn "thunar"; }
     Mod+V { spawn "sh" "-c" "pkill fuzzel || cliphist list | fuzzel -d | cliphist decode | wl-copy"; }
 
-    XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
-    XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
-    XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
-    XF86AudioPlay        allow-when-locked=true { spawn "playctl" "play-pause"; }
-    XF86AudioNext        allow-when-locked=true { spawn "playctl" "next"; }
-    XF86AudioPrev        allow-when-locked=true { spawn "playctl" "previous"; }
-    XF86AudioStop        allow-when-locked=true { spawn "playctl" "stop"; }
-    XF86MonBrightnessUp  allow-when-locked=true { spawn "light" "-A" "5"; }
+    XF86AudioRaiseVolume   allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }
+    XF86AudioLowerVolume   allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
+    XF86AudioMute          allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+    XF86AudioMicMute       allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+    XF86AudioPlay          allow-when-locked=true { spawn "playctl" "play-pause"; }
+    XF86AudioNext          allow-when-locked=true { spawn "playctl" "next"; }
+    XF86AudioPrev          allow-when-locked=true { spawn "playctl" "previous"; }
+    XF86AudioStop          allow-when-locked=true { spawn "playctl" "stop"; }
+    XF86MonBrightnessUp    allow-when-locked=true { spawn "light" "-A" "5"; }
     XF86MonBrightnessDown  allow-when-locked=true { spawn "light" "-U" "5"; }
 
     Mod+C { close-window; }

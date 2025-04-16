@@ -2,7 +2,9 @@ return {
   {
     "saghen/blink.cmp",
     event = { "InsertEnter", "CmdlineEnter" },
-    build = "cargo build --release",
+    build = "nix run .#build-plugin",
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
     opts = {
       keymap = {
         preset = "enter",
@@ -20,9 +22,7 @@ return {
           ["<C-n>"] = { "select_next", "fallback" },
         },
       },
-
       appearance = {
-        use_nvim_cmp_as_default = false,
         nerd_font_variant = "mono",
       },
       completion = {
