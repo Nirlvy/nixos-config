@@ -5,6 +5,26 @@ _: _: prev: {
     tweaks = [ "rimless" ];
   };
 
+  jetbrains =
+    let
+      jetbra = prev.fetchFromGitHub {
+        owner = "WhyFeelSad";
+        repo = "jetbra";
+        rev = "631a187dfe45652f23a0d0b0a030abccc6c648f9";
+        sha256 = "sha256-FvjwrmRE9xXkDIIkOyxVEFdycYa/t2Z0EgBueV+26BQ=";
+      };
+      # https://jetbra.in/5d84466e31722979266057664941a71893322460
+      vmoptions = ''
+        --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED
+        --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED
+        -javaagent:${jetbra}/ja-netfilter.jar=jetbrains
+      '';
+    in
+    prev.jetbrains
+    // prev.lib.genAttrs [ "clion" "idea-ultimate" "rust-rover" "pycharm-professional" ] (
+      name: (prev.jetbrains.${name}.override { vmopts = vmoptions; })
+    );
+
   mpv = prev.mpv.override { youtubeSupport = false; };
 
   obs-studio = prev.obs-studio.override { browserSupport = false; };

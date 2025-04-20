@@ -10,6 +10,9 @@ return {
         lua_ls = {},
         jsonls = {},
         nixd = {},
+        pyright = {
+          cmd = { "delance-langserver", "--stdio" },
+        },
       },
     },
     config = function(_, opts)

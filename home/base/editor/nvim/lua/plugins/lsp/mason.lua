@@ -5,8 +5,13 @@ return {
     keys = {
       { "<leader>m", "<cmd>Mason<cr>", desc = "Mason" },
     },
+    --- @class MasonSettings
     opts = {
       PATH = "append",
+      registries = {
+        "github:mason-org/mason-registry",
+        "github:nirlvy/mason-registry",
+      },
     },
   },
   --- @type LazyPluginSpec
@@ -16,6 +21,7 @@ return {
     opts = {
       ensure_installed = {
         "css-lsp",
+        "delance-runtime",
         "lua-language-server",
         "json-lsp",
 

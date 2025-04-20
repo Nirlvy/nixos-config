@@ -1,5 +1,5 @@
 return {
-  --- @type Lazy
+  --- @type LazyPluginSpec
   {
     "stevearc/conform.nvim",
     dependencies = { "mason.nvim" },

@@ -7,7 +7,7 @@
     # bison
     # clang-tools
     # cmake
-    # gcc
+    gcc
     # gdb
     # gnumake
     # pkgconf
