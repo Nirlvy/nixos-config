@@ -24,7 +24,7 @@
       historySubstringSearch.enable = true;
       syntaxHighlighting.enable = true;
 
-      initExtra = ''
+      initContent = ''
         bindkey "^H" beginning-of-line
         bindkey "^F" end-of-line
         bindkey "\e3~" delete-char

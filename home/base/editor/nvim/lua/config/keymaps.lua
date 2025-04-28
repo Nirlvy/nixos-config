@@ -7,10 +7,15 @@ map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, 
 map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
 -- Move to window using the <ctrl> hjkl keys
-map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
-map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
-map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
-map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
+map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window" })
+map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window" })
+map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window" })
+map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window" })
+
+map("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
+map("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
+map("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
+map("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
 
 -- Resize window using <ctrl> arrow keys
 map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
@@ -86,6 +91,7 @@ map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
 map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
 map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
 map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
+
 
 -- stylua: ignore start
 

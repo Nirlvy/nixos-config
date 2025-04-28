@@ -1,45 +1,46 @@
 return {
   --- @type LazyPluginSpec
   {
-    "stevearc/conform.nvim",
-    dependencies = { "mason.nvim" },
-    event = { "BufWritePre" },
-    cmd = { "ConformInfo" },
+    'stevearc/conform.nvim',
+    dependencies = { 'mason.nvim' },
+    event = { 'BufWritePre' },
+    cmd = { 'ConformInfo' },
     keys = {
       {
-        "<leader>bf",
+        '<leader>bf',
         function()
-          require("conform").format({ async = true })
+          require('conform').format({ async = true, lsp_format = 'fallback' })
         end,
-        mode = { "n", "v" },
-        desc = "Format buffer",
+        mode = { 'n', 'v' },
+        desc = 'Format buffer',
       },
     },
     ---@module "conform"
     ---@type conform.setupOpts
     opts = {
+      notify_on_error = false,
       formatters_by_ft = {
-        cpp = { "clang_format" },
-        css = { "prettier" },
-        lua = { "stylua" },
-        nix = { "nixfmt" },
-        json = { "prettier" },
+        cpp = { 'clang_format' },
+        css = { 'prettier' },
+        lua = { 'stylua' },
+        nix = { 'nixfmt' },
+        json = { 'prettier' },
       },
       default_format_opts = {
-        lsp_format = "fallback",
+        lsp_format = 'fallback',
       },
       format_on_save = {
         timeout_ms = 500,
-        lsp_format = "fallback",
+        lsp_format = 'fallback',
       },
       notify_on_error = true,
       notify_no_formatters = true,
       formatters = {
         nixfmt = {
-          prepend_args = { "-s" },
+          prepend_args = { '-s' },
         },
         shfmt = {
-          prepend_args = { "-i", "2" },
+          prepend_args = { '-i', '2' },
         },
       },
     },

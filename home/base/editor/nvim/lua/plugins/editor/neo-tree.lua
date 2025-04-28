@@ -54,6 +54,7 @@ return {
         end,
         desc = "File Explorer",
       },
+      { "\\", "<cmd>Neotree reveal<CR>", desc = "Neotree reveal", silent = true },
     },
     deactivate = function()
       vim.cmd([[Neotree close]])

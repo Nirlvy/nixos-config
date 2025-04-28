@@ -9,7 +9,7 @@
     # cmake
     gcc
     # gdb
-    # gnumake
+    gnumake
     # pkgconf
 
     # lua
