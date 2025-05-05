@@ -12,7 +12,7 @@
     };
 
     Service = {
-      ExecStart = lib.getExe pkgs.xwayland-satellite;
+      ExecStart = lib.getExe pkgs.xwayland-satellite-unstable;
       Restart = "on-failure";
       RestartSec = 1;
       TimeoutStopSec = 10;

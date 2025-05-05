@@ -38,6 +38,9 @@
 
     # rust
     rustup
+    # cargo
+    # rustfmt
+    # clippy
 
     # misc
     # devbox

@@ -6,4 +6,6 @@
   environment.pathsToLink = [ "/share/zsh" ];
 
   programs.less.enable = true;
+
+  documentation.enable = false;
 }

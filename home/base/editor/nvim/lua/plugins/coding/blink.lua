@@ -27,14 +27,14 @@ return {
     opts = {
       keymap = {
         preset = 'enter',
+        ['<C-k>'] = { 'select_prev', 'fallback' },
+        ['<C-j>'] = { 'select_next', 'fallback' },
       },
       cmdline = {
         completion = { menu = { auto_show = true } },
         keymap = {
-          ['<C-y>'] = { 'select_and_accept' },
-          ['<cr>'] = { 'fallback' },
-          ['<C-p>'] = { 'select_prev', 'fallback' },
-          ['<C-n>'] = { 'select_next', 'fallback' },
+          ['<C-k>'] = { 'select_prev', 'fallback' },
+          ['<C-j>'] = { 'select_next', 'fallback' },
         },
       },
       completion = {

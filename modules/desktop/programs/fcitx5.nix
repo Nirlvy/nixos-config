@@ -24,5 +24,5 @@
     INPUT_METHOD = "fcitx";
     SDL_IM_MODULE = "fcitx";
     GLFW_IM_MODULE = "ibus";
-  } // lib.mkIf (config.i18n.inputMethod.fcitx5.waylandFrontend) { QT_IM_MODULE = "fcitx"; };
+  } // lib.optionals (config.i18n.inputMethod.fcitx5.waylandFrontend) { QT_IM_MODULE = "fcitx"; };
 }

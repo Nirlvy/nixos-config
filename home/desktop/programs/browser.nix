@@ -4,7 +4,7 @@
     firefox.enable = true;
 
     chromium = {
-      enable = true;
+      enable = false;
       commandLineArgs = [
         "--enable-features=UseOzonePlatform"
         "--ozone-platform=wayland"

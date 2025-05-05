@@ -1,4 +1,4 @@
-_: _: prev: {
+_: final: prev: {
   catppuccin-gtk = prev.catppuccin-gtk.override {
     accents = [ "sky" ];
     size = "compact";
@@ -25,7 +25,16 @@ _: _: prev: {
       name: (prev.jetbrains.${name}.override { vmopts = vmoptions; })
     );
 
-  mpv = prev.mpv.override { youtubeSupport = false; };
+  mpv = prev.mpv.override {
+    mpv = prev.mpv-unwrapped.override { vapoursynthSupport = true; };
+    extraMakeWrapperArgs = [
+      "--prefix"
+      "LD_LIBRARY_PATH"
+      ":"
+      "/run/opengl-driver/lib:${prev.lib.makeLibraryPath [ prev.ocl-icd ]}"
+    ];
+    # youtubeSupport = false;
+  };
 
   obs-studio = prev.obs-studio.override { browserSupport = false; };
 
