@@ -1,7 +1,5 @@
 {
   imports = [
-    ./sddm
-
     ./fcitx5.nix
     ./filesManager.nix
     ./flatpak.nix

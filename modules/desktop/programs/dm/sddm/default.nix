@@ -1,8 +1,5 @@
 { pkgs, ... }:
 {
-  disabledModules = [ "services/display-managers/sddm.nix" ];
-  imports = [ ./sddm.nix ];
-
   environment.systemPackages = [ (pkgs.sddm-eucalyptus-drop.override { background = ./plana.jpg; }) ];
 
   services = {

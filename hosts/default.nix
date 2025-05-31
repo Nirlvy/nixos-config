@@ -10,6 +10,15 @@
       sharedModules = with inputs; [
         home-manager.nixosModules.home-manager
 
+        {
+          home-manager = {
+            backupFileExtension = "bak";
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            extraSpecialArgs = specialArgs;
+          };
+        }
+
         "${mod}/base/base.nix"
         "${mod}/base/i18n.nix"
         "${mod}/base/misc.nix"
@@ -17,6 +26,7 @@
         "${mod}/base/nix.nix"
 
         "${self}/secrets"
+        "${self}/self-module"
       ];
     in
     {
@@ -27,21 +37,13 @@
           ./NullPointer
 
           "${mod}/base/network"
-
+          "${mod}/base/kmscon.nix"
           "${mod}/base/memory.nix"
-          "${mod}/base/nvidia.nix"
 
+          "${mod}/desktop/programs/dm/greetd.nix"
           "${mod}/desktop/niri.nix"
 
-          {
-            home-manager = {
-              backupFileExtension = "bak";
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.nirlvy = "${self}/home/hosts/NullPointer.nix";
-              extraSpecialArgs = specialArgs;
-            };
-          }
+          { home-manager.users.nirlvy = "${self}/home/hosts/NullPointer.nix"; }
         ] ++ sharedModules;
       };
 
@@ -51,15 +53,7 @@
         modules = [
           ./WSL
 
-          {
-            home-manager = {
-              backupFileExtension = "bak";
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.nirlvy = "${self}/home/hosts/WSL.nix";
-              extraSpecialArgs = specialArgs;
-            };
-          }
+          { home-manager.users.nirlvy = "${self}/home/hosts/WSL.nix"; }
         ] ++ sharedModules;
       };
     };
