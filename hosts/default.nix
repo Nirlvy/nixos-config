@@ -37,10 +37,10 @@
           ./NullPointer
 
           "${mod}/base/network"
-          "${mod}/base/kmscon.nix"
+          # "${mod}/base/kmscon.nix"
           "${mod}/base/memory.nix"
 
-          "${mod}/desktop/programs/dm/greetd.nix"
+          "${mod}/desktop/programs/dm/ly.nix"
           "${mod}/desktop/niri.nix"
 
           { home-manager.users.nirlvy = "${self}/home/hosts/NullPointer.nix"; }

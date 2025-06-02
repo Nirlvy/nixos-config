@@ -6,7 +6,7 @@
     ./hardware-configuration.nix
   ];
 
-  hardware.enableAllFirmware = false;
+  hardware.enableRedistributableFirmware = true;
 
   networking = {
     hostName = "NullPointer";

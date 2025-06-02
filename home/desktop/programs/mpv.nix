@@ -19,8 +19,10 @@ in
       {
         # basic
         vo = "gpu-next";
-        gpu-api = "vulkan";
-        gpu-context = "waylandvk";
+        # gpu-api = "vulkan";
+        gpu-api = "auto";
+        # gpu-context = "waylandvk";
+        gpu-context = "wayland";
         hwdec = "auto-safe";
         hwdec-codecs = "all";
         # vd-lavc-dr = "yes";
@@ -39,6 +41,7 @@ in
         # resume-playback-check-mtime = "yes";
         # watch-later-dir = "~~/cache/watch-later";
         # watch-later-options = "start,vid,aid,sid";
+        # watch-later-options-remove = "vf";
         save-watch-history = "yes";
         input-ipc-server = "/tmp/mpvsocket";
 
@@ -67,7 +70,7 @@ in
 
         # misc
         # vf = "format:dolbyvision=yes";
-        vf-append = "format=gamma=gamma2.2";
+        # vf-append = "format=gamma=gamma2.2";
         gpu-shader-cache-dir = "~~/shaders_cache";
       }
       // lib.optionalAttrs (osConfig.programs.nvidia.enable) { hwdec = "auto-copy"; }

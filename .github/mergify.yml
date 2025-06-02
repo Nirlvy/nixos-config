@@ -1,0 +1,6 @@
+pull_request_rules:
+  - name: continuously rebase pull requests when it's labeled with `automated`
+    conditions:
+      - label = automated
+    actions:
+      rebase:

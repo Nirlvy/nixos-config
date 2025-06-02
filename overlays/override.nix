@@ -25,7 +25,7 @@ _: final: prev: {
       name: (prev.jetbrains.${name}.override { vmopts = vmoptions; })
     );
 
-  mpv = prev.mpv.override {
+  mpv = prev.mpv-unwrapped.wrapper {
     mpv = prev.mpv-unwrapped.override { vapoursynthSupport = true; };
     extraMakeWrapperArgs = [
       "--prefix"
@@ -33,7 +33,6 @@ _: final: prev: {
       ":"
       "/run/opengl-driver/lib:${prev.lib.makeLibraryPath [ prev.ocl-icd ]}"
     ];
-    # youtubeSupport = false;
   };
 
   obs-studio = prev.obs-studio.override { browserSupport = false; };
@@ -43,6 +42,8 @@ _: final: prev: {
       fcitx5-configtool = prev.qt6Packages.fcitx5-configtool.override { kcmSupport = false; };
     };
   };
+
+  svp = prev.svp.overrideAttrs { mpvForSVP = final.mpv; };
 
   tela-icon-theme = prev.tela-icon-theme.overrideAttrs {
     dontCheckForBrokenSymlinks = true;

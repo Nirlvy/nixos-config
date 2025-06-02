@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}:
+{ config, pkgs, ... }:
 {
   users = {
     mutableUsers = false;
@@ -24,7 +20,7 @@
 
     rar
     p7zip
-    unzip
+    unzipNLS
     unar
     xz
     zip
@@ -38,9 +34,9 @@
     gnutar
     jq
     which
-    tree
+    # tree
     # rsync
-    lsof
+    # lsof
 
     bat
     fd

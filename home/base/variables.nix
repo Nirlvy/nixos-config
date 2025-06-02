@@ -7,7 +7,7 @@ let
 in
 {
   home.sessionVariables = {
-    LANG = "zh_CN.UTF-8";
+    # LANG = "zh_CN.UTF-8";
 
     ANDROID_HOME = "${d}/android";
     CARGO_HOME = "${ca}/cargo";

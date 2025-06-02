@@ -18,7 +18,7 @@ in
     hardware.nvidia = {
       dynamicBoost.enable = false;
       modesetting.enable = true;
-      powerManagement.enable = false;
+      powerManagement.enable = true;
       powerManagement.finegrained = false;
       open = false;
       nvidiaSettings = false;
@@ -32,7 +32,12 @@ in
 
     hardware.nvidia-container-toolkit.enable = true;
 
-    environment.systemPackages = with pkgs; [ nvtopPackages.full ];
+    environment = {
+      systemPackages = with pkgs; [ nvtopPackages.full ];
+      sessionVariables = {
+        LIBVA_DRIVER_NAME = lib.mkForce "nvidia";
+      };
+    };
 
     # specialisation = {
     #   on-the-go.configuration = {

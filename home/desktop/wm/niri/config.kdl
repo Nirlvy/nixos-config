@@ -121,6 +121,7 @@ screenshot-path "~/Pictures/Screenshots/%Y-%m-%d %H-%M-%S.png"
 
 environment {
     DISPLAY ":0"
+    LANG "zh_CN.UTF-8"
 }
 
 cursor {

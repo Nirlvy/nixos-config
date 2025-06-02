@@ -1,6 +1,4 @@
 {
-  documentation.nixos.enable = false;
-
   programs = {
     appimage = {
       enable = false;

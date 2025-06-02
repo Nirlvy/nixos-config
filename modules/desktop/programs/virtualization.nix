@@ -1,8 +1,13 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 {
   virtualisation = {
     libvirtd = {
-      enable = true;
+      enable = false;
       qemu = {
         package = pkgs.qemu_kvm;
       };
@@ -30,7 +35,9 @@
   # pods
   # ];
 
-  programs.virt-manager.enable = true;
+  programs.virt-manager.enable = false;
 
-  users.users.nirlvy.extraGroups = [ "libvirtd" ];
+  users.users.nirlvy.extraGroups =
+    [ ]
+    ++ lib.optionals (config.virtualisation.libvirtd.enable) [ "libvirtd" ];
 }
