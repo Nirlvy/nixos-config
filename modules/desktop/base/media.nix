@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+# { pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [ pulseaudio ];
+  # environment.systemPackages = with pkgs; [ pulseaudioFull ];
   # ugly workaround
   environment.extraSetup = ''
     rm $out/share/applications/cups.desktop

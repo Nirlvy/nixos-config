@@ -1,25 +1,8 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 {
   imports = [ ../. ];
 
   xdg.configFile."niri/config.kdl".source = ./config.kdl;
 
-  systemd.user.services.xwayland-satellite = {
-    Unit = {
-      PartOf = [ "graphical-session.target" ];
-      After = [ "graphical-session.target" ];
-      Requisite = [ "graphical-session.target" ];
-    };
-
-    Service = {
-      ExecStart = lib.getExe pkgs.xwayland-satellite-unstable;
-      Restart = "on-failure";
-      RestartSec = 1;
-      TimeoutStopSec = 10;
-    };
-
-    Install = {
-      WantedBy = [ "niri.service" ];
-    };
-  };
+  home.packages = [ pkgs.xwayland-satellite-unstable ];
 }

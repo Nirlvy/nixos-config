@@ -36,7 +36,7 @@
     which
     # tree
     # rsync
-    # lsof
+    lsof
 
     bat
     fd
