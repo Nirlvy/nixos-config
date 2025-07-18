@@ -22,7 +22,11 @@ _: final: prev: {
     in
     prev.jetbrains
     // prev.lib.genAttrs [ "clion" "idea-ultimate" "rust-rover" "pycharm-professional" ] (
-      name: (prev.jetbrains.${name}.override { vmopts = vmoptions; })
+      name:
+      (prev.jetbrains.${name}.override {
+        jdk = prev.jdk;
+        vmopts = vmoptions;
+      })
     );
 
   mpv = prev.mpv-unwrapped.wrapper {

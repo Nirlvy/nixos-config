@@ -12,6 +12,5 @@ in
   age.secrets = {
     "passwd".file = "${secrets}/passwd.age";
     "sub".file = "${secrets}/sub.age";
-    "sub.yaml".file = "${secrets}/sub.yaml.age";
   };
 }

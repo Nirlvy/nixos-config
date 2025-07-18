@@ -1,12 +1,13 @@
 { pkgs, ... }:
 {
-  programs.nvidia.enable = true;
+  programs.nvidia.enable = false;
 
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
       intel-media-driver # LIBVA_DRIVER_NAME=iHD
-      intel-media-sdk
+      # has been marked insecure
+      # intel-media-sdk
       intel-compute-runtime-legacy1
       # intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
       libvdpau-va-gl
