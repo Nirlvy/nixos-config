@@ -166,6 +166,7 @@ window-rule {
     match app-id="^pdf$"
     match app-id="^wpp$"
     match app-id="^org.telegram.desktop$"
+    match app-id="thunar"
     open-floating true
 }
 
@@ -175,6 +176,7 @@ window-rule{
   match app-id="jetbrains" title="^ $"
   match title="WPS"
   match app-id="^org.telegram.desktop$" title="Nirlvy"
+  match title="Thunar"
   open-floating false
 }
 

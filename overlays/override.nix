@@ -24,7 +24,7 @@ _: final: prev: {
     // prev.lib.genAttrs [ "clion" "idea-ultimate" "rust-rover" "pycharm-professional" ] (
       name:
       (prev.jetbrains.${name}.override {
-        jdk = prev.jdk;
+        forceWayland = true;
         vmopts = vmoptions;
       })
     );
@@ -39,7 +39,7 @@ _: final: prev: {
     ];
   };
 
-  obs-studio = prev.obs-studio.override { browserSupport = false; };
+  # obs-studio = prev.obs-studio.override { browserSupport = false; };
 
   qt6Packages = prev.qt6Packages // {
     fcitx5-with-addons = prev.qt6Packages.fcitx5-with-addons.override {

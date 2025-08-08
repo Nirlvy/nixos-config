@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   programs = {
     bash = {
@@ -15,7 +16,7 @@
 
       autocd = true;
       autosuggestion.enable = true;
-      dotDir = ".config/zsh";
+      dotDir = "${config.xdg.configHome}/zsh";
       history = {
         expireDuplicatesFirst = true;
         ignoreAllDups = true;
