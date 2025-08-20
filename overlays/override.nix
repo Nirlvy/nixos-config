@@ -24,7 +24,7 @@ _: final: prev: {
     // prev.lib.genAttrs [ "clion" "idea-ultimate" "rust-rover" "pycharm-professional" ] (
       name:
       (prev.jetbrains.${name}.override {
-        forceWayland = true;
+        # forceWayland = true;
         vmopts = vmoptions;
       })
     );

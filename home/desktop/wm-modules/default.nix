@@ -7,6 +7,7 @@
     ./fuzzel.nix
     ./packages.nix
     ./theme.nix
+    ./wayland-pipewire-idle-inhibit.nix
   ];
 
   xdg.configFile."hypr" = {

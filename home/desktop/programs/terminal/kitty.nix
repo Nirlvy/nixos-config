@@ -1,6 +1,6 @@
 {
   programs.kitty = {
-    enable = false;
+    enable = true;
     themeFile = "Catppuccin-Macchiato";
     extraConfig = ''
       font_family      JetBrainsMono Nerd Font

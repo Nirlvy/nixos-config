@@ -2,7 +2,7 @@
   imports = [
     # ./alacritty.nix
     ./ghostty.nix
-    # ./kitty.nix
+    ./kitty.nix
     # ./wezterm.nix
   ];
 }

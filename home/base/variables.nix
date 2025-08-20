@@ -9,7 +9,7 @@ in
   home.sessionVariables = {
     # LANG = "zh_CN.UTF-8";
 
-    _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=lcd";
+    # _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=lcd";
     ANDROID_HOME = "${d}/android";
     CARGO_HOME = "${ca}/cargo";
     CONDARC = "${cfg}/condarc";

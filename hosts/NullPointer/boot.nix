@@ -33,7 +33,7 @@
       "vfat"
     ];
 
-    kernelPackages = pkgs.linuxPackages;
+    kernelPackages = pkgs.linuxPackages_latest;
 
     plymouth = {
       enable = true;

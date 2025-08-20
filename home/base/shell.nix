@@ -12,7 +12,7 @@
     zsh = {
       enable = true;
       enableCompletion = true;
-      enableVteIntegration = true;
+      enableVteIntegration = false;
 
       autocd = true;
       autosuggestion.enable = true;
