@@ -33,7 +33,7 @@
 @define-color mauve_lighter #caa6f7;
 
 * {
-  font-family: "JetBrains Maple Mono", "Font Awesome 6 Free";
+  font-family: "JetBrains Maple Mono", "Font Awesome 7 Free";
   background-clip: border-box;
 }
 
@@ -472,7 +472,7 @@ carouselindicatordots {
 /* Backlight and volume widgets */
 .widget-backlight,
 .widget-volume {
-  background: #2E3440;
+  background: #2e3440;
   padding: 8px 8px 4px 8px;
   margin: 8px 8px 0px 8px;
   border-top-left-radius: 12px;

@@ -27,21 +27,21 @@
         serif = [
           "Noto Serif CJK SC"
           "Noto Color Emoji"
-          "Font Awesome 6 Free"
+          "Font Awesome 7 Free"
         ];
         sansSerif = [
           "Noto Sans CJK SC"
           "Noto Color Emoji"
-          "Font Awesome 6 Free"
+          "Font Awesome 7 Free"
         ];
         monospace = [
           "JetBrains Maple Mono"
           "Noto Color Emoji"
-          "Font Awesome 6 Free"
+          "Font Awesome 7 Free"
         ];
         emoji = [
           "Noto Color Emoji"
-          "Font Awesome 6 Free"
+          "Font Awesome 7 Free"
         ];
       };
     };
