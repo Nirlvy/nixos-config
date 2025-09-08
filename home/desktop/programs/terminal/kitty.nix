@@ -3,7 +3,7 @@
     enable = true;
     themeFile = "Catppuccin-Macchiato";
     extraConfig = ''
-      font_family      JetBrainsMono Nerd Font
+      # font_family      JetBrainsMono Nerd Font
       bold_font        auto
       italic_font      auto
       bold_italic_font auto
@@ -18,7 +18,7 @@
       enable_audio_bell no
 
       hide_window_decorations titlebar-only
-      window_padding_width    5
+      window_padding_width    2
       background_opacity      0.8
       background_blur         30
 

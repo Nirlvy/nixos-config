@@ -184,7 +184,7 @@ window-rule{
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+Q { spawn "ghostty"; }
+    Mod+Q { spawn "kitty"; }
     Mod+A { spawn "fuzzel"; }
     Mod+E { spawn "firefox"; }
     Mod+D { spawn "thunar"; }

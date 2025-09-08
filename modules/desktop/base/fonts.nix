@@ -33,13 +33,11 @@
           "Noto Sans CJK SC"
           "Noto Color Emoji"
           "Font Awesome 6 Free"
-
         ];
         monospace = [
           "JetBrains Maple Mono"
           "Noto Color Emoji"
           "Font Awesome 6 Free"
-
         ];
         emoji = [
           "Noto Color Emoji"

@@ -1,15 +1,7 @@
 {
   "layer": "top",
-  "modules-left": [
-    "custom/launcher",
-    "cpu",
-    "memory",
-    "network",
-    "mpd"
-  ],
-  "modules-center": [
-    "niri/workspaces"
-  ],
+  "modules-left": ["custom/launcher", "cpu", "memory", "network", "mpd"],
+  "modules-center": ["niri/workspaces"],
   "modules-right": [
     "custom/clipboard",
     "backlight",
@@ -30,13 +22,13 @@
     "interval": 1,
     "format": " {usage}%",
     "max-length": 10,
-    "on-click": "pkill ghostty || ghostty -e htop"
+    "on-click": "pkill kitty || kitty -e htop"
   },
   "memory": {
     "interval": 1,
     "format": " {}%",
     "max-length": 10,
-    "on-click": "pkill ghostty || ghostty -e htop"
+    "on-click": "pkill kitty || kitty -e htop"
   },
   "network": {
     "interval": 1,
@@ -46,7 +38,7 @@
     "format-disconnected": " Offline",
     "tooltip": true,
     "tooltip-format": "IP  {ipaddr}\n信号 {signalStrength}%\n频率 {frequency}GHz\n上传 {bandwidthUpBytes}\n下载 {bandwidthDownBytes}",
-    "on-click": "pkill ghostty || ghostty -e nmtui"
+    "on-click": "pkill kitty || kitty -e nmtui"
   },
   "mpd": {
     "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{title}",
@@ -107,11 +99,7 @@
     "on-click": "amixer set Master toggle",
     "on-click-right": "pkill pavucontrol || pavucontrol",
     "format-icons": {
-      "default": [
-        " ",
-        " ",
-        " "
-      ]
+      "default": [" ", " ", " "]
     }
   },
   "clock": {
@@ -148,13 +136,7 @@
     "format": "{icon}  {capacity}%",
     "format-charging": " {capacity}%",
     "format-plugged": " {capacity}%",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
-    ]
+    "format-icons": ["", "", "", "", ""]
   },
   "idle_inhibitor": {
     "format": "{icon}",
