@@ -3,6 +3,8 @@
   "modules-left": ["custom/launcher", "cpu", "memory", "network", "mpd"],
   "modules-center": ["niri/workspaces"],
   "modules-right": [
+    "custom/columeleft",
+    "custom/columeright",
     "custom/clipboard",
     "backlight",
     "pulseaudio",
@@ -74,6 +76,16 @@
     "format-icons": {
       "active": ""
     }
+  },
+  "custom/columeleft": {
+    "format": "󰁎",
+    "tooltip": false,
+    "on-click": "niri msg action focus-column-left"
+  },
+  "custom/columeright": {
+    "format": "󰁕",
+    "tooltip": false,
+    "on-click": "niri msg action focus-column-right"
   },
   "custom/clipboard": {
     "format": "󱛣 {}",

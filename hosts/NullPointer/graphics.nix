@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  programs.nvidia.enable = false;
+  programs.nvidia.enable = true;
 
   hardware.graphics = {
     enable = true;

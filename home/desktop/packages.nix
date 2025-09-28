@@ -8,7 +8,7 @@
     wpsoffice
 
     jetbrains.rust-rover
-    # jetbrains.clion
+    jetbrains.pycharm-professional
 
     telegram-desktop
     obsidian

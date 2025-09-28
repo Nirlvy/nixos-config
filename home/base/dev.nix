@@ -30,11 +30,9 @@
     # vtsls
 
     # python
-    # ruff
-    # poetry
-    # pyright
-    # python3
-    # uv
+    ruff
+    python3
+    uv
 
     # rust
     rustup
