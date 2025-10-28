@@ -5,7 +5,7 @@
   ...
 }:
 let
-  highPf = false;
+  highPf = true;
 in
 {
   programs.mpv = {

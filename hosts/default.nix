@@ -37,7 +37,6 @@
           ./NullPointer
 
           "${mod}/base/network"
-          # "${mod}/base/kmscon.nix"
           "${mod}/base/memory.nix"
 
           "${mod}/desktop/programs/dm/ly.nix"
@@ -54,6 +53,22 @@
           ./WSL
 
           { home-manager.users.nirlvy = "${self}/home/hosts/WSL.nix"; }
+        ] ++ sharedModules;
+      };
+      
+      Runtime = nixosSystem {
+        system = "x86_64-linux";
+        inherit specialArgs;
+        modules = [
+          ./Runtime
+
+          "${mod}/base/network"
+          "${mod}/base/memory.nix"
+
+          "${mod}/desktop/programs/dm/ly.nix"
+          "${mod}/desktop/niri.nix"
+
+          { home-manager.users.nirlvy = "${self}/home/hosts/Runtime.nix"; }
         ] ++ sharedModules;
       };
     };

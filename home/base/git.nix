@@ -2,10 +2,11 @@
   programs.git = {
     enable = true;
 
-    userName = "Nirlvy";
-    userEmail = "nirlvy@outlook.com";
-
-    extraConfig = {
+    settings = {
+      user = {
+        email = "nirlvy@outlook.com";
+        name = "Nirlvy";
+      };
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
       pull.rebase = true;

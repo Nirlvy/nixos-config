@@ -1,4 +1,4 @@
-{ config, inputs, ... }:
+{ config, inputs, pkgs, ... }:
 {
   imports = with inputs; [ daeuniverse.nixosModules.dae ];
 
@@ -39,6 +39,7 @@
       }
       group {
           proxy {
+              filter: !name(keyword: 'JP')
               policy: min_avg10
           }
       }

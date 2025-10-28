@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   users = {
-    mutableUsers = false;
+    mutableUsers = true;
     users.nirlvy = {
       isNormalUser = true;
       extraGroups = [
@@ -9,7 +9,7 @@
         "video"
         "wheel"
       ];
-      hashedPasswordFile = config.age.secrets.passwd.path;
+      # hashedPasswordFile = config.age.secrets.passwd.path;
       shell = pkgs.zsh;
     };
   };

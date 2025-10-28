@@ -5,18 +5,18 @@
     xfce.ristretto
 
     qq
-    wpsoffice
+    # wpsoffice
 
-    jetbrains.rust-rover
-    jetbrains.pycharm-professional
+    # jetbrains.rust-rover
+    # jetbrains.pycharm-professional
 
     telegram-desktop
     obsidian
-    obs-studio
+    # obs-studio
     vscode
     trash-cli # for vscode trash (now broken again)
     zed-editor
 
-    qjournalctl
+    # qjournalctl
   ];
 }
