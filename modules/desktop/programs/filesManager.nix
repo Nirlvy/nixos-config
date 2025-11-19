@@ -13,8 +13,6 @@
     # for thunar saving changes
     xfconf.enable = config.programs.thunar.enable;
 
-    file-roller.enable = true;
-
     nautilus-open-any-terminal = {
       enable = false;
       terminal = "ghostty";
@@ -26,6 +24,7 @@
     [
       # nautilus
       # selectdefaultapplication
+      file-roller
       yazi
     ]
     ++ lib.optionals (config.programs.thunar.enable) [ xfce.exo ];
