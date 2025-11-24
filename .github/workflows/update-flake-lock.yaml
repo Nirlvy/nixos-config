@@ -7,13 +7,15 @@ jobs:
   lockfile:
     permissions:
       contents: write
+      id-token: write
+      issues: write
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
       - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@main
+        uses: DeterminateSystems/determinate-nix-action@v3
         with:
           extra-conf: |
             extra-substituters = https://cache.garnix.io
@@ -32,7 +34,6 @@ jobs:
             ```
             {{ env.GIT_COMMIT_MESSAGE }}
             ```
-          nix-options: "--access-tokens github.com=${{ secrets.PRIVATE_FLAKE_UPDATE }}"
       - run: |
           if [ -n "${{ steps.update.outputs.pull-request-number }}" ]; then
             gh pr merge --auto --rebase ${{ steps.update.outputs.pull-request-number }}
