@@ -1,4 +1,4 @@
-{ config, inputs, pkgs, ... }:
+{ config, inputs, ... }:
 {
   imports = with inputs; [ daeuniverse.nixosModules.dae ];
 

@@ -10,8 +10,8 @@
     wl-shot-edit
     wlogout
 
-    hyprpaper
-    hypridle
-    hyprlock
+    # hyprpaper
+    # hypridle
+    # hyprlock
   ];
 }

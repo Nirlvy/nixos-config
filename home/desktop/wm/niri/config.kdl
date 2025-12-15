@@ -39,7 +39,7 @@ output "eDP-1" {
     // background-color "#003300"
 }
 
-output "DP-2" {
+output "DP-1" {
   mode "3840x2160@159.975"
   scale 1.5
   variable-refresh-rate

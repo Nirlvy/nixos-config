@@ -1,10 +1,11 @@
 { lib, pkgs, ... }:
 {
   imports = [
-    ./waybar
-    ./swaync
+    # ./waybar
+    # ./swaync
 
     ./fuzzel.nix
+    ./noctalia.nix
     ./packages.nix
     ./theme.nix
     ./wayland-pipewire-idle-inhibit.nix
