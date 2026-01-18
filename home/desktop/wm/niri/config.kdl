@@ -42,7 +42,7 @@ output "eDP-1" {
 output "DP-1" {
   mode "3840x2160@159.975"
   scale 1.5
-  variable-refresh-rate
+  // variable-refresh-rate
 }
 
 layout {
@@ -118,7 +118,7 @@ layout {
     }
 }
 
-spawn-at-startup "sh" "-c" "sleep 10 && fcitx5 -r"
+spawn-at-startup "sh" "-c" "sleep 10 && fcitx5 -r && sudo dae reload"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 
 prefer-no-csd

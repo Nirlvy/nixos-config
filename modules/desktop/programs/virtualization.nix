@@ -38,6 +38,5 @@
   programs.virt-manager.enable = false;
 
   users.users.nirlvy.extraGroups =
-    [ ]
-    ++ lib.optionals (config.virtualisation.libvirtd.enable) [ "libvirtd" ];
+    [ ] ++ lib.optionals (config.virtualisation.libvirtd.enable) [ "libvirtd" ];
 }

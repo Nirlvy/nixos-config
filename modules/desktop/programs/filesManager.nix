@@ -3,7 +3,7 @@
   programs = {
     thunar = {
       enable = true;
-      plugins = with pkgs.xfce; [
+      plugins = with pkgs; [
         thunar-volman
         thunar-archive-plugin
         thunar-media-tags-plugin
@@ -27,7 +27,7 @@
       file-roller
       yazi
     ]
-    ++ lib.optionals (config.programs.thunar.enable) [ xfce.exo ];
+    ++ lib.optionals (config.programs.thunar.enable) [ xfce4-exo ];
 
   services = {
     gvfs = {

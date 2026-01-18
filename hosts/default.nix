@@ -43,7 +43,8 @@
           "${mod}/desktop/niri.nix"
 
           { home-manager.users.nirlvy = "${self}/home/hosts/NullPointer.nix"; }
-        ] ++ sharedModules;
+        ]
+        ++ sharedModules;
       };
 
       WSL = nixosSystem {
@@ -53,9 +54,10 @@
           ./WSL
 
           { home-manager.users.nirlvy = "${self}/home/hosts/WSL.nix"; }
-        ] ++ sharedModules;
+        ]
+        ++ sharedModules;
       };
-      
+
       Runtime = nixosSystem {
         system = "x86_64-linux";
         inherit specialArgs;
@@ -69,7 +71,8 @@
           "${mod}/desktop/niri.nix"
 
           { home-manager.users.nirlvy = "${self}/home/hosts/Runtime.nix"; }
-        ] ++ sharedModules;
+        ]
+        ++ sharedModules;
       };
     };
 }

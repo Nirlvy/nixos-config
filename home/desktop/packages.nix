@@ -2,13 +2,13 @@
 {
   home.packages = with pkgs; [
     baobab
-    xfce.ristretto
+    ristretto
 
     qq
     # wpsoffice
 
     # jetbrains.rust-rover
-    # jetbrains.pycharm-professional
+    jetbrains.pycharm
 
     telegram-desktop
     obsidian

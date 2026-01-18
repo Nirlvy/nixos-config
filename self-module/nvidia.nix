@@ -14,7 +14,7 @@ in
 
   config = lib.mkIf cfg.enable {
     services.xserver.videoDrivers = [ "nvidia" ];
-    boot.kernelParams=[ "nvidia-drm.fbdev=1" ];
+    boot.kernelParams = [ "nvidia-drm.fbdev=1" ];
 
     hardware.nvidia = {
       dynamicBoost.enable = false;

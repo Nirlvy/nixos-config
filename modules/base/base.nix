@@ -9,7 +9,7 @@
         "video"
         "wheel"
       ];
-      # hashedPasswordFile = config.age.secrets.passwd.path;
+      hashedPasswordFile = config.age.secrets.passwd.path;
       shell = pkgs.zsh;
     };
   };
@@ -43,6 +43,7 @@
     ripgrep
 
     btop
+    fastfetch
     htop
     # iotop
   ];

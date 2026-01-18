@@ -21,7 +21,7 @@ _: final: prev: {
       '';
     in
     prev.jetbrains
-    // prev.lib.genAttrs [ "clion" "idea-ultimate" "rust-rover" "pycharm-professional" ] (
+    // prev.lib.genAttrs [ "clion" "idea-ultimate" "rust-rover" "pycharm" ] (
       name:
       (prev.jetbrains.${name}.override {
         # forceWayland = true;
@@ -29,8 +29,8 @@ _: final: prev: {
       })
     );
 
-  mpv = prev.mpv-unwrapped.wrapper {
-    mpv = prev.mpv-unwrapped.override { vapoursynthSupport = true; };
+  mpv = prev.mpv.override {
+    mpv-unwrapped = prev.mpv-unwrapped.override { vapoursynthSupport = true; };
     extraMakeWrapperArgs = [
       "--prefix"
       "LD_LIBRARY_PATH"

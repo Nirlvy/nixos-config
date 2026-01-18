@@ -19,7 +19,7 @@
 
     # nix
     nixd
-    nixfmt-rfc-style
+    nixfmt-tree
 
     # node
     # eslint
