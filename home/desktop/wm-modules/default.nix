@@ -40,7 +40,7 @@
         };
     in
     {
-      hyprpaper = userSystemdService { app = "hyprpaper"; };
+      # hyprpaper = userSystemdService { app = "hyprpaper"; };
       hypridle = userSystemdService { app = "hypridle"; };
     };
 }
