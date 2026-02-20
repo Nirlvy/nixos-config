@@ -30,33 +30,33 @@
       ];
     in
     {
-      NullPointer = nixosSystem {
-        system = "x86_64-linux";
-        inherit specialArgs;
-        modules = [
-          ./NullPointer
+      # NullPointer = nixosSystem {
+      #   system = "x86_64-linux";
+      #   inherit specialArgs;
+      #   modules = [
+      #     ./NullPointer
 
-          "${mod}/base/network"
-          "${mod}/base/memory.nix"
+      #     "${mod}/base/network"
+      #     "${mod}/base/memory.nix"
 
-          "${mod}/desktop/programs/dm/ly.nix"
-          "${mod}/desktop/niri.nix"
+      #     "${mod}/desktop/programs/dm/ly.nix"
+      #     "${mod}/desktop/niri.nix"
 
-          { home-manager.users.nirlvy = "${self}/home/hosts/NullPointer.nix"; }
-        ]
-        ++ sharedModules;
-      };
+      #     { home-manager.users.nirlvy = "${self}/home/hosts/NullPointer.nix"; }
+      #   ]
+      #   ++ sharedModules;
+      # };
 
-      WSL = nixosSystem {
-        system = "x86_64-linux";
-        inherit specialArgs;
-        modules = [
-          ./WSL
+      # WSL = nixosSystem {
+      #   system = "x86_64-linux";
+      #   inherit specialArgs;
+      #   modules = [
+      #     ./WSL
 
-          { home-manager.users.nirlvy = "${self}/home/hosts/WSL.nix"; }
-        ]
-        ++ sharedModules;
-      };
+      #     { home-manager.users.nirlvy = "${self}/home/hosts/WSL.nix"; }
+      #   ]
+      #   ++ sharedModules;
+      # };
 
       Runtime = nixosSystem {
         system = "x86_64-linux";
