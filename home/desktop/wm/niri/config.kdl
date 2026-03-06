@@ -209,8 +209,8 @@ binds {
     XF86AudioNext          allow-when-locked=true { spawn "playctl" "next"; }
     XF86AudioPrev          allow-when-locked=true { spawn "playctl" "previous"; }
     XF86AudioStop          allow-when-locked=true { spawn "playctl" "stop"; }
-    XF86MonBrightnessUp    allow-when-locked=true { spawn "light" "-A" "5"; }
-    XF86MonBrightnessDown  allow-when-locked=true { spawn "light" "-U" "5"; }
+    // XF86MonBrightnessUp    allow-when-locked=true { spawn "light" "-A" "5"; }
+    // XF86MonBrightnessDown  allow-when-locked=true { spawn "light" "-U" "5"; }
 
     Mod+O repeat=false { toggle-overview; }
 

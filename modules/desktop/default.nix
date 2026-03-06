@@ -12,7 +12,6 @@ let
     { pkgs, ... }:
     {
       imports = [ de ];
-      programs.light.enable = true;
 
       xdg.portal = {
         enable = true;
