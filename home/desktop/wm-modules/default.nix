@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ ... }:
 {
   imports = [
     # ./waybar
@@ -16,31 +16,31 @@
     recursive = true;
   };
 
-  systemd.user.services =
-    let
-      userSystemdService =
-        { app }:
-        {
-          Unit = {
-            PartOf = [ "graphical-session.target" ];
-            After = [ "graphical-session.target" ];
-            Requisite = [ "graphical-session.target" ];
-          };
+  # systemd.user.services =
+  #   let
+  #     userSystemdService =
+  #       { app }:
+  #       {
+  #         Unit = {
+  #           PartOf = [ "graphical-session.target" ];
+  #           After = [ "graphical-session.target" ];
+  #           Requisite = [ "graphical-session.target" ];
+  #         };
 
-          Service = {
-            ExecStart = lib.getExe pkgs.${app};
-            Restart = "on-failure";
-            RestartSec = 1;
-            TimeoutStopSec = 10;
-          };
+  #         Service = {
+  #           ExecStart = lib.getExe pkgs.${app};
+  #           Restart = "on-failure";
+  #           RestartSec = 1;
+  #           TimeoutStopSec = 10;
+  #         };
 
-          Install = {
-            WantedBy = [ "niri.service" ];
-          };
-        };
-    in
-    {
-      # hyprpaper = userSystemdService { app = "hyprpaper"; };
-      hypridle = userSystemdService { app = "hypridle"; };
-    };
+  #         Install = {
+  #           WantedBy = [ "niri.service" ];
+  #         };
+  #       };
+  #   in
+  #   {
+  #     hyprpaper = userSystemdService { app = "hyprpaper"; };
+  #     hypridle = userSystemdService { app = "hypridle"; };
+  #   };
 }
