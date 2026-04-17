@@ -17,9 +17,12 @@
       gtk-im-module = "fcitx";
       gtk-decoration-layout = "menu:close";
     };
-    gtk4.extraConfig = {
-      gtk-im-module = "fcitx";
-      gtk-decoration-layout = "menu:close";
+    gtk4 = {
+      theme = config.gtk.theme;
+      extraConfig = {
+        gtk-im-module = "fcitx";
+        gtk-decoration-layout = "menu:close";
+      };
     };
     theme = {
       name = "catppuccin-frappe-sky-compact+rimless";

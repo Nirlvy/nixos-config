@@ -18,7 +18,7 @@
     open = true;
     package = config.boot.kernelPackages.nvidiaPackages.latest;
   };
-  hardware.nvidia-container-toolkit.enable = true;
+  hardware.nvidia-container-toolkit.enable = false;
 
   environment = {
     systemPackages = with pkgs; [ nvtopPackages.full ];
