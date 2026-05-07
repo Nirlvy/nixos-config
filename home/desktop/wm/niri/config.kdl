@@ -120,6 +120,7 @@ layout {
 
 spawn-at-startup "sh" "-c" "sleep 10 && fcitx5 -r && sudo dae reload"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
+spawn-at-startup "noctalia-shell"
 
 prefer-no-csd
 
