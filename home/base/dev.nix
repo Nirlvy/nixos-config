@@ -14,10 +14,11 @@
 
     # lua
     # lua
-    # lua-language-server
-    # stylua
+    lua-language-server
+    stylua
 
     # nix
+    nil
     nixd
     nixfmt-tree
 

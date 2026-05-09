@@ -14,7 +14,7 @@
     obsidian
     # obs-studio
     vscode
-    trash-cli # for vscode trash (now broken again)
+    trash-cli
     zed-editor
 
     # qjournalctl

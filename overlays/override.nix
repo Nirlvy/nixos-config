@@ -7,11 +7,9 @@ _: final: prev: {
 
   jetbrains =
     let
-      jetbra = prev.fetchFromGitHub {
-        owner = "WhyFeelSad";
-        repo = "jetbra";
-        rev = "631a187dfe45652f23a0d0b0a030abccc6c648f9";
-        sha256 = "sha256-FvjwrmRE9xXkDIIkOyxVEFdycYa/t2Z0EgBueV+26BQ=";
+      jetbra = prev.fetchzip {
+        url = "https://3.jetbra.in/files/jetbra-5a50fc03d68a014f893b7fc3aa465380d59f9095.zip";
+        sha256 = "iCtLAmJ1uBU2VtU/EbgASI5Ws9pUJUpWxOB6xsZjgVs=";
       };
       # https://jetbra.in/5d84466e31722979266057664941a71893322460
       vmoptions = ''

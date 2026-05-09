@@ -30,19 +30,10 @@ input {
     workspace-auto-back-and-forth
 }
 
-output "eDP-1" {
-    mode "1920x1080"
-    scale 1
-    transform "normal"
-    position x=0 y=0
-    // variable-refresh-rate
-    // background-color "#003300"
-}
-
 output "DP-1" {
   mode "3840x2160@159.975"
   scale 1.5
-  // variable-refresh-rate
+  variable-refresh-rate
 }
 
 layout {
@@ -61,23 +52,15 @@ layout {
 
     focus-ring {
         width 1
-
         active-color "#7fc8ff"
         inactive-color "#505050"
-
-        // active-gradient from="#80c8ff" to="#bbddff" angle=180
-        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
     }
 
     border {
         off
-
         width 4
         active-color "#ffc87f"
         inactive-color "#505050"
-
-        // active-gradient from="#ffbb66" to="#ffc880" angle=45 relative-to="workspace-view"
-        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
     }
 
     shadow {
@@ -139,15 +122,15 @@ hotkey-overlay {
     skip-at-startup
 }
 
-animations {
-    // slowdown 3.0
-}
-
 window-rule {
     geometry-corner-radius 3
     clip-to-geometry true
     open-maximized true
     draw-border-with-background false
+    background-effect {
+      blur true
+      xray false
+    }
 }
 
 window-rule {
@@ -157,9 +140,7 @@ window-rule {
 
 window-rule {
     match app-id=r#"^org\.gnome\.World\.Secrets$"#
-
     block-out-from "screen-capture"
-
     // Use this instead if you want them visible on third-party screenshot tools.
     // block-out-from "screencast"
 }
@@ -167,7 +148,6 @@ window-rule {
 window-rule {
     match app-id="firefox" 
     match app-id="^QQ$"
-    match app-id="jetbrains"
     match app-id="^wps$"
     match app-id="^et$"
     match app-id="^pdf$"
@@ -181,7 +161,6 @@ window-rule {
 window-rule{
   match app-id="firefox" title="Firefox$"
   match title="^QQ$"
-  match app-id="jetbrains" title="^ $"
   match title="WPS"
   match app-id="^org.telegram.desktop$" title="Nirlvy"
   match title="Thunar"
@@ -191,6 +170,13 @@ window-rule{
 layer-rule {
   match namespace="^noctalia-overview*"
   place-within-backdrop true
+}
+
+layer-rule {
+  match namespace="^noctalia-(background|launcher-overlay|dock)-.*$"
+  background-effect {
+    xray false
+  }
 }
 
 binds {

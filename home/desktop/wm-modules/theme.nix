@@ -7,6 +7,12 @@
     size = 24;
   };
 
+  dconf.settings = {
+    "org/gnome/desktop/wm/preferences" = {
+      button-layout = "appmenu:";
+    };
+  };
+
   gtk = {
     enable = true;
     gtk2 = {
