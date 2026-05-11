@@ -152,7 +152,6 @@ window-rule {
     match app-id="^et$"
     match app-id="^pdf$"
     match app-id="^wpp$"
-    match app-id="^org.telegram.desktop$"
     match app-id="thunar"
     match app-id="^.blueman-manager-wrapped$"
     open-floating true
@@ -162,7 +161,6 @@ window-rule{
   match app-id="firefox" title="Firefox$"
   match title="^QQ$"
   match title="WPS"
-  match app-id="^org.telegram.desktop$" title="Nirlvy"
   match title="Thunar"
   open-floating false
 }

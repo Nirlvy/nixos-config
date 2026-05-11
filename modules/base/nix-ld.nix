@@ -1,13 +1,15 @@
 { config, pkgs, ... }:
 {
   # by Mic92 dotfiles
-  services.envfs.enable = false;
+  services.envfs.enable = true;
   programs.nix-ld = {
     enable = true;
     libraries =
       with pkgs;
       [
         acl
+        attr
+        bzip2
         dbus
         expat
         fontconfig
@@ -15,11 +17,17 @@
         fuse3
         icu
         libnotify
+        libsodium
+        libssh
         libunwind
         libusb1
         libuuid
         nspr
         nss
+        stdenv.cc.cc
+        util-linux
+        zlib
+        zstd
       ]
       ++ lib.optionals (config.hardware.graphics.enable) [
         pipewire
@@ -36,23 +44,22 @@
         at-spi2-atk
         at-spi2-core
         gdk-pixbuf
-        glib.out
-        glibc
+        glib
         gtk3
         libGL
         libappindicator-gtk3
         vulkan-loader
-        libX11
-        libXScrnSaver
-        libXcomposite
-        libXcursor
-        libXdamage
-        libXext
-        libXfixes
-        libXi
-        libXrandr
-        libXrender
-        libXtst
+        libx11
+        libxscrnsaver
+        libxcomposite
+        libxcursor
+        libxdamage
+        libxext
+        libxfixes
+        libxi
+        libxrandr
+        libxrender
+        libxtst
         libxcb
         libxkbfile
         libxshmfence
