@@ -7,15 +7,12 @@ _: final: prev: {
 
   jetbrains =
     let
-      jetbra = prev.fetchzip {
-        url = "https://3.jetbra.in/files/jetbra-5a50fc03d68a014f893b7fc3aa465380d59f9095.zip";
-        sha256 = "iCtLAmJ1uBU2VtU/EbgASI5Ws9pUJUpWxOB6xsZjgVs=";
-      };
+      jetbra = ../pkgs/resources/ja-netfilter.jar;
       # https://jetbra.in/5d84466e31722979266057664941a71893322460
       vmoptions = ''
         --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED
         --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED
-        -javaagent:${jetbra}/ja-netfilter.jar=jetbrains
+        -javaagent:${jetbra}=jetbrains
       '';
     in
     prev.jetbrains
