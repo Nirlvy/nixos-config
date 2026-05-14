@@ -7,12 +7,19 @@ _: final: prev: {
 
   jetbrains =
     let
-      jetbra = ../pkgs/resources/ja-netfilter.jar;
+      jetbra = prev.runCommand "jetbra" { } ''
+        mkdir -p $out
+        ${prev.unzip}/bin/unzip ${../pkgs/resources/jetbra.zip} -d $out
+        cat >> $out/jetbra/config-jetbrains/url.conf <<EOF
+        [URL]
+        PREFIX,https://account.jetbrains.com/lservice/rpc/obtainLicense.action
+        EOF
+      '';
       # https://jetbra.in/5d84466e31722979266057664941a71893322460
       vmoptions = ''
         --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED
         --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED
-        -javaagent:${jetbra}=jetbrains
+        -javaagent:${jetbra}/jetbra/ja-netfilter.jar=jetbrains
       '';
     in
     prev.jetbrains
