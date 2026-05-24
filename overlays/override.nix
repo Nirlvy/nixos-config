@@ -10,7 +10,7 @@ _: final: prev: {
       jetbra = prev.runCommand "jetbra" { } ''
         mkdir -p $out
         ${prev.unzip}/bin/unzip ${../pkgs/resources/jetbra.zip} -d $out
-        cat >> $out/jetbra/config-jetbrains/url.conf <<EOF
+        cat >> $out/jetbra/config-jetbrains/url.conf << EOF
         [URL]
         PREFIX,https://account.jetbrains.com/lservice/rpc/obtainLicense.action
         EOF

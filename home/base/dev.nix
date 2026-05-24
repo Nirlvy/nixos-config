@@ -32,6 +32,7 @@
 
     # python
     ruff
+    pyrefly
     python3
     uv
 
@@ -43,7 +44,7 @@
 
     # misc
     # devbox
-    # devenv
+    devenv
     lazygit
   ];
 

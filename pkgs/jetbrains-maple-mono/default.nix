@@ -2,25 +2,34 @@
   stdenvNoCC,
   fetchzip,
   lib,
-  variants ? "XX-XX-XX",
+  variants ? "XX-XX-XX-XX",
 }:
 let
   pname = "jetbrains-maple-mono";
   owner = "SpaceTimee";
-  version = "1.2304.70";
+  version = "1.2304.79";
 
   # NF: Nerd Font
   # NR: CN Narrow
+  # NL: No Ligatures
   # HT: Hinted (for low resolution displays)
   hashes = {
-    NF-NR-HT = "nlloDeotF+6MSjRrxSFqap2p4XB/Zq5clWW/krzIzDI=";
-    NF-NR-XX = "Eg5EYnT/dbDec+aHw7Bjldw3QDeaNOjg5f46BpfSA4Y=";
-    NF-XX-HT = "pc/5BeJaac9gNTRAQSsLYhGN0M5/KGXv+WQkd03Y2rM=";
-    NF-XX-XX = "ZyTW11BRaZ5v1fi/akMcGtYxhAkJHyqhWIKoVk+O5P0=";
-    XX-NR-HT = "MHJUcFYcXpPGYylQ5waxCMCkZco5JfOfbkttOjHPpFk=";
-    XX-NR-XX = "/O5dQol0/J2Wa0XLC1joCTvWQMXwIfz5VRzpJQf4i04=";
-    XX-XX-HT = "BaIY7uM7f2vPzDquvt/gmkJrqIZXHSpnmulGpKqfJrg=";
-    XX-XX-XX = "9IIXBrS4gJvBiDceoMtPS01DC5ZCXhfbj4Lv6bxBqx8=";
+    NF-NR-NL-HT = "du5dc4DVDenW+g13ls5EZQ8RpKqY5RAwzDNpx9ZivBk=";
+    NF-NR-NL-XX = "tANvI3mFt5LbXNFvlEr59cZOr8Rh7TyfHg0nT4mOe6M=";
+    NF-NR-XX-HT = "x9caOc9abE+ChrnwCXg+pPnKktWvbino1me45l6l+Jo=";
+    NF-NR-XX-XX = "tGPhMFdROMG0dwR76VQoJHPfaH6WhEsRcLy3PgAXy+c=";
+    NF-XX-NL-HT = "FRApSzpO5r1oaAxpP7IPGXns5XsRsQYevbh8fMiIsag=";
+    NF-XX-NL-XX = "VOZROLLJejVg2iXLXopiOhZnNc+xX8P4qTPZ7B+VKFM=";
+    NF-XX-XX-HT = "kqF1zaT23HWtuDAI7gFJa9IeKgJgUnGdpWsf2XuoEVc=";
+    NF-XX-XX-XX = "Pf/JAGurpwfKxhgmB1z6rJFjDAuSP5ZnRi1T1xfFtdM=";
+    XX-NR-NL-HT = "yemhxhJyMVrTLHJyeI1zazp6Evng3UGSmcbhsPsSoAs=";
+    XX-NR-NL-XX = "pc4cYrIiuOQA7kwNjZXn6TP0UIgdDMo5+P6ZoId7+n4=";
+    XX-NR-XX-HT = "P1omEeLdtqnYaHn6k5V1TeegHuGlCvxUCvYcrjnxnfA=";
+    XX-NR-XX-XX = "kNJAavmwkLoh2V8fsCbAB37M7634R6N27gUeHL3kDNQ=";
+    XX-XX-NL-HT = "DgDT7tzpwOeYpweJThudJaX5TfHGt+RjYS7Ca5tCKV4=";
+    XX-XX-NL-XX = "OkPZir12moTOxvfLgncqCc+DdrJtjMQUI2vl9sS/tQM=";
+    XX-XX-XX-HT = "YMEOptwFpUkVvAmy1lQ+vAKfSGEO/xbYD+keUEqCc3I=";
+    XX-XX-XX-XX = "MMYuxb+bhpQb+hwiZHLIk8fEXTHcnqMHLMVbJ1nKcgY=";
   };
 in
 stdenvNoCC.mkDerivation {
