@@ -1,6 +1,6 @@
 {
   services.displayManager = {
-    defaultSession = "niri-session";
+    defaultSession = "niri";
     ly = {
       enable = true;
       settings = {

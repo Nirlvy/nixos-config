@@ -56,8 +56,10 @@
       in
       {
         enable = true;
-        changeDirWidgetCommand = "fd --type d";
-        changeDirWidgetOptions = [ "--preview 'eza --tree --color=always {} | head -200'" ];
+        changeDirWidget = {
+          command = "fd --type d";
+          options = [ "--preview 'eza --tree --color=always {} | head -200'" ];
+        };
         defaultCommand = command;
         defaultOptions = [
           " --preview 'bat --color=always {}'"
@@ -68,7 +70,7 @@
           " --color=selected-bg:#51576d"
           " --multi"
         ];
-        fileWidgetCommand = command;
+        fileWidget.command = command;
       };
     zoxide.enable = true;
   };

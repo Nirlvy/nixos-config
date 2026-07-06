@@ -103,7 +103,7 @@ layout {
 
 spawn-at-startup "sh" "-c" "sleep 10 && fcitx5 -r && sudo dae reload"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
-spawn-at-startup "noctalia-shell"
+spawn-at-startup "noctalia"
 
 prefer-no-csd
 
@@ -171,7 +171,7 @@ layer-rule {
 }
 
 layer-rule {
-  match namespace="^noctalia-(background|launcher-overlay|dock)-.*$"
+  match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"
   background-effect {
     xray false
   }
@@ -181,10 +181,10 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+Q { spawn "kitty"; }
-    Mod+A { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+    Mod+A { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
     Mod+E { spawn "firefox"; }
     Mod+D { spawn "thunar"; }
-    Mod+V { spawn "noctalia-shell" "ipc" "call" "launcher" "clipboard"; }
+    Mod+V { spawn "noctalia" "msg" "panel-toggle" "clipboard"; }
 
     XF86AudioRaiseVolume   allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }
     XF86AudioLowerVolume   allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }

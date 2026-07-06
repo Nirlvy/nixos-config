@@ -19,13 +19,15 @@
       ];
       nix-path = [ "nixpkgs=${inputs.nixpkgs}" ];
       substituters = [
-        "https://mirrors.ustc.edu.cn/nix-channels/store"
-        "https://cache.nixos-cuda.org"
-        "https://cache.garnix.io"
+        "https://mirror.nju.edu.cn/nix-channels/store?priority=10"
+        "https://mirrors.ustc.edu.cn/nix-channels/store?priority=20"
+        # "https://mirrors.ustc.edu.cn/nix-channels/store"
+        "https://cache.nixos-cuda.org?priority=30"
+        "https://noctalia.cachix.org"
       ];
       trusted-public-keys = [
         "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
-        "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+        "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
       ];
       trusted-users = [ "@wheel" ];
       warn-dirty = false;
@@ -45,10 +47,5 @@
     clean.enable = true;
     clean.extraArgs = "--keep-since 7d --keep 5";
     flake = "/etc/nixos";
-  };
-
-  # https://github.com/nix-community/nh/issues/278
-  environment.sessionVariables = {
-    NH_NO_CHECKS = "1";
   };
 }
