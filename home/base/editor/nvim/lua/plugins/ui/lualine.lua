@@ -13,7 +13,7 @@ return {
     end,
     opts = {
       options = {
-        theme = "catppuccin",
+        theme = "catppuccin-nvim",
       },
     },
   },

@@ -6,12 +6,9 @@ return {
     priority = 1000,
     opts = {
       flavour = "frappe",
-      integrations = {
-        blink_cmp = true,
-      },
     },
     config = function()
-      vim.cmd([[colorscheme catppuccin]])
+      vim.cmd.colorscheme "catppuccin-nvim"
     end,
   },
 }

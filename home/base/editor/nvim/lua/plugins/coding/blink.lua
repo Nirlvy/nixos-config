@@ -3,9 +3,12 @@ return {
   {
     'saghen/blink.cmp',
     event = { 'InsertEnter', 'CmdlineEnter' },
-    build = 'cargo build --release',
+    build = function()
+      require('blink.cmp').build():pwait()
+    end,
     dependencies = {
       {
+        'saghen/blink.lib',
         'L3MON4D3/LuaSnip',
         event = 'InsertEnter',
         build = 'make install_jsregexp',
@@ -43,15 +46,19 @@ return {
         menu = {
           draw = {
             columns = {
-              { 'label', 'label_description', gap = 1 },
+              { 'label',     'label_description', gap = 1 },
               { 'kind_icon', 'kind' },
             },
             treesitter = { 'lsp' },
           },
         },
       },
+      fuzzy = { implementation = 'prefer_rust_with_warning' },
       sources = {
         default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'omni' },
+        per_filetype = {
+          lua = { inherit_defaults = true, 'lazydev' }
+        },
         providers = {
           lazydev = {
             name = 'LazyDev',
