@@ -38,7 +38,7 @@
         sns = "sudo nixos-rebuild switch --show-trace -L -v";
         c = "clear";
         nix-locate = "nix run github:nix-community/nix-index-database --";
-        nix-tree = "nix run nixpkgs#nix-tree -- /etc/nixos#nixosConfigurations.\"NullPointer\".config.system.build.toplevel";
+        nix-tree = "nix run nixpkgs#nix-tree -- /etc/nixos#nixosConfigurations.\"Runtime\".config.system.build.toplevel";
       };
     };
 

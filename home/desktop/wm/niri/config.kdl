@@ -30,7 +30,7 @@ input {
     workspace-auto-back-and-forth
 }
 
-output "DP-1" {
+output "DP-2" {
   mode "3840x2160@159.975"
   scale 1.5
   variable-refresh-rate

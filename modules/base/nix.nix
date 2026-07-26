@@ -21,7 +21,6 @@
       substituters = [
         "https://mirror.nju.edu.cn/nix-channels/store?priority=10"
         "https://mirrors.ustc.edu.cn/nix-channels/store?priority=20"
-        # "https://mirrors.ustc.edu.cn/nix-channels/store"
         "https://cache.nixos-cuda.org?priority=30"
         "https://noctalia.cachix.org"
       ];

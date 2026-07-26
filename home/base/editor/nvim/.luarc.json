@@ -4,7 +4,15 @@
     "indent_style": "space",
     "indent_size": "2"
   },
-    "diagnostics.disable": [
-        "duplicate-set-field"
-    ]
+  "diagnostics.disable": [
+    "duplicate-set-field"
+  ],
+  "diagnostics.globals": [
+    "vim",
+    "Snacks"
+  ],
+  "runtime.version": "LuaJIT",
+  "workspace.library": [
+    "${3rd}/luv/library"
+  ]
 }
