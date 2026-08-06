@@ -30,12 +30,12 @@ return {
         signature = { enabled = false },
         messages = { enabled = false },
       },
-      config = function(_, opts)
-        if vim.o.filetype == 'lazy' then
-          vim.cmd([[messages clear]])
-        end
-        require('noice').setup(opts)
-      end,
     },
+    config = function(_, opts)
+      if vim.o.filetype == 'lazy' then
+        vim.cmd([[messages clear]])
+      end
+      require('noice').setup(opts)
+    end,
   },
 }

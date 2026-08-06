@@ -20,6 +20,7 @@ return {
     event = { 'Filetype' },
     opts = {
       ensure_installed = {
+        'clangd',
         'css-lsp',
         'delance-runtime',
         'lua-language-server',
@@ -32,4 +33,9 @@ return {
       auto_update = true,
     },
   },
+  ---@type LazyPluginSpec
+  {
+    "neovim/nvim-lspconfig",
+    event = "VeryLazy",
+  }
 }

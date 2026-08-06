@@ -7,8 +7,9 @@ return {
     opts = {
       flavour = "frappe",
     },
-    config = function()
-      vim.cmd.colorscheme "catppuccin-nvim"
+    config = function(_, opts)
+      require("catppuccin").setup(opts)
+      vim.cmd.colorscheme "catppuccin"
     end,
   },
 }

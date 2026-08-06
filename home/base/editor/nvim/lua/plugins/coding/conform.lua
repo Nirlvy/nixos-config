@@ -18,7 +18,6 @@ return {
     ---@module "conform"
     ---@type conform.setupOpts
     opts = {
-      notify_on_error = false,
       formatters_by_ft = {
         cpp = { 'clang_format' },
         css = { 'prettier' },

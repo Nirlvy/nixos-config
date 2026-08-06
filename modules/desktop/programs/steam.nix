@@ -1,1 +1,4 @@
-{ programs.steam.enable = false; }
+{
+  programs.steam.enable = true;
+  programs.gamemode.enable = true;
+}
