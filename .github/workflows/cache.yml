@@ -51,7 +51,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       # extra-conf: the substituters this configuration actually uses, so the
       # build below substitutes instead of recompiling. Kept in sync with
