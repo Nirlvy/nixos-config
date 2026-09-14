@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  programs.mihomo = {
+  services.mihomo = {
     enable = true;
     tunMode = true;
     webui = pkgs.metacubexd;

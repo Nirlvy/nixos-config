@@ -3,10 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixos-wsl = {
-      url = "github:nix-community/NixOS-WSL/main";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixos-wsl = {
+    #   url = "github:nix-community/NixOS-WSL/main";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     secrets = {
       url = "github:Nirlvy/nix-secrets";
       flake = false;
@@ -23,6 +23,7 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
+        darwin.follows = "";
       };
     };
     daeuniverse = {
@@ -30,10 +31,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
-    # impermanence.url = "github:nix-community/impermanence";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
-    niri.url = "github:sodiboo/niri-flake";
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        xwayland-satellite-stable.follows = "";
+        xwayland-satellite-unstable.follows = "xwayland-satellite";
+      };
+    };
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
+    xwayland-satellite = {
+      url = "github:Supreeeme/xwayland-satellite";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

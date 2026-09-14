@@ -23,10 +23,12 @@
         "https://mirrors.ustc.edu.cn/nix-channels/store?priority=20"
         "https://cache.nixos-cuda.org?priority=30"
         "https://noctalia.cachix.org"
+        "https://nirlvy.cachix.org"
       ];
       trusted-public-keys = [
         "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
         "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+        "nirlvy.cachix.org-1:dOdsWPG0r4JuqWy+p150yPiVrC28tELUZUdkXobrKZM="
       ];
       trusted-users = [ "@wheel" ];
       warn-dirty = false;

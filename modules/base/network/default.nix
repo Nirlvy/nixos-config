@@ -1,7 +1,8 @@
 { lib, pkgs, ... }:
 {
   imports = [
-    ./proxy/dae
+    ./proxy/clash-verge-rev.nix
+    # ./proxy/mihomo
 
     ./hardware.nix
     ./ssh.nix

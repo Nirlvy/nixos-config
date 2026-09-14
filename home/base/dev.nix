@@ -20,11 +20,12 @@
     # nix
     nil
     nixd
+    nixfmt
     nixfmt-tree
 
     # node
     # eslint
-    # nodejs
+    nodejs
     # pnpm
     # typescript
     # typescript-language-server
@@ -45,6 +46,7 @@
     # misc
     # devbox
     devenv
+    glib
     lazygit
   ];
 
@@ -53,5 +55,5 @@
     nix-direnv.enable = true;
   };
 
-  programs.opencode.enable = true;
+  programs.opencode.enable = false;
 }

@@ -165,6 +165,20 @@ window-rule{
   open-floating false
 }
 
+// TODO: 移除以下，新wayland-satellite可能已修复
+// Steam：主窗口全屏时顶部菜单下拉会出现空档、点不到菜单项
+// 见 https://github.com/Supreeeme/xwayland-satellite/issues/156
+window-rule {
+    match app-id=r#"^steam$"# title=r#"^Steam$"#
+    open-fullscreen false
+}
+
+// Steam 的新闻/特惠/通知弹窗用浮动窗口显示
+window-rule {
+    match app-id=r#"^steam$"# title=r#"^(Steam - News|Special Offers|notificationtoasts)"#
+    open-floating true
+}
+
 layer-rule {
   match namespace="^noctalia-overview*"
   place-within-backdrop true
@@ -359,3 +373,4 @@ binds {
 debug { 
   honor-xdg-activation-with-invalid-serial
 }
+
