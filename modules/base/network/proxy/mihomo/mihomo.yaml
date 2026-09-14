@@ -1,10 +1,10 @@
-port: 7890 
-socks-port: 7891 
+# port: 7890
+# socks-port: 7891
 mixed-port: 7892
 redir-port: 7893 
 tproxy-port: 7894
 
-allow-lan: true
+allow-lan: false
 bind-address: "*" 
 lan-allowed-ips:
   - 0.0.0.0/0
@@ -15,7 +15,7 @@ lan-disallowed-ips: []
 find-process-mode: strict
 mode: rule
 log-level: info
-ipv6: false
+ipv6: true
 
 external-controller: 127.0.0.1:9090
 
@@ -99,7 +99,7 @@ proxy-providers:
   provider:
     type: file
     interval: 3600
-    path: /etc/mihomo/sub.yaml # 默认只允许存储在 mihomo 的 Home Dir，如果想存储到任意位置，添加环境变量 SKIP_SAFE_PATH_CHECK=1
+    path: ~/.config/mihomo/sub.yaml # 默认只允许存储在 mihomo 的 Home Dir，如果想存储到任意位置，添加环境变量 SKIP_SAFE_PATH_CHECK=1
     proxy: DIRECT
     health-check:
       enable: true
@@ -118,13 +118,13 @@ rule-providers:
     cncidr: { type: http, behavior: ipcidr, url: 'https://raw.v2raysocks.com/Loyalsoldier/clash-rules/release/cncidr.txt', path: ./ruleset/cncidr.yaml, interval: 86400 }
     lancidr: { type: http, behavior: ipcidr, url: 'https://raw.v2raysocks.com/Loyalsoldier/clash-rules/release/lancidr.txt', path: ./ruleset/lancidr.yaml, interval: 86400 }
 
-rules:
-    - 'RULE-SET,icloud,Apple Services'
-    - 'RULE-SET,apple,Apple Services'
-    - 'RULE-SET,google,Google Services'
-    - 'RULE-SET,proxy,Blocked Domains'
-    - 'RULE-SET,cncidr,CHN Mainland'
-    - 'RULE-SET,direct,DIRECT'
-    - 'RULE-SET,lancidr,DIRECT,no-resolve'
-    - 'MATCH,Main Node'
+# rules:
+#     - 'RULE-SET,icloud,Apple Services'
+#     - 'RULE-SET,apple,Apple Services'
+#     - 'RULE-SET,google,Google Services'
+#     - 'RULE-SET,proxy,Blocked Domains'
+#     - 'RULE-SET,cncidr,CHN Mainland'
+#     - 'RULE-SET,direct,DIRECT'
+#     - 'RULE-SET,lancidr,DIRECT,no-resolve'
+#     - 'MATCH,Main Node'
   

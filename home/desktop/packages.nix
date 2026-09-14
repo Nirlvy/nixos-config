@@ -5,7 +5,7 @@
     ristretto
 
     qq
-    # wpsoffice
+    wpsoffice-cn
 
     # jetbrains.rust-rover
     jetbrains.pycharm

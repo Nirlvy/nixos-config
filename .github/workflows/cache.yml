@@ -1,0 +1,90 @@
+# Builds the full system closure on GitHub runners and pushes it to the Cachix
+# cache, while substituting everything it can from caches that already have it.
+#
+# Two goals, both handled here:
+#   1. Cache all software: `system.build.toplevel` is the whole NixOS closure
+#      (~21.5 GB / ~2000 store paths for this configuration), so a local
+#      `nixos-rebuild` downloads instead of compiling.
+#   2. Never rebuild what is already cached: the substituters below cover
+#      cache.nixos.org (the entire base system), niri.cachix.org,
+#      noctalia.cachix.org and this cache itself, so only genuinely new or
+#      locally built derivations get built.
+#
+# Cache: https://nirlvy.cachix.org (public cache "nirlvy").
+#
+# One-time setup on the GitHub repository:
+#   * Repository secret CACHIX_AUTH_TOKEN = a Cachix *write* token for "nirlvy".
+#     Never commit the token itself: the cache name and its public key are
+#     public, the token is not.
+#   * The public key already sits in modules/desktop/niri.nix.
+name: cache
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "flake.nix"
+      - "flake.lock"
+      - "overlays/**"
+      - "pkgs/**"
+      - "modules/**"
+      - "home/**"
+      - "secrets/**"
+      - "self-module/**"
+      - "hosts/**"
+      - ".github/workflows/cache.yml"
+  schedule:
+    # Weekly, so the cache follows upstream without waiting for a push.
+    - cron: "0 4 * * 0"
+
+# Never let two runs write the same cache entry concurrently.
+concurrency:
+  group: cache-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  x86_64-linux:
+    runs-on: ubuntu-latest
+    # A cold run pushes ~20 GB, so allow a generous budget.
+    timeout-minutes: 360
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      # extra-conf: the substituters this configuration actually uses, so the
+      # build below substitutes instead of recompiling. Kept in sync with
+      # modules/base/nix.nix + modules/desktop/niri.nix.
+      - uses: cachix/install-nix-action@v31
+        with:
+          extra-conf: |
+            extra-substituters = https://nirlvy.cachix.org https://niri.cachix.org https://noctalia.cachix.org https://cache.nixos-cuda.org
+            extra-trusted-public-keys = nirlvy.cachix.org-1:dOdsWPG0r4JuqWy+p150yPiVrC28tELUZUdkXobrKZM= niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964= noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4= cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M=
+
+      - uses: cachix/cachix-action@v16
+        with:
+          name: nirlvy
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+
+      - name: Build and push
+        run: |
+          set -euo pipefail
+
+          # Whole system closure (all software). For a much cheaper run, replace
+          # this with just the expensive, non-substitutable pieces, e.g.:
+          #   .#nixosConfigurations.Runtime.config.programs.niri.package
+          #   .#nixosConfigurations.Runtime.config.home-manager.users.nirlvy.home.packages
+          targets=(
+            ".#nixosConfigurations.Runtime.config.system.build.toplevel"
+          )
+
+          nix build --no-link --print-out-paths "${targets[@]}" | tee /tmp/created
+
+          # Push the freshly built paths. Paths that were substituted from an
+          # existing cache are already there, and nix copy is incremental, so
+          # this only uploads what is genuinely missing.
+          while read -r path; do
+            echo "pushing $path"
+            nix copy --to "https://nirlvy.cachix.org" "$path"
+          done < /tmp/created
