@@ -62,7 +62,7 @@ jobs:
             extra-substituters = https://nirlvy.cachix.org https://niri.cachix.org https://noctalia.cachix.org https://cache.nixos-cuda.org
             extra-trusted-public-keys = nirlvy.cachix.org-1:dOdsWPG0r4JuqWy+p150yPiVrC28tELUZUdkXobrKZM= niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964= noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4= cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M=
 
-      - uses: cachix/cachix-action@v16
+      - uses: cachix/cachix-action@v17
         with:
           name: nirlvy
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
