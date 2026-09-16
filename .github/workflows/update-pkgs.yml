@@ -1,0 +1,60 @@
+# Keeps flake inputs and the custom packages in pkgs/ up to date.
+#
+# What it does (see scripts/update-pkgs.py):
+#   * `nix flake update`      -> flake.lock: nixpkgs, home-manager,
+#                                xwayland-satellite, noctalia, ...
+#   * revision bumps in pkgs/ -> waydroid_script, sddm-sugar-candy,
+#                                StarRailGrubThemes-firefly, ttf-wps-fonts,
+#                                jetbrains-maple-mono, with hashes recomputed by
+#                                nix itself (never by hand)
+#
+# The result arrives as a pull request, so a broken bump never lands on main.
+name: update-pkgs
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 5 * * 1" # Mondays
+
+concurrency:
+  group: update-pkgs
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: cachix/install-nix-action@v31
+        with:
+          extra-conf: |
+            extra-substituters = https://nirlvy.cachix.org https://niri.cachix.org https://noctalia.cachix.org
+            extra-trusted-public-keys = nirlvy.cachix.org-1:dOdsWPG0r4JuqWy+p150yPiVrC28tELUZUdkXobrKZM= niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964= noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=
+
+      - name: Update flake inputs and packages
+        run: python3 scripts/update-pkgs.py
+
+      - name: Verify the configuration still evaluates and builds
+        run: |
+          nix build --no-link \
+            .#nixosConfigurations.Runtime.config.system.build.toplevel
+
+      - name: Open or update the pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: chore/update-pkgs
+          commit-message: "chore: bump flake inputs and custom packages"
+          title: "chore: bump flake inputs and custom packages"
+          body: |
+            Automated by `.github/workflows/update-pkgs.yml`
+            (`scripts/update-pkgs.py`).
+
+            The full system closure was built successfully in this run, so the
+            bump is at least buildable. Review the diff before merging.
+          delete-branch: true
+          labels: automated
