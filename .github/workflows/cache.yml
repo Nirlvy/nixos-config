@@ -85,9 +85,14 @@ jobs:
           # Deliberately NOT cached: private/prebuilt packages that no compiler
           # produces (pycharm, wpsoffice-cn, vscode, ...) and everything already
           # served by cache.nixos.org / niri.cachix.org.
+          #
+          # `home.packages` is a LIST and cannot be a build target ("expected
+          # ... to be a derivation or path but found a list"). `home.path` is
+          # the profile derivation, and building it realises every entry of
+          # home.packages.
           targets=(
             ".#nixosConfigurations.Runtime.config.programs.niri.package"
-            ".#nixosConfigurations.Runtime.config.home-manager.users.nirlvy.home.packages"
+            ".#nixosConfigurations.Runtime.config.home-manager.users.nirlvy.home.path"
           )
 
           nix build --no-link --print-out-paths "${targets[@]}" | tee /tmp/created
