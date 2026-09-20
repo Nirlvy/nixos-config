@@ -1,3 +1,21 @@
+# Builds this repo's own packages on GitHub runners and pushes them to the
+# Cachix cache, so a local rebuild can download them instead of compiling.
+#
+# Scope is deliberately narrow: pkgs/, the two packages built from flake inputs
+# (niri from upstream niri, xwayland-satellite from upstream xwayland-satellite)
+# and the packages this repo overrides in overlays/override.nix. Everything else
+# comes from cache.nixos.org, and private prebuilt packages (pycharm,
+# wpsoffice-cn, vscode, ...) are not produced by any compiler.
+#
+# No flake output is required: the package set is evaluated inline from
+# flake.nix's inputs plus overlays/, so flake.nix stays untouched.
+#
+# Pushing follows the Cachix recipe
+# (https://docs.cachix.org/pushing):
+#     nix build --no-link --print-out-paths .#a .#b | cachix push <cache>
+# `cachix push` compresses with the cache's preferred method (this cache reports
+# ZSTD) and skips paths the cache already has, which is why no
+# `?compression=zstd` URL parameter is needed here.
 name: cache
 
 on:
@@ -9,11 +27,6 @@ on:
       - "flake.lock"
       - "overlays/**"
       - "pkgs/**"
-      - "modules/**"
-      - "home/**"
-      - "secrets/**"
-      - "self-module/**"
-      - "hosts/**"
       - ".github/workflows/cache.yml"
   schedule:
     # Weekly, so the cache follows upstream without waiting for a push.
@@ -27,75 +40,98 @@ concurrency:
 jobs:
   x86_64-linux:
     runs-on: ubuntu-latest
-    # A cold run pushes ~20 GB, so allow a generous budget.
+    # niri is a full Rust build, so allow a generous budget.
     timeout-minutes: 360
     permissions:
       contents: read
     steps:
       - uses: actions/checkout@v7
 
-      # extra-conf: the substituters this configuration actually uses, so the
-      # build below substitutes instead of recompiling. Kept in sync with
-      # modules/base/nix.nix + modules/desktop/niri.nix.
+      # The substituters this configuration actually uses, so the build below
+      # substitutes instead of recompiling. Kept in sync with
+      # modules/base/nix.nix and modules/desktop/niri.nix.
       - uses: cachix/install-nix-action@v31
         with:
           extra-conf: |
-            extra-substituters = https://nirlvy.cachix.org https://niri.cachix.org https://noctalia.cachix.org https://cache.nixos-cuda.org
-            extra-trusted-public-keys = nirlvy.cachix.org-1:dOdsWPG0r4JuqWy+p150yPiVrC28tELUZUdkXobrKZM= niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964= noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4= cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M=
+            extra-substituters = https://niri.cachix.org https://noctalia.cachix.org https://cache.nixos-cuda.org
+            extra-trusted-public-keys = niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964= noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4= cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M=
 
       - uses: cachix/cachix-action@v17
         with:
           name: nirlvy
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
-      - name: Build and push
+      - name: Build
         run: |
           set -euo pipefail
-          targets=(
-            ".#StarRailGrubThemes-firefly"
-            ".#anime4k"
-            ".#aris-plymouth"
-            ".#catppuccin-gtk"
-            ".#delance"
-            ".#fcitx5-configtool"
-            ".#ja-netfilter"
-            ".#jetbrains-maple-mono"
-            ".#mpv"
-            ".#niri"
-            ".#sddm-eucalyptus-drop"
-            ".#sddm-sugar-candy"
-            ".#svp"
-            ".#tela-icon-theme"
-            ".#ttf-wps-fonts"
-            ".#waydroid_script"
-            ".#wl-shot-edit"
-            ".#xwayland-satellite"
-          )
 
-          nix build --no-link --keep-going --print-out-paths "${targets[@]}" | tee /tmp/created
+          # Same nixpkgs configuration the hosts use (modules/base/nix.nix), and
+          # the same overlays modules/desktop/niri.nix applies. Without the niri
+          # and xwayland-satellite overlays, `p.niri` would just be the nixpkgs
+          # package, which is already on niri.cachix.org.
+          #
+          # shellcheck disable=SC2016  # ${n} is Nix, not shell
+          expr='
+            let
+              flake = builtins.getFlake (toString ./.);
+              base = import flake.inputs.nixpkgs {
+                system = "x86_64-linux";
+                config = { allowUnfree = true; permittedInsecurePackages = [ ]; };
+              };
+              overlays = import ./overlays { inputs = flake.inputs; };
+              p = base.extend (base.lib.composeManyExtensions (overlays ++ [
+                flake.inputs.niri.overlays.default
+                flake.inputs.xwayland-satellite.overlays.default
+              ]));
+              wanted = [
+                "StarRailGrubThemes-firefly"
+                "anime4k"
+                "aris-plymouth"
+                "catppuccin-gtk"
+                "delance"
+                "ja-netfilter"
+                "jetbrains-maple-mono"
+                "mpv"
+                "niri"
+                "sddm-eucalyptus-drop"
+                "sddm-sugar-candy"
+                "svp"
+                "tela-icon-theme"
+                "ttf-wps-fonts"
+                "waydroid_script"
+                "wl-shot-edit"
+                "xwayland-satellite"
+              ];
+            in
+              # `p.fcitx5-configtool` is a throwing alias in current nixpkgs
+              # ("has been renamed to/replaced by qt6Packages...").
+              map (n: p.${n}) wanted ++ [ p.qt6Packages.fcitx5-configtool ]
+          '
 
-          cache="https://nirlvy.cachix.org"
+          # --keep-going: one package failing must not stop the others from
+          # being cached. nix still exits non-zero, so failures stay visible.
+          nix build --no-link --keep-going --print-out-paths --impure \
+            --expr "$expr" | tee /tmp/built
 
-          upstream="https://cache.nixos.org https://niri.cachix.org https://noctalia.cachix.org"
-
+          # `nix build` re-prints target paths that already exist, including
+          # ones that a public cache provides, so keep only what this run really
+          # realised. That is what makes `cachix push` cheap on re-runs.
+          : > /tmp/created
           while read -r path; do
-            nix-store -qR "$path"
-          done < /tmp/created | sort -u > /tmp/all
-          echo "closure: $(wc -l < /tmp/all) paths"
+            [ -n "$path" ] || continue
+            if [ -e "$path" ]; then
+              printf '%s\n' "$path" >> /tmp/created
+            fi
+          done < /tmp/built
+          echo "built now: $(wc -l < /tmp/created) paths"
 
-          # 16 parallel lookups; only the leftovers are worth uploading.
-          # shellcheck disable=SC2016  # $1/$upstream expand in the child shell
-          xargs -P 16 -I{} bash -c '
-            h=$(basename "$1"); h=${h%%-*}
-            for c in $2; do
-              if curl -sf -o /dev/null -m 15 --head "$c/$h.narinfo"; then exit 0; fi
-            done
-            printf "%s\n" "$1"
-          ' _ {} "$upstream" < /tmp/all > /tmp/topush || true
-          sort -u /tmp/topush -o /tmp/topush
-          echo "to push: $(wc -l < /tmp/topush) paths"
-
-          while read -r path; do
-            echo "pushing $path"
-            nix copy --to "$cache" "$path"
-          done < /tmp/topush
+      - name: Push
+        run: |
+          set -euo pipefail
+          if [ ! -s /tmp/created ]; then
+            echo "nothing to push"
+            exit 0
+          fi
+          # cachix push reads the cache's preferred compression (ZSTD here),
+          # checks what already exists and skips it.
+          xargs -a /tmp/created cachix push nirlvy
