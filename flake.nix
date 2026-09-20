@@ -26,19 +26,15 @@
         darwin.follows = "";
       };
     };
-    daeuniverse = {
-      url = "github:daeuniverse/flake.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
-    };
+    # daeuniverse = {
+    #   url = "github:daeuniverse/flake.nix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   inputs.flake-parts.follows = "flake-parts";
+    # };
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
     niri = {
-      url = "github:sodiboo/niri-flake";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        xwayland-satellite-stable.follows = "";
-        xwayland-satellite-unstable.follows = "xwayland-satellite";
-      };
+      url = "github:niri-wm/niri";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
     xwayland-satellite = {

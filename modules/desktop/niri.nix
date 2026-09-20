@@ -11,19 +11,17 @@
     (import "${self}/modules/desktop/default.nix").wm
   ];
 
-  nix.settings = {
-    substituters = [ "https://niri.cachix.org" ];
-    trusted-public-keys = [ "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964=" ];
-  };
-
   nixpkgs.overlays = [
-    inputs.niri.overlays.niri
+    inputs.niri.overlays.default
+    inputs.xwayland-satellite.overlays.default
   ];
 
   programs.niri = {
     enable = true;
     package = pkgs.niri;
   };
+
+  environment.systemPackages = [ pkgs.xwayland-satellite ];
 
   # High VRAM usage fix
   environment.etc."nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool-in-wayland-compositors.json".text =
