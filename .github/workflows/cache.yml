@@ -1,22 +1,3 @@
-# Builds the full system closure on GitHub runners and pushes it to the Cachix
-# cache, while substituting everything it can from caches that already have it.
-#
-# Two goals, both handled here:
-#   1. Cache all software: `system.build.toplevel` is the whole NixOS closure
-#      (~21.5 GB / ~2000 store paths for this configuration), so a local
-#      `nixos-rebuild` downloads instead of compiling.
-#   2. Never rebuild what is already cached: the substituters below cover
-#      cache.nixos.org (the entire base system), niri.cachix.org,
-#      noctalia.cachix.org and this cache itself, so only genuinely new or
-#      locally built derivations get built.
-#
-# Cache: https://nirlvy.cachix.org (public cache "nirlvy").
-#
-# One-time setup on the GitHub repository:
-#   * Repository secret CACHIX_AUTH_TOKEN = a Cachix *write* token for "nirlvy".
-#     Never commit the token itself: the cache name and its public key are
-#     public, the token is not.
-#   * The public key already sits in modules/desktop/niri.nix.
 name: cache
 
 on:
@@ -70,49 +51,31 @@ jobs:
       - name: Build and push
         run: |
           set -euo pipefail
-
-          # Only cache what is both (a) expensive to compile and (b) absent from
-          # public caches. The Cachix quota is 5 GB, and the whole system closure
-          # is ~21.5 GB, so caching everything is not an option anyway.
-          #
-          #   xwayland-satellite  built from upstream main (~1-2 min, no public
-          #                       cache) -- the only real candidate today
-          #   niri                currently pkgs.niri, which comes from
-          #                       niri.cachix.org, so it needs no local cache;
-          #                       if it is ever built from source (upstream
-          #                       main), the same target starts covering it
-          #
-          # Deliberately NOT cached: private/prebuilt packages that no compiler
-          # produces (pycharm, wpsoffice-cn, vscode, ...) and everything already
-          # served by cache.nixos.org / niri.cachix.org.
-          #
-          # `home.packages` is a LIST and cannot be a build target ("expected
-          # ... to be a derivation or path but found a list"). `home.path` is
-          # the profile derivation, and building it realises every entry of
-          # home.packages.
           targets=(
-            ".#nixosConfigurations.Runtime.config.programs.niri.package"
-            ".#nixosConfigurations.Runtime.config.home-manager.users.nirlvy.home.path"
+            ".#StarRailGrubThemes-firefly"
+            ".#anime4k"
+            ".#aris-plymouth"
+            ".#catppuccin-gtk"
+            ".#delance"
+            ".#fcitx5-configtool"
+            ".#ja-netfilter"
+            ".#jetbrains-maple-mono"
+            ".#mpv"
+            ".#niri"
+            ".#sddm-eucalyptus-drop"
+            ".#sddm-sugar-candy"
+            ".#svp"
+            ".#tela-icon-theme"
+            ".#ttf-wps-fonts"
+            ".#waydroid_script"
+            ".#wl-shot-edit"
+            ".#xwayland-satellite"
           )
 
-          nix build --no-link --print-out-paths "${targets[@]}" | tee /tmp/created
+          nix build --no-link --keep-going --print-out-paths "${targets[@]}" | tee /tmp/created
 
-          # ?compression=zstd is required: Cachix only accepts zstd-compressed
-          # NARs (its API reports preferredCompressionMethod=ZSTD), and a plain
-          # https://...cachix.org URL uploads .nar.xz instead, which Cachix
-          # rejects with HTTP 405 "Method not supported". Lix has no
-          # `compression` nix.conf setting, so this URL parameter is the fix.
-          cache="https://nirlvy.cachix.org?compression=zstd"
+          cache="https://nirlvy.cachix.org"
 
-          # Filter to the expensive, non-public pieces. nix copy itself only
-          # skips paths already in the *destination*; it never consults upstream
-          # caches, so a public path reachable from the targets above would
-          # otherwise be uploaded and eat quota (llvm, linux-firmware, ...).
-          # Same idea as devenv's "Upstream caches": skip if any public cache
-          # already has the path (a store path carries its own lookup hash).
-          #
-          # The cache list is a plain string, not an array: it is handed to the
-          # xargs subshell as an argument, and arrays do not survive that.
           upstream="https://cache.nixos.org https://niri.cachix.org https://noctalia.cachix.org"
 
           while read -r path; do
