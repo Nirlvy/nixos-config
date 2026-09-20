@@ -71,20 +71,63 @@ jobs:
         run: |
           set -euo pipefail
 
-          # Whole system closure (all software). For a much cheaper run, replace
-          # this with just the expensive, non-substitutable pieces, e.g.:
-          #   .#nixosConfigurations.Runtime.config.programs.niri.package
-          #   .#nixosConfigurations.Runtime.config.home-manager.users.nirlvy.home.packages
+          # Only cache what is both (a) expensive to compile and (b) absent from
+          # public caches. The Cachix quota is 5 GB, and the whole system closure
+          # is ~21.5 GB, so caching everything is not an option anyway.
+          #
+          #   xwayland-satellite  built from upstream main (~1-2 min, no public
+          #                       cache) -- the only real candidate today
+          #   niri                currently pkgs.niri, which comes from
+          #                       niri.cachix.org, so it needs no local cache;
+          #                       if it is ever built from source (upstream
+          #                       main), the same target starts covering it
+          #
+          # Deliberately NOT cached: private/prebuilt packages that no compiler
+          # produces (pycharm, wpsoffice-cn, vscode, ...) and everything already
+          # served by cache.nixos.org / niri.cachix.org.
           targets=(
-            ".#nixosConfigurations.Runtime.config.system.build.toplevel"
+            ".#nixosConfigurations.Runtime.config.programs.niri.package"
+            ".#nixosConfigurations.Runtime.config.home-manager.users.nirlvy.home.packages"
           )
 
           nix build --no-link --print-out-paths "${targets[@]}" | tee /tmp/created
 
-          # Push the freshly built paths. Paths that were substituted from an
-          # existing cache are already there, and nix copy is incremental, so
-          # this only uploads what is genuinely missing.
+          # ?compression=zstd is required: Cachix only accepts zstd-compressed
+          # NARs (its API reports preferredCompressionMethod=ZSTD), and a plain
+          # https://...cachix.org URL uploads .nar.xz instead, which Cachix
+          # rejects with HTTP 405 "Method not supported". Lix has no
+          # `compression` nix.conf setting, so this URL parameter is the fix.
+          cache="https://nirlvy.cachix.org?compression=zstd"
+
+          # Filter to the expensive, non-public pieces. nix copy itself only
+          # skips paths already in the *destination*; it never consults upstream
+          # caches, so a public path reachable from the targets above would
+          # otherwise be uploaded and eat quota (llvm, linux-firmware, ...).
+          # Same idea as devenv's "Upstream caches": skip if any public cache
+          # already has the path (a store path carries its own lookup hash).
+          #
+          # The cache list is a plain string, not an array: it is handed to the
+          # xargs subshell as an argument, and arrays do not survive that.
+          upstream="https://cache.nixos.org https://niri.cachix.org https://noctalia.cachix.org"
+
+          while read -r path; do
+            nix-store -qR "$path"
+          done < /tmp/created | sort -u > /tmp/all
+          echo "closure: $(wc -l < /tmp/all) paths"
+
+          # 16 parallel lookups; only the leftovers are worth uploading.
+          # shellcheck disable=SC2016  # $1/$upstream expand in the child shell
+          xargs -P 16 -I{} bash -c '
+            h=$(basename "$1"); h=${h%%-*}
+            for c in $2; do
+              if curl -sf -o /dev/null -m 15 --head "$c/$h.narinfo"; then exit 0; fi
+            done
+            printf "%s\n" "$1"
+          ' _ {} "$upstream" < /tmp/all > /tmp/topush || true
+          sort -u /tmp/topush -o /tmp/topush
+          echo "to push: $(wc -l < /tmp/topush) paths"
+
           while read -r path; do
             echo "pushing $path"
-            nix copy --to "https://nirlvy.cachix.org" "$path"
-          done < /tmp/created
+            nix copy --to "$cache" "$path"
+          done < /tmp/topush
