@@ -13,7 +13,7 @@ in
     CUDA_CACHE_PATH = "$XDG_CACHE_HOME/nv";
     DOTNET_CLI_HOME = "${d}/dotnet";
     GRADLE_USER_HOME = "${d}/gradle";
-    GUNPG_HOME = "${cfg}/gnupg";
+    GNUPGHOME = "${cfg}/gnupg";
     HISTFILE = "${cfg}/bash_history";
     MAVEN_OPTS = "-Dmaven.repo.local=${d}/maven";
     NPM_CONFIG_USERCONFIG = "${cfg}/npmrc";
