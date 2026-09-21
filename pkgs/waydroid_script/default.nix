@@ -11,7 +11,7 @@ stdenv.mkDerivation {
   src = fetchFromGitHub {
     owner = "casualsnek";
     repo = "waydroid_script";
-    rev = "1a2d3ad643206ad5f040e0155bb7ab86c0430365";
+    rev = "48dbfaf34a6ddbe78688c530f9ba1c26522aafb2";
     hash = "sha256-OiZO62cvsFyCUPGpWjhxVm8fZlulhccKylOCX/nEyJU=";
   };
 
