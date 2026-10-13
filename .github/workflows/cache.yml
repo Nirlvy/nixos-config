@@ -1,21 +1,3 @@
-# Builds this repo's own packages on GitHub runners and pushes them to the
-# Cachix cache, so a local rebuild can download them instead of compiling.
-#
-# Scope is deliberately narrow: pkgs/, the two packages built from flake inputs
-# (niri from upstream niri, xwayland-satellite from upstream xwayland-satellite)
-# and the packages this repo overrides in overlays/override.nix. Everything else
-# comes from cache.nixos.org, and private prebuilt packages (pycharm,
-# wpsoffice-cn, vscode, ...) are not produced by any compiler.
-#
-# No flake output is required: the package set is evaluated inline from
-# flake.nix's inputs plus overlays/, so flake.nix stays untouched.
-#
-# Pushing follows the Cachix recipe
-# (https://docs.cachix.org/pushing):
-#     nix build --no-link --print-out-paths .#a .#b | cachix push <cache>
-# `cachix push` compresses with the cache's preferred method (this cache reports
-# ZSTD) and skips paths the cache already has, which is why no
-# `?compression=zstd` URL parameter is needed here.
 name: cache
 
 on:
@@ -29,10 +11,8 @@ on:
       - "pkgs/**"
       - ".github/workflows/cache.yml"
   schedule:
-    # Weekly, so the cache follows upstream without waiting for a push.
     - cron: "0 4 * * 0"
 
-# Never let two runs write the same cache entry concurrently.
 concurrency:
   group: cache-${{ github.ref }}
   cancel-in-progress: false
@@ -40,98 +20,76 @@ concurrency:
 jobs:
   x86_64-linux:
     runs-on: ubuntu-latest
-    # niri is a full Rust build, so allow a generous budget.
     timeout-minutes: 360
     permissions:
       contents: read
     steps:
       - uses: actions/checkout@v7
 
-      # The substituters this configuration actually uses, so the build below
-      # substitutes instead of recompiling. Kept in sync with
-      # modules/base/nix.nix and modules/desktop/niri.nix.
       - uses: cachix/install-nix-action@v31
         with:
           extra-conf: |
-            extra-substituters = https://niri.cachix.org https://noctalia.cachix.org https://cache.nixos-cuda.org
-            extra-trusted-public-keys = niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964= noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4= cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M=
+            extra-substituters = https://nirlvy.cachix.org https://niri.cachix.org https://noctalia.cachix.org https://cache.nixos-cuda.org
+            extra-trusted-public-keys = nirlvy.cachix.org-1:dOdsWPG0r4JuqWy+p150yPiVrC28tELUZUdkXobrKZM= niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964= noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4= cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M=
 
       - uses: cachix/cachix-action@v17
         with:
           name: nirlvy
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
 
-      - name: Build
+      - name: Build and push flake packages
         run: |
           set -euo pipefail
 
-          # Same nixpkgs configuration the hosts use (modules/base/nix.nix), and
-          # the same overlays modules/desktop/niri.nix applies. Without the niri
-          # and xwayland-satellite overlays, `p.niri` would just be the nixpkgs
-          # package, which is already on niri.cachix.org.
-          #
-          # shellcheck disable=SC2016  # ${n} is Nix, not shell
           expr='
             let
               flake = builtins.getFlake (toString ./.);
               base = import flake.inputs.nixpkgs {
                 system = "x86_64-linux";
-                config = { allowUnfree = true; permittedInsecurePackages = [ ]; };
+                config = {
+                  allowUnfree = true;
+                  permittedInsecurePackages = [ ];
+                };
               };
               overlays = import ./overlays { inputs = flake.inputs; };
-              p = base.extend (base.lib.composeManyExtensions (overlays ++ [
+              pkgs = base.extend (base.lib.composeManyExtensions (overlays ++ [
                 flake.inputs.niri.overlays.default
                 flake.inputs.xwayland-satellite.overlays.default
               ]));
-              wanted = [
-                "StarRailGrubThemes-firefly"
-                "anime4k"
-                "aris-plymouth"
-                "catppuccin-gtk"
-                "delance"
-                "ja-netfilter"
+              names = [
+                # "StarRailGrubThemes-firefly"
+                # "anime4k"
+                # "aris-plymouth"
+                # "catppuccin-gtk"
+                # "ja-netfilter"
                 "jetbrains-maple-mono"
                 "mpv"
                 "niri"
-                "sddm-eucalyptus-drop"
-                "sddm-sugar-candy"
-                "svp"
+                # "sddm-eucalyptus-drop"
+                # "sddm-sugar-candy"
+                # "svp"
                 "tela-icon-theme"
-                "ttf-wps-fonts"
-                "waydroid_script"
+                # "ttf-wps-fonts"
+                # "waydroid_script"
                 "wl-shot-edit"
                 "xwayland-satellite"
               ];
             in
-              # `p.fcitx5-configtool` is a throwing alias in current nixpkgs
-              # ("has been renamed to/replaced by qt6Packages...").
-              map (n: p.${n}) wanted ++ [ p.qt6Packages.fcitx5-configtool ]
+              map (name: pkgs.${name}) names
+              ++ [ pkgs.qt6Packages.fcitx5-configtool ]
           '
 
-          # --keep-going: one package failing must not stop the others from
-          # being cached. nix still exits non-zero, so failures stay visible.
+          # Read the repository's flake inputs and overlays without adding
+          # package outputs to flake.nix. Keep stdout clean for the store paths.
+          set +e
           nix build --no-link --keep-going --print-out-paths --impure \
-            --expr "$expr" | tee /tmp/built
+            --expr "$expr" > /tmp/built-paths
+          build_status=$?
+          set -e
 
-          # `nix build` re-prints target paths that already exist, including
-          # ones that a public cache provides, so keep only what this run really
-          # realised. That is what makes `cachix push` cheap on re-runs.
-          : > /tmp/created
-          while read -r path; do
-            [ -n "$path" ] || continue
-            if [ -e "$path" ]; then
-              printf '%s\n' "$path" >> /tmp/created
-            fi
-          done < /tmp/built
-          echo "built now: $(wc -l < /tmp/created) paths"
-
-      - name: Push
-        run: |
-          set -euo pipefail
-          if [ ! -s /tmp/created ]; then
-            echo "nothing to push"
-            exit 0
+          # Push successful outputs even when another target failed, then
+          # preserve the Nix build's exit status so failures remain visible.
+          if [ -s /tmp/built-paths ]; then
+            cachix push nirlvy < /tmp/built-paths
           fi
-          # cachix push reads the cache's preferred compression (ZSTD here),
-          # checks what already exists and skips it.
-          xargs -a /tmp/created cachix push nirlvy
+          exit "$build_status"

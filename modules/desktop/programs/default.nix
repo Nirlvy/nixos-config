@@ -6,6 +6,7 @@
     ./misc.nix
     ./ollama.nix
     ./steam.nix
+    ./sunshine.nix
     ./virtualization.nix
   ];
 }

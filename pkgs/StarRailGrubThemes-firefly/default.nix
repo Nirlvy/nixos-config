@@ -5,8 +5,8 @@ stdenvNoCC.mkDerivation {
   src = fetchFromGitHub {
     owner = "voidlhf";
     repo = "StarRailGrubThemes";
-    rev = "9ff3e3e42232ec1d0c6c6ca23e4db41f44defd89";
-    hash = "sha256-uqTs0AfYv5a0qqMl5HubIQT0A/TgiYcnc9Ue0/dVm5Q=";
+    rev = "97c14478b801d8fb2c19ffb2bba53894b0e4d3cd";
+    hash = "sha256-5xPl5pbq0SRKXn2Fanvr7/Vi4SkURX0YUYQczhkm5aI=";
   };
 
   installPhase = ''

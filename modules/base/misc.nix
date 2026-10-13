@@ -18,4 +18,6 @@
     dev.enable = false;
     nixos.enable = false;
   };
+
+  systemd.user.settings.Manager.DefaultTimeoutStopSec = "10s";
 }

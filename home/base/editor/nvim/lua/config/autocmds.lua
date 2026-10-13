@@ -109,7 +109,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('grD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
     ---@param client vim.lsp.Client
-    ---@param method vim.lsp.protocol.Method
+    ---@param method vim.lsp.protocol.Method.ClientToServer|vim.lsp.protocol.Method.Registration
     ---@param bufnr? integer
     ---@return boolean
     local function client_supports_method(client, method, bufnr)

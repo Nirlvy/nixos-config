@@ -1,12 +1,13 @@
-# Keeps flake inputs and the custom packages in pkgs/ up to date.
+# Keeps the custom packages in pkgs/ up to date.
 #
 # What it does (see scripts/update-pkgs.py):
-#   * `nix flake update`      -> flake.lock: nixpkgs, home-manager,
-#                                xwayland-satellite, noctalia, ...
 #   * revision bumps in pkgs/ -> waydroid_script, sddm-sugar-candy,
 #                                StarRailGrubThemes-firefly, ttf-wps-fonts,
 #                                jetbrains-maple-mono, with hashes recomputed by
 #                                nix itself (never by hand)
+#
+# `update-flake-lock.yml` owns flake.lock updates, avoiding duplicate lockfile
+# pull requests from this workflow.
 #
 # The result arrives as a pull request, so a broken bump never lands on main.
 name: update-pkgs
@@ -36,8 +37,8 @@ jobs:
             extra-substituters = https://nirlvy.cachix.org https://niri.cachix.org https://noctalia.cachix.org
             extra-trusted-public-keys = nirlvy.cachix.org-1:dOdsWPG0r4JuqWy+p150yPiVrC28tELUZUdkXobrKZM= niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964= noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=
 
-      - name: Update flake inputs and packages
-        run: python3 scripts/update-pkgs.py
+      - name: Update package sources
+        run: python3 scripts/update-pkgs.py --no-flake-update
 
       - name: Verify the configuration still evaluates and builds
         run: |

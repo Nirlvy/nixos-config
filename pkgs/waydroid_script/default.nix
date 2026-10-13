@@ -12,7 +12,7 @@ stdenv.mkDerivation {
     owner = "casualsnek";
     repo = "waydroid_script";
     rev = "48dbfaf34a6ddbe78688c530f9ba1c26522aafb2";
-    hash = "sha256-OiZO62cvsFyCUPGpWjhxVm8fZlulhccKylOCX/nEyJU=";
+    hash = "sha256-UBbnYhiRCf4sMwpEDMlpJuTEsN66B2hZ8BPz6cCGXAc=";
   };
 
   buildInputs = [

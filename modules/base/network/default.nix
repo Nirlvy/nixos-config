@@ -6,6 +6,7 @@
 
     ./hardware.nix
     ./ssh.nix
+    ./easytier.nix
     # ./tailscale.nix
   ];
 

@@ -10,7 +10,6 @@ return {
       PATH = 'append',
       registries = {
         'github:mason-org/mason-registry',
-        'github:nirlvy/mason-registry',
       },
     },
   },

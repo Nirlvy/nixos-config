@@ -20,7 +20,7 @@ stdenvNoCC.mkDerivation rec {
     owner = "Kangie";
     repo = "sddm-sugar-candy";
     rev = "d31dbf58286ecdcd3a490cd0c9d9ba2f15c26920";
-    sha256 = "HMlzUyRvXvzjaeq4FDxsHZga1zsn1w2Ln7SpctqjWk8=";
+    sha256 = "sha256-HMlzUyRvXvzjaeq4FDxsHZga1zsn1w2Ln7SpctqjWk8=";
   };
 
   dontWrapQtApps = true;

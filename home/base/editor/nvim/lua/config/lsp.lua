@@ -39,8 +39,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "<leader>rn", vim.lsp.buf.rename, opts)
     map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 
-    map("n", "[d", vim.diagnostic.goto_prev, opts)
-    map("n", "]d", vim.diagnostic.goto_next, opts)
+    map("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end, opts)
+    map("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end, opts)
   end,
 })
 

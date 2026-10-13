@@ -15,7 +15,7 @@ stdenvNoCC.mkDerivation {
     owner = owner;
     repo = pname;
     rev = "f4131f029934a76ea90336c8ee4929c5c78588f4";
-    sha256 = "LB7/VHTB3tPOqXoq0kaCw7VmaE4ZRSbwDvzhxPMsz+k=";
+    sha256 = "sha256-LB7/VHTB3tPOqXoq0kaCw7VmaE4ZRSbwDvzhxPMsz+k=";
   };
 
   installPhase = ''

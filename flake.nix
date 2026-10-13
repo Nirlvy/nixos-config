@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/master";
     # nixos-wsl = {
     #   url = "github:nix-community/NixOS-WSL/main";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -20,11 +21,7 @@
 
     agenix = {
       url = "github:ryantm/agenix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        home-manager.follows = "home-manager";
-        darwin.follows = "";
-      };
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     # daeuniverse = {
     #   url = "github:daeuniverse/flake.nix";

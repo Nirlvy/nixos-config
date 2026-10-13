@@ -32,7 +32,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 SYSTEM = "x86_64-linux"
-PLACEHOLDER_HASH = "sha256-" + "0" * 52
+PLACEHOLDER_HASH = "sha256-" + "A" * 43 + "="
 
 
 # ---------------------------------------------------------------------------
@@ -40,7 +40,7 @@ PLACEHOLDER_HASH = "sha256-" + "0" * 52
 # ---------------------------------------------------------------------------
 
 
-def sh(cmd: list[str], *, check: bool = True, attempts: int = 3) -> str:
+def sh(cmd: list[str], *, attempts: int = 3) -> str:
     """Run a command, retrying transient network failures."""
     proc = None
     for attempt in range(attempts):
@@ -50,10 +50,8 @@ def sh(cmd: list[str], *, check: bool = True, attempts: int = 3) -> str:
         if attempt + 1 < attempts:
             sys.stderr.write(f"retrying ({attempt + 1}/{attempts}): {' '.join(cmd)}\n")
             time.sleep(5)
-    if check:
-        sys.stderr.write(f"command failed: {' '.join(cmd)}\n{proc.stderr}")
-        raise SystemExit(proc.returncode)
-    return ""
+    sys.stderr.write(f"command failed: {' '.join(cmd)}\n{proc.stderr}")
+    raise SystemExit(proc.returncode)
 
 
 def github_head_sha(owner: str, repo: str) -> str:
@@ -92,13 +90,17 @@ def github_latest_tag(owner: str, repo: str) -> str:
 def eval_expr(attr: str) -> str:
     """Expression that resolves an attribute of the repo's package set."""
     return (
-        "let f = builtins.getFlake (toString /etc/nixos);"
-        f" pkgs = f.inputs.nixpkgs.legacyPackages.{SYSTEM};"
-        " lib = pkgs.lib;"
-        " ov = import /etc/nixos/overlays/default.nix { inherit (f) inputs self; inherit lib pkgs; };"
-        " p = pkgs.extend (lib.composeManyExtensions ov);"
+        f"let f = {flake_ref()};"
+        f" base = import f.inputs.nixpkgs {{ system = \"{SYSTEM}\"; config.allowUnfree = true; }};"
+        " overlays = import (f.outPath + \"/overlays\") { inherit (f) inputs; };"
+        " p = base.extend (base.lib.composeManyExtensions overlays);"
         f" in p.{attr}"
     )
+
+
+def flake_ref() -> str:
+    """Nix expression for this checkout, wherever the runner placed it."""
+    return f"builtins.getFlake (toString (builtins.toPath {json.dumps(str(REPO))}))"
 
 
 def patch(path: Path, pattern: str, replacement: str, *, dry: bool) -> bool:
@@ -119,28 +121,26 @@ def set_field(path: Path, field: str, value: str, *, dry: bool) -> bool:
     return patch(path, rf'({re.escape(field)} = ")[^"]+(")', rf"\g<1>{value}\g<2>", dry=dry)
 
 
-def probe_hash(package: str, path: Path, field: str, *, dry: bool) -> str | None:
-    """Let nix compute the hash by building with a placeholder in place.
-
-    The placeholder is written even for --dry-run (otherwise the build just
-    succeeds and no hash is reported); the file is always restored afterwards,
-    so dry-run still leaves the tree untouched.
-    """
-    original = path.read_text()
-    set_field(path, field, PLACEHOLDER_HASH, dry=False)
-    try:
-        proc = subprocess.run(
-            ["nix", "build", "--no-link", "--impure", "--expr", eval_expr(package)],
-            capture_output=True,
-            text=True,
-        )
-        combined = proc.stdout + proc.stderr
-        match = re.search(r"got:\s+(sha256-[A-Za-z0-9+/=]+)", combined)
-        if not match:
-            sys.stderr.write(f"warning: {package}: no hash in nix output (network?)\n")
-            sys.stderr.write(combined[-2000:])
-            return None
+def nix_hash(expr: str, label: str) -> str | None:
+    proc = subprocess.run(
+        ["nix", "build", "--no-link", "--impure", "--expr", expr],
+        capture_output=True,
+        text=True,
+    )
+    combined = proc.stdout + proc.stderr
+    match = re.search(r"got:\s+(sha256-[A-Za-z0-9+/=]+)", combined)
+    if match:
         return match.group(1)
+    sys.stderr.write(f"warning: {label}: no hash in nix output (network?)\n{combined[-2000:]}")
+    return None
+
+
+def probe_hash(package: str, path: Path, field: str) -> str | None:
+    """Probe a fetch hash and restore the file, including during dry-run."""
+    original = path.read_text()
+    try:
+        set_field(path, field, PLACEHOLDER_HASH, dry=False)
+        return nix_hash(eval_expr(package), package)
     finally:
         path.write_text(original)
 
@@ -150,10 +150,8 @@ def bump_revision(
 ) -> list[str]:
     """Revision-tracking package: move rev to head, then refresh the hash.
 
-    The hash is refreshed even when the revision did not move, because upstream
-    can re-upload an asset for an unchanged revision (that is exactly how
-    jetbrains-maple-mono broke). If nix cannot report a hash, the package is
-    skipped rather than written with a bad value.
+    Refresh the hash even when the revision did not move, since upstream can
+    replace source archives without changing the commit.
     """
     path = REPO / filename
     changed: list[str] = []
@@ -162,7 +160,7 @@ def bump_revision(
     if sha and patch(path, r'(rev = ")[^"]+(")', rf"\g<1>{sha}\g<2>", dry=dry):
         changed.append(f"{package} rev -> {sha[:8]}")
 
-    new_hash = probe_hash(package, path, hash_field, dry=dry)
+    new_hash = probe_hash(package, path, hash_field)
     if new_hash is None:
         sys.stderr.write(f"warning: {package}: no hash reported, skipping\n")
         return changed
@@ -197,21 +195,13 @@ def maple_refresh_all_hashes(*, dry: bool) -> list[str]:
         # not possible, so fetch each variant's asset directly through a tiny
         # throwaway expression instead.
         expr = (
-            "let pkgs = (builtins.getFlake (toString /etc/nixos)).inputs.nixpkgs"
+            f"let f = {flake_ref()}; pkgs = f.inputs.nixpkgs"
             f".legacyPackages.{SYSTEM}; in pkgs.fetchzip {{"
             f' url = "https://github.com/SpaceTimee/Fusion-JetBrainsMapleMono/releases/download/{version}/JetBrainsMapleMono-{variant}.zip";'
             ' sha256 = "' + PLACEHOLDER_HASH + '"; stripRoot = false; }'
         )
-        proc = subprocess.run(
-            ["nix", "build", "--no-link", "--impure", "--expr", expr],
-            capture_output=True,
-            text=True,
-        )
-        match = re.search(r"got:\s+(sha256-[A-Za-z0-9+/=]+)", proc.stdout + proc.stderr)
-        if not match:
-            sys.stderr.write(f"warning: maple[{variant}]: no hash reported, skipping\n")
-            continue
-        if set_field(path, variant, match.group(1), dry=dry):
+        new_hash = nix_hash(expr, f"maple[{variant}]")
+        if new_hash and set_field(path, variant, new_hash, dry=dry):
             changed.append(f"jetbrains-maple-mono[{variant}]")
     return changed
 
@@ -222,36 +212,31 @@ def update_maple(*, dry: bool) -> list[str]:
     The other 15 variants are only touched by --refresh-maple-hashes.
     """
     path = REPO / "pkgs/jetbrains-maple-mono/default.nix"
-    old = re.search(r'version = "([^"]+)"', path.read_text()).group(1)
+    original = path.read_text()
+    old = re.search(r'version = "([^"]+)"', original).group(1)
     new = github_latest_tag("SpaceTimee", "Fusion-JetBrainsMapleMono") or old
     changed = []
-    if new != old and not dry:
+    if new != old:
+        # Probe against the new release in both normal and dry-run modes.
         set_field(path, "version", new, dry=False)
         changed.append(f"jetbrains-maple-mono {old} -> {new}")
-    new_hash = probe_hash("jetbrains-maple-mono", path, "XX-XX-XX-XX", dry=dry)
+    try:
+        new_hash = probe_hash("jetbrains-maple-mono", path, "XX-XX-XX-XX")
+    finally:
+        if dry:
+            path.write_text(original)
     if new_hash and set_field(path, "XX-XX-XX-XX", new_hash, dry=dry):
         changed.append("jetbrains-maple-mono[XX-XX-XX-XX]")
     return changed
 
 
-PACKAGES = {
-    "jetbrains-maple-mono": update_maple,
-    "waydroid_script": lambda *, dry: bump_revision(
-        "waydroid_script", "pkgs/waydroid_script/default.nix",
-        "casualsnek", "waydroid_script", hash_field="hash", dry=dry,
+REVISION_PACKAGES = {
+    "waydroid_script": ("pkgs/waydroid_script/default.nix", "casualsnek", "waydroid_script", "hash"),
+    "sddm-sugar-candy": ("pkgs/sddm-sugar-candy/default.nix", "Kangie", "sddm-sugar-candy", "sha256"),
+    "StarRailGrubThemes-firefly": (
+        "pkgs/StarRailGrubThemes-firefly/default.nix", "voidlhf", "StarRailGrubThemes", "hash"
     ),
-    "sddm-sugar-candy": lambda *, dry: bump_revision(
-        "sddm-sugar-candy", "pkgs/sddm-sugar-candy/default.nix",
-        "Kangie", "sddm-sugar-candy", hash_field="sha256", dry=dry,
-    ),
-    "StarRailGrubThemes-firefly": lambda *, dry: bump_revision(
-        "StarRailGrubThemes-firefly", "pkgs/StarRailGrubThemes-firefly/default.nix",
-        "voidlhf", "StarRailGrubThemes", hash_field="hash", dry=dry,
-    ),
-    "ttf-wps-fonts": lambda *, dry: bump_revision(
-        "ttf-wps-fonts", "pkgs/ttf-wps-fonts/default.nix",
-        "ferion11", "ttf-wps-fonts", hash_field="sha256", dry=dry,
-    ),
+    "ttf-wps-fonts": ("pkgs/ttf-wps-fonts/default.nix", "ferion11", "ttf-wps-fonts", "sha256"),
 }
 
 # Not automated: pkgs/anime4k (fetchzip release asset, version lives in the
@@ -286,11 +271,18 @@ def main() -> int:
                 sh(["nix", "flake", "update"])
             changed.append("flake.lock")
 
-        for name, fn in PACKAGES.items():
-            if args.only and name not in args.only:
-                continue
+        package_names = ("jetbrains-maple-mono", *REVISION_PACKAGES)
+        for name in args.only or package_names:
+            if name not in package_names:
+                parser.error(f"unknown package: {name}")
             print(f"== {name}")
-            changed += fn(dry=args.dry_run)
+            if name == "jetbrains-maple-mono":
+                changed += update_maple(dry=args.dry_run)
+            else:
+                filename, owner, repo, hash_field = REVISION_PACKAGES[name]
+                changed += bump_revision(
+                    name, filename, owner, repo, hash_field=hash_field, dry=args.dry_run
+                )
 
     if changed:
         print("\nchanged:")

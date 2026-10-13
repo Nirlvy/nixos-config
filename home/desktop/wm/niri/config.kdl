@@ -30,6 +30,12 @@ input {
     workspace-auto-back-and-forth
 }
 
+output "DP-1" {
+  mode "3840x2160@159.975"
+  scale 1.5
+  variable-refresh-rate
+}
+
 output "DP-2" {
   mode "3840x2160@159.975"
   scale 1.5
@@ -101,9 +107,10 @@ layout {
     }
 }
 
-spawn-at-startup "sh" "-c" "sleep 10 && fcitx5 -r && sudo dae reload"
+spawn-at-startup "sh" "-c" "sleep 10 && fcitx5 -r"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 spawn-at-startup "noctalia"
+spawn-at-startup "sh" "-c" "for i in $(seq 1 60); do noctalia msg status >/dev/null 2>&1 && break; sleep 0.5; done; noctalia msg session lock"
 
 prefer-no-csd
 
@@ -367,7 +374,7 @@ binds {
 
     Mod+M { quit; }
 
-    Mod+Shift+P { spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
+    Mod+Shift+P { spawn "noctalia" "msg" "session" "lock"; }
 }
 
 debug { 

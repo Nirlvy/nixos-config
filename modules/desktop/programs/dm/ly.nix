@@ -1,6 +1,7 @@
 {
   services.displayManager = {
     defaultSession = "niri";
+    autoLogin.user = "nirlvy";
     ly = {
       enable = true;
       settings = {

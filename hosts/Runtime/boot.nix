@@ -30,11 +30,15 @@
       "ext4"
       "fat32"
       "ntfs"
+      "ntfs3"
       "vfat"
     ];
 
     kernelPackages = pkgs.linuxPackages_latest;
-    blacklistedKernelModules = [ "r8169" ];
+    blacklistedKernelModules = [
+      "r8169"
+      "mt76x2u"
+    ];
     extraModulePackages = [ kernelPackages.r8125 ];
 
     plymouth = {
@@ -52,4 +56,6 @@
     ];
     kernel.sysctl."kernel.sysrq" = 1;
   };
+
+  systemd.settings.Manager.RuntimeWatchdogSec = "20s";
 }

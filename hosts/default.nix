@@ -4,8 +4,14 @@
     let
       nixosSystem = inputs.nixpkgs.lib.nixosSystem;
       mod = "${self}/modules";
+      pkgsUnstable = import inputs.nixpkgs-unstable {
+        system = "x86_64-linux";
+        config.allowUnfree = true;
+      };
 
-      specialArgs = { inherit self inputs; };
+      specialArgs = {
+        inherit self inputs pkgsUnstable;
+      };
 
       sharedModules = with inputs; [
         home-manager.nixosModules.home-manager

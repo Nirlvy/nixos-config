@@ -19,9 +19,9 @@
       ];
       nix-path = [ "nixpkgs=${inputs.nixpkgs}" ];
       substituters = [
-        "https://mirror.nju.edu.cn/nix-channels/store?priority=10"
-        "https://mirrors.ustc.edu.cn/nix-channels/store?priority=20"
-        "https://cache.nixos-cuda.org?priority=30"
+        "https://mirror.nju.edu.cn/nix-channels/store"
+        "https://mirrors.ustc.edu.cn/nix-channels/store"
+        "https://cache.nixos-cuda.org"
         "https://nix-community.cachix.org"
         "https://nirlvy.cachix.org"
       ];

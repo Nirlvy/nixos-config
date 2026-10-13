@@ -52,6 +52,32 @@
     fsType = "vfat";
   };
 
+  fileSystems."/mnt/win-system" = {
+    device = "/dev/disk/by-uuid/BF3AF1A1586BA781";
+    fsType = "ntfs3";
+    options = [
+      "ro"
+      "uid=1000"
+      "gid=100"
+      "umask=0022"
+      "nofail"
+      "noatime"
+    ];
+  };
+
+  fileSystems."/mnt/win-others" = {
+    device = "/dev/disk/by-uuid/406947A399BE3E24";
+    fsType = "ntfs3";
+    options = [
+      "rw"
+      "uid=1000"
+      "gid=100"
+      "umask=0022"
+      "nofail"
+      "noatime"
+    ];
+  };
+
   swapDevices = [ ];
 
   networking.useDHCP = lib.mkDefault true;

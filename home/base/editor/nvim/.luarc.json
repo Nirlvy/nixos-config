@@ -7,7 +7,9 @@
     "checkThirdParty": false,
     "library": [
       "${3rd}/luv/library",
-      "${3rd}/busted/library"
+      "${3rd}/busted/library",
+      "${env:HOME}/.local/share/nvim/lazy",
+      "${env:HOME}/.local/share/nvim/runtime/lua"
     ]
   },
   "diagnostics": {
