@@ -175,10 +175,10 @@ window-rule{
 // TODO: 移除以下，新wayland-satellite可能已修复
 // Steam：主窗口全屏时顶部菜单下拉会出现空档、点不到菜单项
 // 见 https://github.com/Supreeeme/xwayland-satellite/issues/156
-window-rule {
-    match app-id=r#"^steam$"# title=r#"^Steam$"#
-    open-fullscreen false
-}
+// window-rule {
+//     match app-id=r#"^steam$"# title=r#"^Steam$"#
+//     open-fullscreen false
+// }
 
 // Steam 的新闻/特惠/通知弹窗用浮动窗口显示
 window-rule {
@@ -206,6 +206,7 @@ binds {
     Mod+E { spawn "firefox"; }
     Mod+D { spawn "thunar"; }
     Mod+V { spawn "noctalia" "msg" "panel-toggle" "clipboard"; }
+    Mod+O { spawn "sh" "-c" "niri msg output DP-1 mode 3840x2160@59.997 && sleep 2 && niri msg output DP-1 mode 3840x2160@159.975"; }
 
     XF86AudioRaiseVolume   allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }
     XF86AudioLowerVolume   allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
@@ -218,7 +219,7 @@ binds {
     // XF86MonBrightnessUp    allow-when-locked=true { spawn "light" "-A" "5"; }
     // XF86MonBrightnessDown  allow-when-locked=true { spawn "light" "-U" "5"; }
 
-    Mod+O repeat=false { toggle-overview; }
+    // Mod+O repeat=false { toggle-overview; }
 
     Mod+C { close-window; }
 

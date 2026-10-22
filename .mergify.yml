@@ -1,0 +1,39 @@
+# yaml-language-server: $schema=https://docs.mergify.com/mergify-configuration-schema.json
+pull_request_rules:
+  - name: Update automated PRs when main advances
+    conditions:
+      - base=main
+      - head-repo-full-name=Nirlvy/nixos-config
+      - -draft
+      - -conflict
+      - "#commits-behind>0"
+      - or:
+          - and:
+              - author=dependabot[bot]
+              - head~=^dependabot/github_actions/
+          - and:
+              - author~=^(Nirlvy|github-actions\[bot\])$
+              - head=chore/update-pkgs
+              - label=automated
+    actions:
+      update:
+
+  - name: Merge automated updates after cache succeeds
+    conditions:
+      - base=main
+      - head-repo-full-name=Nirlvy/nixos-config
+      - -draft
+      - -conflict
+      - "#commits-behind=0"
+      - check-success=cache-build
+      - or:
+          - and:
+              - author=dependabot[bot]
+              - head~=^dependabot/github_actions/
+          - and:
+              - author~=^(Nirlvy|github-actions\[bot\])$
+              - head=chore/update-pkgs
+              - label=automated
+    actions:
+      merge:
+        method: squash

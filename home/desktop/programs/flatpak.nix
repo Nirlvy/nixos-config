@@ -13,7 +13,7 @@
         location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
       }
     ];
-    update.auto.enable = false;
+    update.auto.enable = true;
     uninstallUnmanaged = true;
 
     packages = [
@@ -35,24 +35,8 @@
             "/home/nirlvy/.local/state/home-manager/gcroots/current-home/home-files/.local/share/icons/:ro"
             "${pkgs.capitaine-cursors}:ro"
           ];
-          sockets = [
-            "wayland"
-            "!x11"
-            "!fallback-x11"
-          ];
         };
       };
-
-      "com.qq.QQmusic".Context.sockets = [
-        "!wayland"
-        "x11"
-        "!fallback-x11"
-      ];
-      "com.tencent.WeChat".Context.sockets = [
-        "!wayland"
-        "x11"
-        "!fallback-x11"
-      ];
     };
   };
 }

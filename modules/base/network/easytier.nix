@@ -20,6 +20,7 @@
       extraSettings = {
         ipv6_public_addr_auto = true;
         flags = {
+          bind_device = true;
           enable_kcp_proxy = true;
           latency_first = true;
           private_mode = true;
