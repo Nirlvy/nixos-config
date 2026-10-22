@@ -2,6 +2,10 @@ name: cache
 
 on:
   workflow_dispatch:
+  # Do not filter PR paths: every automated update needs this status check,
+  # including Dependabot updates that only change GitHub Actions versions.
+  pull_request:
+    branches: [main]
   push:
     branches: [main]
     paths:
@@ -9,38 +13,57 @@ on:
       - "flake.lock"
       - "overlays/**"
       - "pkgs/**"
-      - ".github/workflows/cache.yml"
+      - "home/desktop/wm-modules/noctalia.nix"
+      - "home/desktop/wm-modules/noctalia/**"
+      - ".github/workflows/**"
   schedule:
     - cron: "0 4 * * 0"
 
 concurrency:
-  group: cache-${{ github.ref }}
-  cancel-in-progress: false
+  group: cache-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   x86_64-linux:
+    # Keep this name in sync with .mergify.yml.
+    name: cache-build
     runs-on: ubuntu-latest
     timeout-minutes: 360
     permissions:
       contents: read
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - uses: cachix/install-nix-action@v31
         with:
           extra-conf: |
-            extra-substituters = https://nirlvy.cachix.org https://niri.cachix.org https://noctalia.cachix.org https://cache.nixos-cuda.org
-            extra-trusted-public-keys = nirlvy.cachix.org-1:dOdsWPG0r4JuqWy+p150yPiVrC28tELUZUdkXobrKZM= niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964= noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4= cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M=
+            extra-substituters = https://nirlvy.cachix.org https://niri.cachix.org https://cache.nixos-cuda.org
+            extra-trusted-public-keys = nirlvy.cachix.org-1:dOdsWPG0r4JuqWy+p150yPiVrC28tELUZUdkXobrKZM= niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964= cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M=
 
       - uses: cachix/cachix-action@v17
         with:
           name: nirlvy
-          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+          # Upload explicitly below so an upload failure fails the check,
+          # without also uploading the same outputs via the daemon/post hook.
+          skipPush: true
 
       - name: Build and push flake packages
+        env:
+          CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
         run: |
           set -euo pipefail
 
+          # Fork and Dependabot PRs have no repository secrets. They still
+          # build using the public caches; trusted runs also publish outputs.
+          if [ "$GITHUB_EVENT_NAME" != pull_request ] && [ -z "$CACHIX_AUTH_TOKEN" ]; then
+            echo "::error::CACHIX_AUTH_TOKEN is required to publish the cache"
+            exit 1
+          fi
+
+          # Keep Nix interpolation literal for nix, rather than expanding it in Bash.
+          # shellcheck disable=SC2016
           expr='
             let
               flake = builtins.getFlake (toString ./.);
@@ -76,7 +99,10 @@ jobs:
               ];
             in
               map (name: pkgs.${name}) names
-              ++ [ pkgs.qt6Packages.fcitx5-configtool ]
+              ++ [
+                pkgs.qt6Packages.fcitx5-configtool
+                flake.inputs.noctalia.packages.x86_64-linux.default
+              ]
           '
 
           # Read the repository's flake inputs and overlays without adding
@@ -89,7 +115,21 @@ jobs:
 
           # Push successful outputs even when another target failed, then
           # preserve the Nix build's exit status so failures remain visible.
-          if [ -s /tmp/built-paths ]; then
+          if [ -n "$CACHIX_AUTH_TOKEN" ] && [ -s /tmp/built-paths ]; then
             cachix push nirlvy < /tmp/built-paths
           fi
           exit "$build_status"
+
+      - name: Validate Noctalia configuration
+        run: |
+          noctalia_out=$(nix eval --raw --impure --expr \
+            '(builtins.getFlake (toString ./.)).inputs.noctalia.packages.x86_64-linux.default.outPath')
+          "$noctalia_out/bin/noctalia" config validate home/desktop/wm-modules/noctalia/config.toml
+          "$noctalia_out/bin/noctalia" config validate home/desktop/wm-modules/noctalia/settings.toml
+          profile=$(mktemp -d)
+          trap 'rm -rf "$profile"' EXIT
+          mkdir -p "$profile/config/noctalia" "$profile/state/noctalia"
+          cp home/desktop/wm-modules/noctalia/config.toml "$profile/config/noctalia/"
+          cp home/desktop/wm-modules/noctalia/settings.toml "$profile/state/noctalia/"
+          NOCTALIA_CONFIG_HOME="$profile/config" NOCTALIA_STATE_HOME="$profile/state" \
+            "$noctalia_out/bin/noctalia" config validate

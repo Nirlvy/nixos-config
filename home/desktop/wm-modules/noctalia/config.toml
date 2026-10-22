@@ -1,0 +1,76 @@
+# Base configuration; GUI changes are saved in the linked settings.toml.
+[system.monitor]
+enabled = true
+# Let Noctalia find k10temp dynamically; hwmon numbers can change after reboot.
+cpu_temp_sensor_path = ""
+cpu_poll_seconds = 2.0
+gpu_poll_seconds = 5.0
+memory_poll_seconds = 2.0
+network_poll_seconds = 2.0
+disk_poll_seconds = 10.0
+
+[widget.cpu]
+type = "sysmon"
+stat = "cpu_usage"
+visualization = "none"
+
+[widget.cpu-temp]
+type = "sysmon"
+stat = "cpu_temp"
+visualization = "none"
+
+[widget.cpu-freq]
+type = "sysmon"
+stat = "cpu_freq"
+visualization = "none"
+
+[widget.gpu]
+type = "sysmon"
+stat = "gpu_usage"
+custom_label = "GPU"
+visualization = "none"
+
+[widget.gpu-temp]
+type = "sysmon"
+stat = "gpu_temp"
+visualization = "none"
+
+[widget.vram]
+type = "sysmon"
+stat = "gpu_vram"
+custom_label = "VRAM"
+visualization = "none"
+
+[widget.ram]
+type = "sysmon"
+stat = "ram_pct"
+visualization = "none"
+
+[widget.swap]
+type = "sysmon"
+stat = "swap_pct"
+visualization = "none"
+
+[widget.disk]
+type = "sysmon"
+stat = "disk_used_pct"
+path = "/"
+visualization = "none"
+
+[widget.disk-free]
+type = "sysmon"
+stat = "disk_free"
+path = "/"
+visualization = "none"
+
+[widget.network_rx]
+type = "sysmon"
+stat = "net_rx"
+network_speed_compact = true
+visualization = "none"
+
+[widget.network_tx]
+type = "sysmon"
+stat = "net_tx"
+network_speed_compact = true
+visualization = "none"

@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  boot = rec {
+  boot = {
     loader = {
       grub = rec {
         enable = false;
@@ -39,7 +39,6 @@
       "r8169"
       "mt76x2u"
     ];
-    extraModulePackages = [ kernelPackages.r8125 ];
 
     plymouth = {
       enable = true;

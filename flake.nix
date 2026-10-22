@@ -33,7 +33,7 @@
       url = "github:niri-wm/niri";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    noctalia.url = "github:noctalia-dev/noctalia/cachix";
+    noctalia.url = "github:noctalia-dev/noctalia";
     xwayland-satellite = {
       url = "github:Supreeeme/xwayland-satellite";
       inputs.nixpkgs.follows = "nixpkgs";
