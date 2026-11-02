@@ -29,7 +29,7 @@ let
     XX-XX-NL-HT = "DgDT7tzpwOeYpweJThudJaX5TfHGt+RjYS7Ca5tCKV4=";
     XX-XX-NL-XX = "OkPZir12moTOxvfLgncqCc+DdrJtjMQUI2vl9sS/tQM=";
     XX-XX-XX-HT = "YMEOptwFpUkVvAmy1lQ+vAKfSGEO/xbYD+keUEqCc3I=";
-    XX-XX-XX-XX = "sha256-C8M4k6nxpW9CnEA5KSzay3veLrJ5ee2UpbzgLqWBuAI=";
+    XX-XX-XX-XX = "sha256-YjrdX1SECR0+Hg94BBu61/IncPOLEZeGgLURXkECxaI=";
   };
 in
 stdenvNoCC.mkDerivation {
