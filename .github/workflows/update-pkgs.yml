@@ -33,7 +33,7 @@ jobs:
           UPDATE_PR_TOKEN: ${{ secrets.UPDATE_PR_TOKEN }}
         run: |
           if [ -z "$UPDATE_PR_TOKEN" ]; then
-            echo "::error::Set UPDATE_PR_TOKEN so update PRs can trigger cache CI without manual approval; see .github/README.md"
+            echo "::error title=Missing UPDATE_PR_TOKEN::Add the UPDATE_PR_TOKEN repository Actions secret at https://github.com/$GITHUB_REPOSITORY/settings/secrets/actions using a token with Contents and Pull requests read/write permissions."
             exit 1
           fi
 

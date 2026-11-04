@@ -6,11 +6,12 @@
 }:
 let
   highPf = true;
+  hasNvidia = builtins.elem "nvidia" osConfig.services.xserver.videoDrivers;
 in
 {
   programs.mpv = {
     enable = true;
-    defaultProfiles = [ "gpu-hq" ];
+    defaultProfiles = [ "high-quality" ];
     scripts = with pkgs.mpvScripts; [
       thumbfast
       modernx-zydezu
@@ -18,18 +19,15 @@ in
     config = {
       # basic
       vo = "gpu-next";
-      # gpu-api = "vulkan";
       gpu-api = "auto";
-      # gpu-context = "waylandvk";
-      gpu-context = "wayland";
-      hwdec = "auto-safe";
-      hwdec-codecs = "all";
+      gpu-context = "auto";
+      hwdec = "auto";
       # vd-lavc-dr = "yes";
 
       # function
       osc = "no";
       # border = "no";
-      autofit-smaller = "40%x30%";
+      autofit-larger = "40%x30%";
       keep-open = "yes";
       idle = "yes";
       hr-seek = "yes";
@@ -58,7 +56,7 @@ in
 
       # audio
       audio-device = "auto";
-      ao = "alsa";
+      ao = "pipewire";
       audio-file-auto = "fuzzy";
       audio-pitch-correction = "yes";
       alang = "zh,chi,chs,sc,zho,en,eng";
@@ -71,18 +69,18 @@ in
       # vf = "format:dolbyvision=yes";
       # vf-append = "format=gamma=gamma2.2";
       gpu-shader-cache-dir = "~~/shaders_cache";
-    }
-    // lib.optionalAttrs (osConfig.programs.nvidia.enable) { hwdec = "auto-copy"; }
-    // lib.optionalAttrs (osConfig.programs.nvidia.enable && highPf) {
-      glsl-shaders = "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_VL.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_VL.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl";
-    }
-    // lib.optionalAttrs (osConfig.programs.nvidia.enable && !highPf) {
-      glsl-shaders = "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_M.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_S.glsl";
     };
+    # CPU filters such as SVP need decoded frames in system memory.
+    # Launch with: mpv --profile=svp <video>
+    profiles.svp = {
+      profile-desc = "Copy hardware-decoded frames to system memory for SVP";
+      hwdec = "auto-copy";
+    };
+    # Anime4K is opt-in; use Ctrl+1..6 to select a mode and Ctrl+0 to clear it.
     extraInput = ''
       CTRL+0 no-osd change-list glsl-shaders clr ""; show-text "GLSL shaders cleared"
     ''
-    + lib.optionalString (osConfig.programs.nvidia.enable && highPf) ''
+    + lib.optionalString (hasNvidia && highPf) ''
       # Optimized shaders for higher-end GPU:
       CTRL+1 no-osd change-list glsl-shaders set "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_VL.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_VL.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode A (HQ)"
       CTRL+2 no-osd change-list glsl-shaders set "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_Soft_VL.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_VL.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode B (HQ)"
@@ -91,7 +89,7 @@ in
       CTRL+5 no-osd change-list glsl-shaders set "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_Soft_VL.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_VL.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Restore_CNN_Soft_M.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode B+B (HQ)"
       CTRL+6 no-osd change-list glsl-shaders set "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Upscale_Denoise_CNN_x2_VL.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Restore_CNN_M.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode C+A (HQ)"
     ''
-    + lib.optionalString (osConfig.programs.nvidia.enable && !highPf) ''
+    + lib.optionalString (hasNvidia && !highPf) ''
       # Optimized shaders for lower-end GPU:
       CTRL+1 no-osd change-list glsl-shaders set "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_M.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_S.glsl"; show-text "Anime4K: Mode A (Fast)"
       CTRL+2 no-osd change-list glsl-shaders set "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_Soft_M.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_S.glsl"; show-text "Anime4K: Mode B (Fast)"

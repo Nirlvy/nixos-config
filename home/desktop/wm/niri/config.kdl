@@ -186,6 +186,15 @@ window-rule {
     open-floating true
 }
 
+// Let this Unity game's own resolution control its window size.
+// Covers both Wine Wayland and the game's XWayland WM_CLASS.
+window-rule {
+    match app-id=r#"^novicesuccubuslillia\.exe$"#
+    match app-id=r#"^steam_proton$"# title=r#"^Novice Succubus Lillia$"#
+    open-floating true
+    open-maximized false
+}
+
 layer-rule {
   match namespace="^noctalia-overview*"
   place-within-backdrop true

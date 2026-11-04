@@ -27,9 +27,14 @@
       }
     ];
     overrides = {
+      "com.usebottles.bottles".Context = {
+        # Use XWayland explicitly; fallback-x11 can hide DISPLAY in this session.
+        sockets = [ "x11" "!fallback-x11" "!wayland" ];
+      };
       global = {
         Context = {
           filesystems = [
+            "/mnt/win-others"
             "/home/nirlvy/.local/share/fonts:ro"
             "/home/nirlvy/.icon:ro"
             "/home/nirlvy/.local/state/home-manager/gcroots/current-home/home-files/.local/share/icons/:ro"
