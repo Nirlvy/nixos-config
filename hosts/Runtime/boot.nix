@@ -36,7 +36,6 @@
 
     kernelPackages = pkgs.linuxPackages_latest;
     blacklistedKernelModules = [
-      "r8169"
       "mt76x2u"
     ];
 
